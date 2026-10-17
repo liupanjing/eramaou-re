@@ -1,0 +1,138 @@
+﻿; 仅由 tools/check_castle.py 放入独立测试目录，不在正式游戏加载。
+@SYSTEM_TITLE
+#DIM DYNAMIC CT_UID
+RESETDATA
+CALL CHARA_NAME_INIT
+ADDCHARA 0
+ADDCHARA 1
+ADDCHARA 2
+ADDCHARA 3
+MASTER = 0
+CFLAG:0:6 = 10000
+CFLAG:1:6 = 10001
+CFLAG:2:6 = 10002
+CFLAG:3:6 = 10003
+CFLAG:0:451 = 21
+CFLAG:1:451 = 25
+CFLAG:2:451 = 8
+CFLAG:3:451 = 28
+CFLAG:1:1 = 0
+CFLAG:2:1 = 0
+CFLAG:3:1 = 0
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_STATE:0 == 3, "migration initialized")
+CALL CT_ASSERT(CASTLE_PERSON:1:CP_ROLE == CR_CAPTIVE, "capture belongs to dungeon")
+CALL CT_ASSERT(CASTLE_WHERE(1) == CL_DUNGEON, "capture location")
+CALL CT_ASSERT(CASTLE_STATE:5 == 3, "three actions per half day")
+CALL CT_ASSERT(CASTLE_RESIDENTS(CL_DUNGEON) == 3, "resident count first call")
+CALL CT_ASSERT(CASTLE_RESIDENTS(CL_DUNGEON) == 3, "resident count has no retained accumulator")
+CT_UID = CASTLE_PERSON:1:CP_UID
+NAME:1 = 改名后的骑士
+CFLAG:1:6 = 10011
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_PERSON:1:CP_UID == CT_UID, "rename preserves permanent identity")
+CALL FAMILY_SETBOTH(2, 0, 5)
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_PERSON:2:CP_ROLE == CR_FAMILY, "parent relation overrides role")
+CALL CT_ASSERT(STRLENS(CASTLE_FAMILY_LABEL(2)) > 0, "family label available")
+CALL CT_ASSERT(CASTLE_PRIVATE_REASON(0, 2) != 0, "minor excluded from adult interaction")
+CFLAG:2:451 = 25
+CALL CT_ASSERT(CASTLE_PRIVATE_REASON(0, 2) != 0, "adult child remains protected by kinship")
+CASTLE_STATE:2 = CL_DUNGEON
+CALL CT_ASSERT(IS_TRAINABLE(1) != 0, "dungeon cannot directly start training")
+CALL CASTLE_BRING(1)
+CALL CT_ASSERT(RESULT == 1 && CASTLE_STATE:2 == CL_CHAMBER && TARGET == 1, "escort selects adult and moves to chamber")
+CALL CT_ASSERT(CASTLE_PERSON:1:CP_HOME == CL_DUNGEON && CASTLE_PERSON:1:CP_ROLE == CR_CAPTIVE, "escort preserves captive residence and role")
+CALL CT_ASSERT(IS_TRAINABLE(1) == 0, "escorted adult can use original training")
+CALL CASTLE_END_VISIT
+CALL CT_ASSERT(CASTLE_WHERE(1) == CL_DUNGEON && IS_TRAINABLE(1) != 0, "session end returns captive and invalidates stale target")
+CASTLE_STATE:2 = CL_THRONE
+CALL CT_ASSERT(IS_TRAINABLE(1) != 0, "remote adult cannot be selected")
+CFLAG:1:2 = 1000
+ABL:1:10 = 3
+MARK:1:3 = 0
+CALL CT_ASSERT(CASTLE_SUBMISSION_REASON(1) == 4, "no training history blocks allegiance")
+CFLAG:1:10 = 1
+CFLAG:1:2 = 999
+CALL CT_ASSERT(CASTLE_SUBMISSION_REASON(1) == 5, "affection below 100 percent blocks allegiance")
+CALL CASTLE_ACCEPT(1)
+CALL CT_ASSERT(RESULT == 0 && CASTLE_PERSON:1:CP_ROLE == CR_CAPTIVE, "central accept cannot bypass requirements")
+CFLAG:1:2 = 1000
+MARK:1:3 = 1
+CALL CT_ASSERT(CASTLE_SUBMISSION_REASON(1) == 6, "rebellion mark blocks allegiance")
+MARK:1:3 = 0
+ABL:1:10 = 2
+CALL CT_ASSERT(CASTLE_SUBMISSION_REASON(1) == 7, "obedience below level three blocks allegiance")
+TALENT:1:85 = 1
+CFLAG:1:0 = 2
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_PERSON:1:CP_ROLE == CR_CAPTIVE, "love and assistant flags cannot auto-convert new captives")
+ABL:1:10 = 3
+CALL CT_ASSERT(CASTLE_SUBMISSION_REASON(1) == 0, "all training requirements permit allegiance")
+CALL CASTLE_ACCEPT(1)
+CALL CT_ASSERT(CASTLE_PERSON:1:CP_HOME == CL_QUARTERS, "allegiance sets residence")
+CALL CT_ASSERT(CASTLE_PERSON:1:CP_ORIGIN == 2, "trained allegiance records source")
+; v1聊天归顺只修正一次，不影响达标后的正常归顺。
+CASTLE_STATE:0 = 1
+CASTLE_PERSON:1:CP_ORIGIN = 0
+CASTLE_PERSON:1:CP_TRUST = 100
+CFLAG:1:2 = 0
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_PERSON:1:CP_ROLE == CR_CAPTIVE && CASTLE_PERSON:1:CP_HOME == CL_DUNGEON, "v1 chat allegiance corrected")
+CALL CT_ASSERT(CASTLE_PERSON:1:CP_PERSUADE == 0, "old trust cannot become free persuasion progress")
+CFLAG:1:2 = 1000
+CALL CASTLE_ACCEPT(1)
+CASTLE_PERSON:1:CP_HOME = CL_CHAMBER
+CASTLE_PERSON:1:CP_WORK = CL_BARRACKS
+TIME = 0
+CALL CT_ASSERT(CASTLE_WHERE(1) == CL_BARRACKS, "morning workplace")
+TIME = 1
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_WHERE(1) == CL_CHAMBER, "afternoon residence")
+CALL CT_ASSERT(CASTLE_PERSON:1:CP_WORK == CL_BARRACKS, "residence retains appointment")
+CALL CASTLE_SPEND
+CALL CASTLE_SPEND
+CALL CASTLE_SPEND
+CALL CT_ASSERT(CASTLE_STATE:5 == 0, "action spending")
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_STATE:5 == 0, "refresh cannot refill actions")
+TIME = 0
+DAY += 1
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_STATE:5 == 3, "new time refills actions")
+ITEM:170 = 12
+CASTLE_GUARD:170 = 5
+CALL CT_ASSERT(CASTLE_TROOP_TOTAL() == 12, "garrison does not duplicate troops")
+ITEM:170 = 2
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_GUARD:170 == 2, "battle losses clamp garrison")
+CASTLE_LEVEL:CL_BARRACKS = 3
+CALL CT_ASSERT(CASTLE_TROOP_CAPACITY() == 400, "expansion capacity")
+SWAPCHARA 1, 3
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_PERSON:3:CP_UID == CT_UID, "sort follows character")
+DELCHARA 1
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_PERSON:2:CP_UID == CT_UID, "deletion preserves remaining identity")
+CALL CT_ASSERT(RF_GET(1, 0) == 5, "deletion preserves parent relation")
+CASTLE_PERSON:1:CP_UID = CT_UID
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_PERSON:1:CP_UID != CASTLE_PERSON:2:CP_UID, "import duplicate identity repaired")
+CASTLE_STATE:2 = CL_BARRACKS
+LOCALS = castle regression only
+SAVEDATA 98, LOCALS
+PRINTL CASTLE ENGINE ASSERTIONS PASSED
+CALL CASTLE_DRAW
+OUTPUTLOG
+QUIT
+
+@CT_ASSERT(CT_OK, CT_MESSAGE)
+#DIM DYNAMIC CT_OK
+#DIMS DYNAMIC CT_MESSAGE
+IF CT_OK == 0
+	PRINTFORML CASTLE TEST FAIL: %CT_MESSAGE%
+	OUTPUTLOG
+	QUIT
+ENDIF
+PRINTFORML PASS: %CT_MESSAGE%
+RETURN

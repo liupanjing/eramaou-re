@@ -1,0 +1,328 @@
+﻿; 隔离副本中替换输入等待，执行实际对话、资源和归顺逻辑。
+@DT_RUN
+#DIM DYNAMIC DT_PACK
+#DIM DYNAMIC DT_EVENT
+#DIM DYNAMIC DT_UID
+#DIM DYNAMIC DT_TRUST
+#DIM DYNAMIC DT_AGREE
+#DIM DYNAMIC DT_MONEY
+CALL DT_CHARACTER_VOICES
+CALL EV_RUN
+CALL DT_ATTITUDE_TESTS
+CALL DT_RESET(0)
+CASTLE_PERSON:2:CP_PERSUADE = 100
+CALL DIALOGUE_SYNC(2)
+CALL CT_ASSERT(DIALOGUE_PERSON:2:DP_CHAPTER == 0 && DIALOGUE_READY(2) == 0, "legacy progress cannot skip character story")
+CALL CT_ASSERT(DIALOGUE_PERSON:2:DP_TRUST == 30 && DIALOGUE_PERSON:2:DP_AGREE == 50, "legacy progress migrates to bounded initial impression")
+CALL DT_RESET(0)
+CASTLE_PERSON:2:CP_ROLE = CR_FOLLOWER
+CASTLE_PERSON:2:CP_ORIGIN = 3
+CALL DIALOGUE_SYNC(2)
+CALL CT_ASSERT(DIALOGUE_PERSON:2:DP_DEAL && DIALOGUE_PERSON:2:DP_CHAPTER == 4, "completed old dialogue allegiance is retained")
+CALL DT_RESET(10)
+CALL DIALOGUE_SYNC(2)
+NAME:2 = 改名后的特殊角色
+CALL CT_ASSERT(DIALOGUE_PACK(2) == 10, "unique talent marker survives rename")
+CALL CT_ASSERT(DIALOGUE_FORMAT(2, "__NPC_NAME__") == NAME:2, "prose uses current name after rename")
+CALL CT_ASSERT(DIALOGUE_FORMAT(2, "__MASTER_NAME__") == NAME:MASTER, "prose uses current master name")
+CALL CT_ASSERT(DIALOGUE_FORMAT(2, "__SELF_CALL__") == SELF_CALL(2), "prose preserves original self-call")
+CALL CT_ASSERT(DIALOGUE_PERSON:2:DP_TEMPER == 4, "unique voice retains original arrogant personality")
+CALL CT_ASSERT(DIALOGUE_ELIGIBLE(1) == 0, "family member excluded from captive negotiation")
+CFLAG:2:451 = 17
+CALL CT_ASSERT(DIALOGUE_ELIGIBLE(2) == 0, "underage character excluded from adult negotiation")
+CFLAG:2:451 = 27
+CT_QUEUE = 0
+CT_POS = 0
+CT_SIZE = 1
+CALL DIALOGUE_MAIN(2)
+CALL CT_ASSERT(CASTLE_STATE:5 == 3 && DIALOGUE_PERSON:2:DP_LAST == 0, "browsing and cancelling topics is free")
+CALL CT_ASSERT(DIALOGUE_PERSON:2:DP_MET == 1, "first encounter persists separately from paid conversation")
+CT_QUEUE = 1, 1, 1, 999
+CT_QUEUE:2 = DT_CHOICE(10, 1, 1)
+CT_QUEUE:3 = DT_CHOICE(10, 1, 2)
+CT_QUEUE:4 = 999
+CT_POS = 0
+CT_SIZE = 5
+CALL CASTLE_PERSON_MENU(2)
+CALL CT_ASSERT(DIALOGUE_PERSON:2:DP_CHAPTER == 1 && CASTLE_STATE:5 == 2, "person menu opens topic and two choice conversation")
+DT_TRUST = DIALOGUE_PERSON:2:DP_TRUST
+CALL DIALOGUE_SESSION(2, 2)
+CALL CT_ASSERT(RESULT == 0 && DIALOGUE_PERSON:2:DP_TRUST == DT_TRUST && CASTLE_STATE:5 == 2, "same time conversation cannot farm relationship")
+DAY += 1
+CALL CASTLE_SYNC
+CASTLE_STATE:2 = CL_THRONE
+CALL DIALOGUE_SESSION(2, 2)
+CALL CT_ASSERT(RESULT == 0 && CASTLE_STATE:5 == 3, "remote story cannot consume actions")
+CASTLE_STATE:2 = CL_DUNGEON
+CALL DIALOGUE_SESSION(2, 4)
+CALL CT_ASSERT(RESULT == 0 && CASTLE_STATE:5 == 3, "final negotiation cannot skip earlier events")
+CASTLE_STATE:5 = 0
+CALL DIALOGUE_SESSION(2, 2)
+CALL CT_ASSERT(RESULT == 0 && DIALOGUE_PERSON:2:DP_LAST != DAY * 2 + TIME + 1, "no actions does not stamp or advance conversation")
+CASTLE_STATE:5 = 3
+CT_QUEUE = 0
+CT_POS = 0
+CT_SIZE = 1
+CALL DIALOGUE_SESSION(2, 2)
+CALL CT_ASSERT(CASTLE_STATE:5 == 2 && DIALOGUE_PERSON:2:DP_CHAPTER == 1 && DIALOGUE_PERSON:2:DP_TRUST == DT_TRUST, "early departure after starting uses action without completing scene")
+CALL DT_RESET(1)
+CALL DIALOGUE_SYNC(2)
+CT_QUEUE:0 = DT_CHOICE(1, 1, 1, 0)
+CT_QUEUE:1 = DT_CHOICE(1, 1, 2, 0)
+CT_POS = 0
+CT_SIZE = 2
+CALL DIALOGUE_SESSION(2, 1)
+CALL CT_ASSERT(DIALOGUE_PERSON:2:DP_CHAPTER == 0 && DIALOGUE_PERSON:2:DP_TRUST == 0, "hostile choices fail without false success prose or stage advance")
+DAY += 1
+CALL CASTLE_SYNC
+CALL DT_GOOD_SCENE(1, 1)
+CALL CT_ASSERT(DIALOGUE_PERSON:2:DP_CHAPTER == 1, "failed story can be repaired by later conversation")
+DT_TRUST = DIALOGUE_PERSON:2:DP_TRUST
+DAY += 1
+CALL CASTLE_SYNC
+CALL DT_GOOD_SCENE(1, 1)
+CALL CT_ASSERT(DIALOGUE_PERSON:2:DP_CHAPTER == 1 && DIALOGUE_PERSON:2:DP_TRUST - DT_TRUST < 10, "replayed scenes grant reduced reward without advancing chapter twice")
+; 先走通其他命名角色，最后保留白梅花档案供旧档读回检查。
+CALL DT_ROUTE(167)
+CALL DT_ROUTE(168)
+CALL DT_ROUTE(169)
+CALL DT_ROUTE(171)
+CALL DT_ROUTE(101)
+CALL DT_ROUTE(102)
+CALL DT_ROUTE(103)
+CALL DT_ROUTE(134)
+CALL DT_ROUTE(150)
+; 三组普通角色、通用兜底及白梅花路线。
+FOR DT_PACK, 0, 5
+	DT_EVENT = DT_PACK == 4 ? 10 # DT_PACK
+	CALL DT_ROUTE(DT_EVENT)
+NEXT
+; 最后一条路线的状态供原生存档读回检查。
+LOCALS = story completed regression only
+SAVEDATA 97, LOCALS
+CALL CT_ASSERT(DIALOGUE_PERSON:2:DP_SPECIAL == 170, "final fixture is unique profile")
+PRINTL DIALOGUE ENGINE ASSERTIONS PASSED
+RETURN
+
+@DT_ROUTE(DT_PACK)
+#DIM DYNAMIC DT_PACK
+#DIM DYNAMIC DT_EVENT
+#DIM DYNAMIC DT_TRUST
+#DIM DYNAMIC DT_MONEY
+#DIM DYNAMIC DT_UID
+CALL DT_RESET(DT_PACK)
+CALL DIALOGUE_SYNC(2)
+CALL CT_ASSERT(DIALOGUE_PACK(2) == DT_PACK, "personality and origin select intended script")
+FOR DT_EVENT, 1, 4
+	DAY += 1
+	CALL CASTLE_SYNC
+	CALL DT_GOOD_SCENE(DT_PACK, DT_EVENT)
+	CALL CT_ASSERT(DIALOGUE_PERSON:2:DP_CHAPTER == DT_EVENT && CASTLE_STATE:5 == 2, "each story chapter consumes one action for two decisions")
+NEXT
+CALL CT_ASSERT(DIALOGUE_PERSON:2:DP_PROMISE == 1 && DIALOGUE_PERSON:2:DP_ISSUE, "third event creates concrete pending promise")
+CALL CT_ASSERT(CFLAG:2:2 == 0 && CFLAG:2:10 == 0 && ABL:2:10 == 0 && MARK:2:3 == 1, "dialogue does not fabricate training affection ability history or marks")
+CALL CASTLE_ACCEPT(2, 3)
+CALL CT_ASSERT(RESULT == 0 && CASTLE_PERSON:2:CP_ROLE == CR_CAPTIVE, "accept guard refuses unfinished story even after three positive talks")
+DAY += 1
+CALL CASTLE_SYNC
+CALL DIALOGUE_SESSION(2, 4)
+CALL CT_ASSERT(RESULT == 0 && CASTLE_STATE:5 == 3, "unfulfilled promise blocks final story for free")
+MONEY = 99
+CALL DIALOGUE_FULFILL(2)
+CALL CT_ASSERT(RESULT == 0 && MONEY == 99 && CASTLE_STATE:5 == 3, "insufficient money preserves promise and action")
+MONEY = 1000
+CASTLE_STATE:5 = 0
+CALL DIALOGUE_FULFILL(2)
+CALL CT_ASSERT(RESULT == 0 && MONEY == 1000 && DIALOGUE_PERSON:2:DP_PROMISE == 1, "exhausted actions cannot deliver promise")
+CASTLE_STATE:5 = 3
+IF DT_PACK == 10
+	LOCALS = story pending regression only
+	SAVEDATA 95, LOCALS
+ENDIF
+CALL DIALOGUE_FULFILL(2)
+CALL CT_ASSERT(RESULT == 1 && MONEY == 900 && CASTLE_STATE:5 == 2 && DIALOGUE_PERSON:2:DP_PROMISE == 2, "promise delivery charges exact cost once")
+CALL DIALOGUE_FULFILL(2)
+CALL CT_ASSERT(RESULT == 0 && MONEY == 900 && CASTLE_STATE:5 == 2, "fulfilled promise cannot be charged or claimed twice")
+DT_UID = CASTLE_PERSON:2:CP_UID
+DT_TRUST = DIALOGUE_PERSON:2:DP_TRUST
+SWAPCHARA 1, 2
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_PERSON:1:CP_UID == DT_UID && DIALOGUE_PERSON:1:DP_TRUST == DT_TRUST && DIALOGUE_PERSON:1:DP_PROMISE == 2, "dialogue history follows person after sorting")
+SWAPCHARA 1, 2
+CALL CASTLE_SYNC
+IF DT_PACK == 10
+	ADDCHARA 3
+	SWAPCHARA 1, 3
+	DELCHARA 1
+	CALL CASTLE_SYNC
+	CALL CT_ASSERT(CASTLE_PERSON:1:CP_UID == DT_UID && DIALOGUE_PERSON:1:DP_PROMISE == 2 && DIALOGUE_CHOICES:1:2 > 0, "deletion before character preserves story choices and promise")
+	SWAPCHARA 1, 2
+	CALL CASTLE_SYNC
+ENDIF
+CALL DT_GOOD_SCENE(DT_PACK, 4)
+CALL CT_ASSERT(DIALOGUE_READY(2) && CASTLE_STATE:5 == 1, "final choices unlock allegiance only after promise and relationship")
+CT_QUEUE = 2, 999
+CT_POS = 0
+CT_SIZE = 2
+CALL CASTLE_PERSON_MENU(2)
+CALL CT_ASSERT(CASTLE_PERSON:2:CP_ROLE == CR_FOLLOWER && CASTLE_PERSON:2:CP_ORIGIN == 3 && CASTLE_PERSON:2:CP_HOME == CL_QUARTERS && CASTLE_STATE:5 == 0, "story route confirms allegiance through real personnel entry")
+DAY += 1
+CALL CASTLE_SYNC
+CASTLE_STATE:2 = CL_QUARTERS
+CT_QUEUE = 1
+CT_POS = 0
+CT_SIZE = 1
+CALL DIALOGUE_SESSION(2, 10)
+CALL CT_ASSERT(CASTLE_STATE:5 == 2 && CASTLE_PERSON:2:CP_ROLE == CR_FOLLOWER && DIALOGUE_SEEN:2:10 == 1, "recruited character retains daily conversation outside dungeon")
+CALL CT_ASSERT(DIALOGUE_PERSON:2:DP_CHOICE2 > 0 && DIALOGUE_CHOICES:2:2 > 0 && DIALOGUE_CHOICES:2:9 > 0, "daily conversation preserves all earlier story choices")
+DAY += 1
+CALL CASTLE_SYNC
+CALL DT_GOOD_SCENE(DT_PACK, 1)
+CALL CT_ASSERT(CASTLE_PERSON:2:CP_ROLE == CR_FOLLOWER && DIALOGUE_PERSON:2:DP_CHAPTER == 4 && DIALOGUE_PERSON:2:DP_PROMISE == 2, "follower recalls earlier story without reverting allegiance or promise")
+CALL CT_ASSERT(DIALOGUE_ATTITUDE(2) == 3 && CASTLE_STATE:5 == 2, "follower review uses current attitude in current residence")
+CASTLE_STATE:2 = CL_DUNGEON
+RETURN
+
+@DT_ATTITUDE_TESTS
+CALL DT_RESET(10)
+CALL DIALOGUE_SYNC(2)
+CALL CT_ASSERT(DIALOGUE_ATTITUDE(2) == 0 && DIALOGUE_ADDRESS(2) == "你", "new captive preserves White Clover original address")
+CALL CT_ASSERT(DIALOGUE_FORMAT(2, "__MASTER_ADDRESS__") == "你", "address placeholder respects original personality before allegiance")
+DIALOGUE_PERSON:2:DP_TRUST = 100
+DIALOGUE_PERSON:2:DP_AGREE = 100
+CALL CT_ASSERT(DIALOGUE_ATTITUDE(2) == 0, "large numbers cannot replace actual shared history")
+DIALOGUE_PERSON:2:DP_CHAPTER = 1
+DIALOGUE_PERSON:2:DP_TRUST = 14
+CALL CT_ASSERT(DIALOGUE_ATTITUDE(2) == 0, "weakest relationship metric below fifteen remains resistant")
+DIALOGUE_PERSON:2:DP_TRUST = 15
+CALL CT_ASSERT(DIALOGUE_ATTITUDE(2) == 1, "first chapter and fifteen trust allow guarded listening")
+DIALOGUE_PERSON:2:DP_TRUST = 100
+CALL CT_ASSERT(DIALOGUE_ATTITUDE(2) == 1, "cooperation also requires second chapter")
+DIALOGUE_PERSON:2:DP_CHAPTER = 2
+DIALOGUE_PERSON:2:DP_AGREE = 39
+CALL CT_ASSERT(DIALOGUE_ATTITUDE(2) == 1, "agreement below forty remains guarded")
+DIALOGUE_PERSON:2:DP_AGREE = 40
+CALL CT_ASSERT(DIALOGUE_ATTITUDE(2) == 2 && DIALOGUE_ADDRESS(2) == "你", "conditional cooperation uses character-specific address")
+DIALOGUE_PERSON:2:DP_CHAPTER = 4
+DIALOGUE_PERSON:2:DP_DEAL = 1
+CALL CT_ASSERT(DIALOGUE_ATTITUDE(2) == 2 && DIALOGUE_WARM(2) == 0, "verbal consent alone is neither formal allegiance nor intimacy")
+DIALOGUE_PERSON:2:DP_TRUST = 14
+CALL CT_ASSERT(DIALOGUE_ATTITUDE(2) == 0, "falling trust restores captive resistance")
+CASTLE_PERSON:2:CP_ROLE = CR_FOLLOWER
+CALL CT_ASSERT(DIALOGUE_ATTITUDE(2) == 3 && DIALOGUE_WARM(2) == 0, "formal allegiance has its own restrained working voice")
+DIALOGUE_PERSON:2:DP_TRUST = 70
+DIALOGUE_PERSON:2:DP_AGREE = 70
+CALL CT_ASSERT(DIALOGUE_WARM(2) == 0, "resistance mark blocks familiar banter")
+MARK:2:3 = 0
+CALL CT_ASSERT(DIALOGUE_WARM(2) && DIALOGUE_ADDRESS(2) == "你", "familiarity requires high relationship and retains original character address")
+DIALOGUE_PERSON:2:DP_AGREE = 69
+CALL CT_ASSERT(DIALOGUE_WARM(2) == 0, "familiarity recedes when either relationship metric falls")
+CALL DT_RESET(1)
+CALL DIALOGUE_SYNC(2)
+CASTLE_PERSON:2:CP_ROLE = CR_FOLLOWER
+CALL CT_ASSERT(DIALOGUE_ADDRESS(2) == "魔王大人", "ordinary follower uses appropriate formal address")
+CALL DT_RESET(2)
+CALL DIALOGUE_SYNC(2)
+CALL CT_ASSERT(DIALOGUE_ADDRESS(2) == "您" && DIALOGUE_ATTITUDE(2) == 0, "timid politeness does not imply allegiance")
+RETURN
+
+@DT_GOOD_SCENE(DT_PACK, DT_EVENT)
+#DIM DYNAMIC DT_PACK
+#DIM DYNAMIC DT_EVENT
+CT_QUEUE:0 = DT_CHOICE(DT_PACK, DT_EVENT, 1)
+CT_QUEUE:1 = DT_CHOICE(DT_PACK, DT_EVENT, 2)
+CT_POS = 0
+CT_SIZE = 2
+CALL DIALOGUE_SESSION(2, DT_EVENT)
+IF RESULT != 1
+	PRINTFORML DIALOGUE DIAGNOSTIC role={CASTLE_PERSON:2:CP_ROLE} actual={CASTLE_ROLE(2)} home={CASTLE_PERSON:2:CP_HOME} where={CASTLE_WHERE(2)} kinout={RF_GET(2,MASTER)} kinin={RF_GET(MASTER,2)} ex={EX_TALENT:2:2} nid={NID(2)}
+ENDIF
+CALL CT_ASSERT(RESULT == 1 && CT_POS == 2, "authored event executes both choice rounds")
+RETURN
+
+@DT_RESET(DT_PACK)
+#DIM DYNAMIC DT_PACK
+#DIM DYNAMIC DT_I
+IF NO:2 != 2
+	ADDCHARA 2
+	SWAPCHARA 2, CHARANUM - 1
+	DELCHARA CHARANUM - 1
+ENDIF
+IF DT_PACK == 150
+	ADDCHARA 150
+	SWAPCHARA 2, CHARANUM - 1
+	DELCHARA CHARANUM - 1
+ENDIF
+FOR DT_I, 101, 105
+	EX_TALENT:2:DT_I = 0
+NEXT
+EX_TALENT:2:4 = 0
+EX_TALENT:2:903 = 0
+EX_TALENT:2:904 = 0
+CSTR:2:60 =
+FOR DT_I, 0, 20
+	DIALOGUE_PERSON:2:DT_I = 0
+NEXT
+FOR DT_I, 0, 12
+	DIALOGUE_SEEN:2:DT_I = 0
+	DIALOGUE_CHOICES:2:DT_I = 0
+NEXT
+FOR DT_I, 160, 176
+	TALENT:2:DT_I = 0
+NEXT
+FOR DT_I, 10, 17
+	TALENT:2:DT_I = 0
+NEXT
+TALENT:2:22 = 0
+TALENT:2:15 = 1
+TALENT:2:315 = 8
+SELECTCASE DT_PACK
+CASE 1
+	TALENT:2:15 = 0
+	TALENT:2:12 = 1
+	TALENT:2:315 = 19
+CASE 2
+	TALENT:2:15 = 0
+	TALENT:2:162 = 1
+	TALENT:2:315 = 3
+CASE 3
+	TALENT:2:15 = 0
+	TALENT:2:164 = 1
+	TALENT:2:315 = 1
+CASE 10
+	TALENT:2:170 = 1
+	TALENT:2:315 = 17
+CASE 167, 168, 169, 171
+	TALENT:2:DT_PACK = 1
+CASE 101, 102, 103
+	EX_TALENT:2:DT_PACK = 1
+CASE 134
+	EX_TALENT:2:4 = 1
+ENDSELECT
+CFLAG:2:451 = 27
+CFLAG:2:1 = 0
+CFLAG:2:2 = 0
+CFLAG:2:10 = 0
+CFLAG:2:201 = 0
+ABL:2:10 = 0
+MARK:2:3 = 1
+CASTLE_PERSON:2:CP_ROLE = CR_CAPTIVE
+CASTLE_PERSON:2:CP_HOME = CL_DUNGEON
+CASTLE_PERSON:2:CP_WORK = 0
+CASTLE_PERSON:2:CP_ORIGIN = 0
+CASTLE_PERSON:2:CP_PERSUADE = 0
+CASTLE_PERSON:2:CP_LAST_PERSUADE = 0
+CASTLE_STATE:2 = CL_DUNGEON
+CASTLE_STATE:5 = 3
+RETURN
+
+@CT_INPUT
+#DIM DYNAMIC CT_VALUE
+IF CT_POS >= CT_SIZE
+	PRINTL DIALOGUE TEST FAIL: scripted input exhausted
+	OUTPUTLOG
+	QUIT
+ENDIF
+CT_VALUE = CT_QUEUE:CT_POS
+CT_POS += 1
+RETURN CT_VALUE

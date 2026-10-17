@@ -1,0 +1,299 @@
+{
+  "version": 1,
+  "scope": "shared identity, legacy entry rejection and lifecycle synchronization",
+  "guards": [
+    {
+      "file": "ERB/EVENT_AUTOTRAIN.ERB",
+      "function": "BEFORE_AUTOTRAIN",
+      "condition": "CASTLE_PROTECTED_REASON(TARGET)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/EVENT_AUTOTRAIN.ERB",
+      "function": "AFTER_AUTOTRAIN",
+      "condition": "CASTLE_PROTECTED_REASON(TARGET)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/SYSTEM_SOURCE.ERB",
+      "function": "SOURCE_CHECK_AUTO",
+      "condition": "CASTLE_PROTECTED_REASON(TARGET)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/COMF0_愛撫.ERB",
+      "function": "COM0_AUTO",
+      "condition": "CASTLE_PROTECTED_REASON(TARGET)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/COMF3_自慰.ERB",
+      "function": "COM3_AUTO",
+      "condition": "CASTLE_PROTECTED_REASON(TARGET)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/COMF13_アナルワーム.ERB",
+      "function": "COM13_AUTO",
+      "condition": "CASTLE_PROTECTED_REASON(TARGET)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/COMF50_ローション.ERB",
+      "function": "COM50_AUTO",
+      "condition": "CASTLE_PROTECTED_REASON(TARGET)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/COMF63_貝あわせ.ERB",
+      "function": "COM63_AUTO",
+      "condition": "CASTLE_PROTECTED_REASON(TARGET)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/CHARA_MARRIAGE.ERB",
+      "function": "MARRIAGE",
+      "condition": "CASTLE_PROTECTED_REASON(ARG)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/CHARA_TEMPTATION.ERB",
+      "function": "TEMPTATION",
+      "condition": "CASTLE_PROTECTED_REASON(ARG)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/DUNGEON_TRAP.ERB",
+      "function": "LOVE_GAS_TRAP",
+      "condition": "CASTLE_PROTECTED_REASON(A)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/DUNGEON_TRAP.ERB",
+      "function": "SYOKUSYU_FLOOR_TRAP",
+      "condition": "CASTLE_PROTECTED_REASON(A)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/DUNGEON_TRAP.ERB",
+      "function": "LOVE_BATH_TRAP",
+      "condition": "CASTLE_PROTECTED_REASON(A)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/DUNGEON_TRAP.ERB",
+      "function": "SELF_SAIMIN_TRAP",
+      "condition": "CASTLE_PROTECTED_REASON(A)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/DUNGEON_TRAP.ERB",
+      "function": "IMITATER_TRAP",
+      "condition": "CASTLE_PROTECTED_REASON(A)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/DUNGEON_TRAP.ERB",
+      "function": "SUCCUBUS_TRAP",
+      "condition": "CASTLE_PROTECTED_REASON(A)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/DUNGEON_TRAP.ERB",
+      "function": "SLIME_ROOM_TRAP",
+      "condition": "CASTLE_PROTECTED_REASON(A)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/DUNGEON_TRAP.ERB",
+      "function": "A_WORM_TRAP",
+      "condition": "CASTLE_PROTECTED_REASON(A)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/DUNGEON_TRAP.ERB",
+      "function": "LOVE_BUG_TRAP",
+      "condition": "CASTLE_PROTECTED_REASON(A)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/DUNGEON_TRAP.ERB",
+      "function": "DARK_JUEL_TRAP",
+      "condition": "CASTLE_PROTECTED_REASON(A)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/DUNGEON_TRAP.ERB",
+      "function": "HUANJING_DOWN_TRAP",
+      "condition": "CASTLE_PROTECTED_REASON(A)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/EVENT_SABBATH.ERB",
+      "function": "SABBATH",
+      "condition": "CASTLE_AUTO_REASON(TARGET)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/NTR.ERB",
+      "function": "NTR_VIDEO",
+      "condition": "CASTLE_AUTO_REASON(TARGET)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/SELL_VIDEO.ERB",
+      "function": "EVENT_VIDEO_DAY",
+      "condition": "CASTLE_AUTO_REASON(TARGET)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/MARRIAGE_DAY.ERB",
+      "function": "MARRIAGE_DAY",
+      "condition": "CASTLE_AUTO_REASON(ARG)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/BENKI.ERB",
+      "function": "BENKI",
+      "condition": "CASTLE_ACCESS_REASON(ARG:0, CA_DISPOSE)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/NAEDOKO.ERB",
+      "function": "NAEDOKO",
+      "condition": "CASTLE_ACCESS_REASON(ARG:0, CA_DISPOSE)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/EVENT_NEXTDAY.ERB",
+      "function": "PILLORY",
+      "condition": "CASTLE_ACCESS_REASON(TARGET, CA_DISPOSE)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/EXECUTION.ERB",
+      "function": "EXECUTION_MINI",
+      "condition": "CASTLE_ACCESS_REASON(TARGET, CA_DISPOSE)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/SELL_CHARA.ERB",
+      "function": "CHECK_SELLASSIABLE",
+      "condition": "CASTLE_PROTECTED_REASON(TARGET)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/CHARA_MARRIAGE.ERB",
+      "function": "CHECK_ABLE_TO_MARRIAGE",
+      "condition": "CASTLE_PROTECTED_REASON(ARG)",
+      "return_statement": "RETURNF 1"
+    },
+    {
+      "file": "ERB/CHARA_TEMPTATION.ERB",
+      "function": "CHECK_ABLE_TO_TEMPTATION",
+      "condition": "CASTLE_PROTECTED_REASON(ARG)",
+      "return_statement": "RETURNF 1"
+    },
+    {
+      "file": "ERB/CHARA_JOB_CHANGE.ERB",
+      "function": "CHECK_ABLE_TO_JOB_CHANGE",
+      "condition": "CASTLE_ACCESS_REASON(ARG, CA_SUPPORT)",
+      "return_statement": "RETURNF 1"
+    },
+    {
+      "file": "ERB/CHARA_INFO.ERB",
+      "function": "CHARA_INFO",
+      "call": "CALL CASTLE_SYNC"
+    },
+    {
+      "file": "ERB/CHARA_INFO.ERB",
+      "function": "CHARA_INFO_INDIVIDUAL",
+      "call": "CALL CASTLE_SYNC"
+    },
+    {
+      "file": "ERB/CHARA_INFO_SHOW.ERB",
+      "function": "SHOW_CHARA_INFO",
+      "call": "CALL CASTLE_SYNC"
+    },
+    {
+      "file": "ERB/SHOP_2.ERB",
+      "function": "INTERCEPT",
+      "call": "CALL CASTLE_SYNC"
+    },
+    {
+      "file": "ERB/SELL_CHARA.ERB",
+      "function": "CHARA_SALE",
+      "call": "CALL CASTLE_SYNC"
+    },
+    {
+      "file": "ERB/EXECUTION.ERB",
+      "function": "EXECUTION",
+      "call": "CALL CASTLE_SYNC"
+    },
+    {
+      "file": "ERB/EVENT_NEXTDAY.ERB",
+      "function": "EVENT_FUTA_F",
+      "condition": "CASTLE_PROTECTED_REASON(TARGET)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/EVENT_NEXTDAY.ERB",
+      "function": "EVENT_MORASI",
+      "condition": "CASTLE_PROTECTED_REASON(TARGET)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/EVENT_NEXTDAY.ERB",
+      "function": "EVENT_YOUJI",
+      "condition": "CASTLE_PROTECTED_REASON(TARGET)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/EVENT_AUTOTRAIN.ERB",
+      "function": "FORMAT_AUTOTRAIN",
+      "condition": "CASTLE_PROTECTED_REASON(TARGET)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/SELL_CHARA.ERB",
+      "function": "SALE_CHARA",
+      "condition": "CASTLE_ACCESS_REASON(TARGET, CA_DISPOSE)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/CHARA_INFO_FUNC2.ERB",
+      "function": "TRANSFER_SOUL",
+      "condition": "CASTLE_PROTECTED_REASON(ARG)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/MOD/PartTimeJob/PTJ.ERB",
+      "function": "SET_PTJ_LEVEL",
+      "condition": "CASTLE_PROTECTED_REASON(ARG)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/DUNGEON_BITCH.ERB",
+      "function": "SET_BICH_LEVEL",
+      "condition": "CASTLE_PROTECTED_REASON(ARG)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/DUNGEON_AFTER.ERB",
+      "function": "GOHOUBI",
+      "condition": "CASTLE_PROTECTED_REASON(A)",
+      "return_statement": "RETURN 0"
+    },
+    {
+      "file": "ERB/DUNGEON_AFTER.ERB",
+      "function": "OSIOKI",
+      "condition": "CASTLE_PROTECTED_REASON(A)",
+      "return_statement": "RETURN 0"
+    }
+  ],
+  "notes": [
+    "Only rejection guards were added to legacy adult scenes; no adult prose or new sexual behavior was authored.",
+    "Non-graphic care, recovery and family information remain separate from adult interaction checks.",
+    "Listed entry points are verified; this is not a claim that all legacy event bodies have been rewritten."
+  ]
+}

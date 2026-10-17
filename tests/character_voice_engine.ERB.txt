@@ -1,0 +1,116 @@
+; 合成数据：逐个人格与命名人物验证身份、初见、态度、称呼和安全的生活交流。
+@DT_CHARACTER_VOICES
+#DIM DYNAMIC DT_I
+#DIM DYNAMIC DT_ID
+#DIM DYNAMIC DT_PHASE
+#DIM DYNAMIC DT_KIND
+#DIM DYNAMIC DT_P
+FOR DT_I, 0, 29
+	DT_ID = DT_VOICE_ID(DT_I)
+	CALL DT_RESET(0)
+	TALENT:2:15 = 0
+	IF DT_ID == 150
+		CALL DT_RESET(150)
+	ELSEIF DT_ID == 134
+		EX_TALENT:2:4 = 1
+	ELSEIF DT_ID >= 101 && DT_ID <= 104
+		EX_TALENT:2:DT_ID = 1
+	ELSEIF DT_ID >= 160
+		TALENT:2:DT_ID = 1
+	ENDIF
+	CALL DIALOGUE_SYNC(2)
+	SIF DT_ID < 7
+		DIALOGUE_PERSON:2:DP_TEMPER = DT_ID
+	CALL CT_ASSERT(DIALOGUE_PROFILE(2) == DT_ID, "all character voices keep separate identity")
+	FOR DT_PHASE, 0, 4
+		CASTLE_PERSON:2:CP_ROLE = DT_PHASE == 3 ? CR_FOLLOWER # CR_CAPTIVE
+		DIALOGUE_PERSON:2:DP_CHAPTER = DT_PHASE == 0 ? 0 # DT_PHASE
+		DIALOGUE_PERSON:2:DP_TRUST = DT_PHASE == 1 ? 20 # 50
+		DIALOGUE_PERSON:2:DP_AGREE = DIALOGUE_PERSON:2:DP_TRUST
+		CALL CT_ASSERT(DIALOGUE_ATTITUDE(2) == DT_PHASE, "all personalities retain independent attitude states")
+		PRINTFORML VOICE SAMPLE profile={DT_ID} phase={DT_PHASE}
+		FOR DT_KIND, 0, 11
+			CALL CT_ASSERT(STRLENS(DIALOGUE_CHARACTER_TEXT(2, DT_KIND)) > 1, "encounter dialogue and response text resolve for every profile")
+			SIF DT_KIND != 6
+				CALL DIALOGUE_PROSE(2, DIALOGUE_CHARACTER_TEXT(2, DT_KIND))
+		NEXT
+	NEXT
+NEXT
+CALL DT_RESET(10)
+CALL DIALOGUE_SYNC(2)
+CALL DIALOGUE_OPEN(2)
+CALL CT_ASSERT(DIALOGUE_PERSON:2:DP_MET == 1 && CASTLE_STATE:5 == 3, "initial encounter has its own persistent free state")
+CALL DIALOGUE_OPEN(2)
+CALL CT_ASSERT(DIALOGUE_PERSON:2:DP_MET == 1 && CASTLE_STATE:5 == 3, "revisiting neither repeats first encounter nor consumes an action")
+CASTLE_PERSON:2:CP_ROLE = CR_FOLLOWER
+CALL CT_ASSERT(DIALOGUE_CHARACTER_TEXT(2, 1) == DIALOGUE_CHARACTER_TEXT(2, 9), "low-trust follower uses reserved character voice")
+DIALOGUE_PERSON:2:DP_TRUST = 80
+DIALOGUE_PERSON:2:DP_AGREE = 80
+DIALOGUE_SEEN:2:1 = 1
+CALL CT_ASSERT(DIALOGUE_CHARACTER_TEXT(2, 1) != DIALOGUE_CHARACTER_TEXT(2, 9), "trusted follower greeting differs without changing personality")
+DIALOGUE_PERSON:2:DP_VERSION = 1
+DIALOGUE_PERSON:2:DP_MET = 0
+DIALOGUE_SEEN:2:1 = 1
+CALL DIALOGUE_SYNC(2)
+CALL CT_ASSERT(DIALOGUE_PERSON:2:DP_VERSION == 2 && DIALOGUE_PERSON:2:DP_MET == 1, "v1 history migrates without replaying first meeting")
+CALL DT_RESET(0)
+DIALOGUE_PERSON:2:DP_VERSION = 1
+CALL DIALOGUE_SYNC(2)
+CALL CT_ASSERT(DIALOGUE_PERSON:2:DP_MET == 0, "unmet v1 character still gets independent first meeting")
+CALL DT_RESET(167)
+CALL DIALOGUE_SYNC(2)
+DIALOGUE_PERSON:2:DP_VERSION = 1
+DIALOGUE_PERSON:2:DP_STORY_PACK = 0
+DIALOGUE_PERSON:2:DP_ORIGIN = 2
+DIALOGUE_PERSON:2:DP_TEMPER = 4
+DIALOGUE_PERSON:2:DP_CHAPTER = 1
+DIALOGUE_SEEN:2:1 = 1
+DIALOGUE_CHOICES:2:2 = 2
+CALL DIALOGUE_SYNC(2)
+CALL CT_ASSERT(DIALOGUE_PROFILE(2) == 167 && DIALOGUE_PACK(2) == 0 && DIALOGUE_CHOICES:2:2 == 2, "legacy named character keeps original story choices while gaining personal voice")
+CALL DT_RESET(167)
+CALL DIALOGUE_SYNC(2)
+CALL CT_ASSERT(DIALOGUE_PACK(2) == 167, "new named character starts own story without inheriting generic records")
+CALL DT_RESET(0)
+CALL DIALOGUE_SYNC(2)
+; EX901～904是战斗素质，不是命名人物；改名也不能改变身份。
+EX_TALENT:2:903 = 1
+EX_TALENT:2:904 = 1
+CALL CT_ASSERT(DIALOGUE_PROFILE(2) != 103 && DIALOGUE_PROFILE(2) != 104, "combat tags cannot impersonate named characters")
+EX_TALENT:2:103 = 1
+TALENT:2:170 = 1
+NAME:2 = 改名的人物
+CALL CT_ASSERT(DIALOGUE_PROFILE(2) == 103 && DIALOGUE_SELF(2) == "本宫", "EX identity overrides extra personality and preserves first person")
+EX_TALENT:2:103 = 0
+EX_TALENT:2:104 = 1
+CALL CT_ASSERT(DIALOGUE_PROFILE(2) == 104 && DIALOGUE_SELF(2) == "菲娅", "Fia keeps name-based self call")
+; 原生模板身份先于临时性格；显式自称仍尊重玩家设置。
+ADDCHARA 33
+DT_P = CHARANUM - 1
+TALENT:DT_P:170 = 1
+EX_TALENT:DT_P:101 = 1
+CALL CT_ASSERT(DIALOGUE_PROFILE(DT_P) == 103, "original named template overrides added White Clover marker")
+CSTR:DT_P:60 = 自定义自称
+CALL CT_ASSERT(DIALOGUE_SELF(DT_P) == "自定义自称", "explicit self call is preserved")
+DELCHARA DT_P
+; 幼年、家属以及玛奥/菲娅只进行独立生活交流，不增加归顺数据。
+CALL DT_RESET(0)
+TALENT:2:165 = 1
+CFLAG:2:451 = 12
+CALL DIALOGUE_SYNC(2)
+CALL CT_ASSERT(DIALOGUE_CHAT_ELIGIBLE(2) && DIALOGUE_ELIGIBLE(2) == 0, "ordinary child conversation is separate from negotiation eligibility")
+CT_QUEUE = 1
+CT_POS = 0
+CT_SIZE = 1
+CALL DIALOGUE_SESSION(2, 10)
+CALL CT_ASSERT(RESULT == 1 && CASTLE_STATE:5 == 2 && DIALOGUE_SEEN:2:10 == 1, "daily life scene runs for young named character")
+CALL CT_ASSERT(DIALOGUE_PERSON:2:DP_TRUST == 0 && DIALOGUE_PERSON:2:DP_AGREE == 0 && DIALOGUE_PERSON:2:DP_CHAPTER == 0 && DIALOGUE_READY(2) == 0, "social conversation cannot unlock allegiance or adult routes")
+CALL DT_RESET(0)
+CASTLE_PERSON:2:CP_ROLE = CR_FAMILY
+CASTLE_PERSON:2:CP_HOME = CL_FAMILY
+CASTLE_STATE:2 = CL_FAMILY
+CALL CT_ASSERT(DIALOGUE_CHAT_ELIGIBLE(2) && DIALOGUE_ELIGIBLE(2) == 0, "family can talk without becoming a captive negotiation target")
+CALL DIALOGUE_OPEN(2)
+CALL CT_ASSERT(DIALOGUE_PERSON:2:DP_MET == 1 && CASTLE_STATE:5 == 3 && DIALOGUE_PERSON:2:DP_CHAPTER == 0, "family first meeting uses social context without recruitment or action cost")
+PRINTL CHARACTER VOICE ASSERTIONS PASSED
+RETURN

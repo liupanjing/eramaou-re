@@ -1,0 +1,7690 @@
+﻿; 由 tools/build_character_voices.py 生成，原有EVENT_K文件不改写。
+@DIALOGUE_PROFILE(DL_P)
+#FUNCTION
+#DIM DYNAMIC DL_P
+SIF DL_P < 0 || DL_P >= CHARANUM
+	RETURNF 0
+SIF NO:DL_P == 23
+	RETURNF 170
+SIF NO:DL_P == 20
+	RETURNF 167
+SIF NO:DL_P == 21
+	RETURNF 168
+SIF NO:DL_P == 22
+	RETURNF 169
+SIF NO:DL_P == 17
+	RETURNF 165
+SIF NO:DL_P == 24
+	RETURNF 171
+SIF NO:DL_P == 31
+	RETURNF 101
+SIF NO:DL_P == 32
+	RETURNF 102
+SIF NO:DL_P == 33
+	RETURNF 103
+SIF NO:DL_P == 34
+	RETURNF 134
+SIF NO:DL_P == 35
+	RETURNF 104
+SIF NO:DL_P == 150
+	RETURNF 150
+SIF EX_TALENT:DL_P:101
+	RETURNF 101
+SIF EX_TALENT:DL_P:102
+	RETURNF 102
+SIF EX_TALENT:DL_P:103
+	RETURNF 103
+SIF EX_TALENT:DL_P:4
+	RETURNF 134
+SIF EX_TALENT:DL_P:104
+	RETURNF 104
+SIF TALENT:DL_P:170
+	RETURNF 170
+SIF TALENT:DL_P:167
+	RETURNF 167
+SIF TALENT:DL_P:168
+	RETURNF 168
+SIF TALENT:DL_P:169
+	RETURNF 169
+SIF TALENT:DL_P:165
+	RETURNF 165
+SIF TALENT:DL_P:171
+	RETURNF 171
+SIF TALENT:DL_P:175
+	RETURNF 175
+SIF TALENT:DL_P:174
+	RETURNF 174
+SIF TALENT:DL_P:173
+	RETURNF 173
+SIF TALENT:DL_P:172
+	RETURNF 172
+SIF TALENT:DL_P:171
+	RETURNF 171
+SIF TALENT:DL_P:170
+	RETURNF 170
+SIF TALENT:DL_P:169
+	RETURNF 169
+SIF TALENT:DL_P:168
+	RETURNF 168
+SIF TALENT:DL_P:167
+	RETURNF 167
+SIF TALENT:DL_P:166
+	RETURNF 166
+SIF TALENT:DL_P:165
+	RETURNF 165
+SIF TALENT:DL_P:164
+	RETURNF 164
+SIF TALENT:DL_P:163
+	RETURNF 163
+SIF TALENT:DL_P:162
+	RETURNF 162
+SIF TALENT:DL_P:161
+	RETURNF 161
+SIF TALENT:DL_P:160
+	RETURNF 160
+IF DIALOGUE_PERSON:DL_P:DP_VERSION == 0
+	SIF TALENT:DL_P:10
+		RETURNF 2
+	SIF TALENT:DL_P:22
+		RETURNF 3
+	SIF TALENT:DL_P:15 || TALENT:DL_P:16
+		RETURNF 4
+	SIF TALENT:DL_P:12 || TALENT:DL_P:11
+		RETURNF 1
+	SIF TALENT:DL_P:13
+		RETURNF 5
+ENDIF
+RETURNF DIALOGUE_PERSON:DL_P:DP_TEMPER
+
+@DIALOGUE_IS_UNIQUE(DL_P)
+#FUNCTION
+#DIM DYNAMIC DL_P
+SELECTCASE DIALOGUE_PROFILE(DL_P)
+CASE 170, 167, 168, 169, 165, 171, 101, 102, 103, 134, 104, 150
+	RETURNF 1
+ENDSELECT
+RETURNF 0
+
+@DIALOGUE_SELF(DL_P)
+#FUNCTIONS
+#DIM DYNAMIC DL_P
+SIF STRLENS(CSTR:DL_P:60) > 0
+	RETURNF CSTR:DL_P:60
+SELECTCASE DIALOGUE_PROFILE(DL_P)
+CASE 170
+	RETURNF "我"
+CASE 167
+	RETURNF "我"
+CASE 168
+	RETURNF "我"
+CASE 169
+	RETURNF "我"
+CASE 165
+	RETURNF "本小姐"
+CASE 171
+	RETURNF "我"
+CASE 101
+	RETURNF "我"
+CASE 102
+	RETURNF "我"
+CASE 103
+	RETURNF "本宫"
+CASE 134
+	RETURNF "我"
+CASE 104
+	RETURNF "菲娅"
+CASE 150
+	RETURNF "我"
+CASE 160
+	RETURNF "我"
+CASE 161
+	RETURNF "我"
+CASE 162
+	RETURNF "我"
+CASE 163
+	RETURNF "我"
+CASE 164
+	RETURNF "我"
+CASE 166
+	RETURNF "我"
+CASE 172
+	RETURNF "我"
+CASE 173
+	RETURNF "我"
+CASE 174
+	RETURNF "我"
+CASE 175
+	RETURNF "我"
+CASE 0
+	RETURNF "我"
+CASE 1
+	RETURNF "我"
+CASE 2
+	RETURNF "我"
+CASE 3
+	RETURNF "我"
+CASE 4
+	RETURNF "我"
+CASE 5
+	RETURNF "我"
+CASE 6
+	RETURNF "我"
+ENDSELECT
+RETURNF SELF_CALL(DL_P)
+
+@DIALOGUE_CHARACTER_TEXT(DL_P, DL_KIND, DL_VARIANT = 0)
+#FUNCTIONS
+#DIM DYNAMIC DL_P
+#DIM DYNAMIC DL_KIND
+#DIM DYNAMIC DL_VARIANT
+#DIM DYNAMIC DL_PHASE
+DL_PHASE = DIALOGUE_ATTITUDE(DL_P)
+; 没有旧话题记录时，招呼使用不依赖具体往事的本人口吻。
+SIF DL_KIND == 1 && DIALOGUE_HAS_HISTORY(DL_P) == 0 && DIALOGUE_SEEN:DL_P:10 == 0
+	DL_KIND = 7
+; 已归顺但信任低时仍有本人的保留，不自动成为亲近或温顺口吻。
+IF CASTLE_PERSON:DL_P:CP_ROLE == CR_FOLLOWER && (DIALOGUE_PERSON:DL_P:DP_TRUST < 15 || DIALOGUE_PERSON:DL_P:DP_AGREE < 15)
+	SIF DL_KIND == 1 || DL_KIND == 7
+		DL_KIND = 9
+	SIF DL_KIND == 2
+		DL_KIND = 10
+ENDIF
+SELECTCASE DIALOGUE_PROFILE(DL_P)
+CASE 170
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哎呀，你就是这里的魔王？」__NPC_NAME__扶了扶眼镜，先把你从头到脚打量了一遍。「比我想的还爱亲自跑腿呢。………先说好，问术式可以，想顺便打听别人的事，可没那么便宜哦。」她笑着说完，反倒先等起了你的回答。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哎呀，你就是这里的魔王？」__NPC_NAME__扶了扶眼镜，先把你从头到脚打量了一遍。「比我想的还爱亲自跑腿呢。………先说好，问术式可以，想顺便打听别人的事，可没那么便宜哦。」她笑着说完，反倒先等起了你的回答。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哎呀，你就是这里的魔王？」__NPC_NAME__扶了扶眼镜，先把你从头到脚打量了一遍。「比我想的还爱亲自跑腿呢。………先说好，问术式可以，想顺便打听别人的事，可没那么便宜哦。」她笑着说完，反倒先等起了你的回答。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哎呀，终于肯来听我本人说说啦？」__NPC_NAME__扶着眼镜看你。「先说好，安排我做事，就得让我把话讲完。听不懂也可以问嘛，装懂才最麻烦哦。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__发现你走来，眉梢一扬。「唔呼呼，今天又想问什么？先听听，可不代表我会答应哦。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哎呀，是你。」__NPC_NAME__把笔夹进书里。「今天想从哪里问起？先说好，我也有问题要问你哦。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「来得正好。」__NPC_NAME__点了点一行批注，随即笑起来。「先别高兴，肯给你看这一张，可不等于其余的也送你了哦。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「嗯？又来找我啦。」__NPC_NAME__把笔转了一圈。「有事就说。若是外行话，我可还是会笑你的哦。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "__NPC_NAME__歪头看你。「问我在写什么？猜猜看呀。………哼，当然不是给你看的布防图。」"
+			CASE 1
+				RETURNF "__NPC_NAME__嫌弃地看着短了一截的笔。「你这里就没有好用一点的笔吗？关着人，难道还要顺便让人无聊死呀。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "__NPC_NAME__在纸上画了两个相似的符号。「说它们一样的人可不少。你呢？………只许看这一小段哦。」"
+			CASE 1
+				RETURNF "__NPC_NAME__一面改着字，一面问你：「要是我说你刚才那句话错了，你会怎么办？」她的笑里仍带着试探。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "__NPC_NAME__把公开的草稿转向你。「这一笔少个条件。怎么，你真打算照着错的用呀？先听我讲完啦。」"
+			CASE 1
+				RETURNF "__NPC_NAME__给要用的纸列了个数目。「这不是我要的报酬，是事情本来就需要这些。你可别混为一谈哦。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "__NPC_NAME__把两种画法摆在一起。「这两种，你分得清吧？………啊，这个表情，好像得从头讲呢。」"
+			CASE 1
+				RETURNF "__NPC_NAME__发现一处自己写错的符号，飞快改掉。「看什么？天才也有写错的时候呀。你倒是学得挺快嘛。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__本来准备逗你两句，见你认真回答，反而多说了一点。「………嗯，这个回答还算像样。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这就对啦。听不懂就问，别装得什么都知道嘛。」她把刚才略去的部分也讲给你听。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哎呀，这一处你倒听明白了。」她又补了几笔，没有再拿同一个问题试探你。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「唔呼呼，这次不用我从头讲了呢。」她记下讨论里有用的部分，还不忘多夸自己一句。"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她脸上还留着笑，话却打住了。「原来你想听的只有这个。那还问我做什么呀？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哎呀，上次可不是这么说的呢。」她没有接着开玩笑，等你解释这次的说法。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她把草稿抽回一点。「这一项还没谈好哦。别趁我在讲术式，就当我答应了呀。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「嗯？我留下来，可不是为了装作你什么都对哦。」她点着错误的那一处，丝毫不打算带过。"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我可没有认输哦。只是陪你聊一会儿，也没什么损失嘛。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哼，肯听我说话倒还不错。至于你说的其他事，还早着呢。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「可以接着谈呀。不过，轮到我提的问题，你也得回答哦。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「答应的事我会做。可别指望我看见错的东西还陪你点头哦。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__拿起新送来的笔，试写两下便笑了。「哎呀，这回总算不用和笔较劲啦。数量我都看过了，这件事算你做到哦。接下来怎么谈，可还是另一回事。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__拿起新送来的笔，试写两下便笑了。「哎呀，这回总算不用和笔较劲啦。数量我都看过了，这件事算你做到哦。接下来怎么谈，可还是另一回事。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__拿起新送来的笔，试写两下便笑了。「哎呀，这回总算不用和笔较劲啦。数量我都看过了，这件事算你做到哦。接下来怎么谈，可还是另一回事。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__拿起新送来的笔，试写两下便笑了。「哎呀，这回总算不用和笔较劲啦。数量我都看过了，这件事算你做到哦。接下来怎么谈，可还是另一回事。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哎呀，又来问我啦？」__NPC_NAME__仍笑着，话却没顺势多说。「做事归做事哦。你要听我本人怎么想，就别替我把后面半句补掉。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哎呀，又来问我啦？」__NPC_NAME__仍笑着，话却没顺势多说。「做事归做事哦。你要听我本人怎么想，就别替我把后面半句补掉。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哎呀，又来问我啦？」__NPC_NAME__仍笑着，话却没顺势多说。「做事归做事哦。你要听我本人怎么想，就别替我把后面半句补掉。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哎呀，又来问我啦？」__NPC_NAME__仍笑着，话却没顺势多说。「做事归做事哦。你要听我本人怎么想，就别替我把后面半句补掉。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "__NPC_NAME__歪头看你。「问我在写什么？猜猜看呀。………哼，当然不是给你看的布防图。」"
+			CASE 1
+				RETURNF "__NPC_NAME__嫌弃地看着短了一截的笔。「你这里就没有好用一点的笔吗？关着人，难道还要顺便让人无聊死呀。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "__NPC_NAME__在纸上画了两个相似的符号。「说它们一样的人可不少。你呢？………只许看这一小段哦。」"
+			CASE 1
+				RETURNF "__NPC_NAME__一面改着字，一面问你：「要是我说你刚才那句话错了，你会怎么办？」她的笑里仍带着试探。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "__NPC_NAME__把公开的草稿转向你。「这一笔少个条件。怎么，你真打算照着错的用呀？先听我讲完啦。」"
+			CASE 1
+				RETURNF "__NPC_NAME__给要用的纸列了个数目。「这不是我要的报酬，是事情本来就需要这些。你可别混为一谈哦。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「哎呀，又来问我啦？」__NPC_NAME__仍笑着，话却没顺势多说。「做事归做事哦。你要听我本人怎么想，就别替我把后面半句补掉。」"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 167
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哎呀，劳你亲自过问。」__NPC_NAME__理好衣襟，仍用接见来客般的口气说话。「不过，能把我关在这里，和能让我为你效力，可是两回事。你应该分得清吧？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哎呀，劳你亲自过问。」__NPC_NAME__理好衣襟，仍用接见来客般的口气说话。「不过，能把我关在这里，和能让我为你效力，可是两回事。你应该分得清吧？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哎呀，劳你亲自过问。」__NPC_NAME__理好衣襟，仍用接见来客般的口气说话。「不过，能把我关在这里，和能让我为你效力，可是两回事。你应该分得清吧？」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哎呀，既然以后要一同做事，倒该正式谈一谈了。」__NPC_NAME__仍维持着从容的微笑。「你准备让我负责什么？不清楚的地方，我可要先问明白。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哎呀，又来了？」__NPC_NAME__微微一笑，「今天准备拿什么理由说服我呢？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「请说吧。」她让你先开口，姿态仍从容得有些刻意。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然愿意认真谈，我也不会失礼。」__NPC_NAME__抬起眼，「先谈你准备如何兑现吧。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哎呀，安排事情可不能只顾表面。」__NPC_NAME__仍笑着，已经准备好把容易忽略的问题指出来。"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__谈起接见时的礼数，忽然停住。「这些不是摆给你看的。你连这也想拿来取笑吗？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出守卫一句含混的传话。「命令让人听不懂，难道也要怪领命的人？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把职责分成几项。「要我判断，就别只让我看你挑过的那一半。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__提起亲卫队共同行动时如何分工，只谈已经能够公开的部分。"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她的笑意淡了一点，这次没有夹着讥讽。「至少，你肯把人当作能够回答问题的人。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这样说，才像是在认真商量。」她把没有说完的那一项接上。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「很好。那我们就把各自要做的事说清楚。」她没有再用礼数岔开话题。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哎呀，你也注意到了。」她认可你的判断，仍不肯漏掉其中的一个细节。"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「真是遗憾。」她仍笑着，已经不再回答。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你若只想听恭维，何必来问我呢？」她把话停在这里。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这一项，我可从没有答应。」她请你重新说清范围。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「就算为你做事，也不代表我要赞同这种失礼的说法。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「礼数我会守。至于效忠，请你别替我回答。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我还没有同意。你若不急，倒可以再谈。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会衡量你说的话，也请你拿出相应的气度。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然接下了职责，我自然会办好。不过该提醒你的，我也不会省略。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项看过纸笔与收纳用品。「没有遗漏，很好。这样至少能把已经谈过的话记清楚了。」她把属于自己的一份收好，没有把这件小事说成效忠。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项看过纸笔与收纳用品。「没有遗漏，很好。这样至少能把已经谈过的话记清楚了。」她把属于自己的一份收好，没有把这件小事说成效忠。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项看过纸笔与收纳用品。「没有遗漏，很好。这样至少能把已经谈过的话记清楚了。」她把属于自己的一份收好，没有把这件小事说成效忠。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项看过纸笔与收纳用品。「没有遗漏，很好。这样至少能把已经谈过的话记清楚了。」她把属于自己的一份收好，没有把这件小事说成效忠。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「有事请说。」__NPC_NAME__仍维持礼数，笑里却留着距离。「我会履行说定的职责。没有谈过的，也请先听我答复。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「有事请说。」__NPC_NAME__仍维持礼数，笑里却留着距离。「我会履行说定的职责。没有谈过的，也请先听我答复。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「有事请说。」__NPC_NAME__仍维持礼数，笑里却留着距离。「我会履行说定的职责。没有谈过的，也请先听我答复。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「有事请说。」__NPC_NAME__仍维持礼数，笑里却留着距离。「我会履行说定的职责。没有谈过的，也请先听我答复。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__谈起接见时的礼数，忽然停住。「这些不是摆给你看的。你连这也想拿来取笑吗？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出守卫一句含混的传话。「命令让人听不懂，难道也要怪领命的人？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把职责分成几项。「要我判断，就别只让我看你挑过的那一半。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「有事请说。」__NPC_NAME__仍维持礼数，笑里却留着距离。「我会履行说定的职责。没有谈过的，也请先听我答复。」"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 168
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你就是这里的主人？」__NPC_NAME__看过来，语气利落。「想问什么就直说。我的族人和同伴的事，不会因为我在这里，就变成你的战利品。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你就是这里的主人？」__NPC_NAME__看过来，语气利落。「想问什么就直说。我的族人和同伴的事，不会因为我在这里，就变成你的战利品。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你就是这里的主人？」__NPC_NAME__看过来，语气利落。「想问什么就直说。我的族人和同伴的事，不会因为我在这里，就变成你的战利品。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「先确认一下职责吧。」__NPC_NAME__看着你，开门见山。「我负责到哪里，消息向谁交接？这些说清，才不会让同伴跟着猜。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「是你啊。有什么事？」__NPC_NAME__直接看着你，没有装作没听见。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「上次的话我记得。接下来呢？」__NPC_NAME__等着看你是否还要绕圈子。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「可以谈。但别把我愿意听，理解成已经答应。」她说得很明白。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「魔王大人，是要谈值守，还是上次那件事？」她很快收住动作，等你说明。"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听了听走廊里的脚步。「守卫换班倒挺准时。………放心，我还没打算给你提建议。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "谈到金红桃时，__NPC_NAME__先问你为何要打听。「她的事，不由别人几句话就能说清。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__提出一个传令上的疑问，要求先知道命令会交到谁手里。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起合作时各人应当知道多少消息。「分清范围是为了做事，不是为了让谁猜谜。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她没有立即认同，却正面接了你的问题。「这样倒可以说下去。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「好，那我把这一点讲清。」她没有再绕开具体的问题。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这比让我凭一句话相信你强。」她逐项核对了做法。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「明白。那就照谈好的范围去做。」她也把自己负责的部分说明了。"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「那就没什么好谈的了。」她直接截住话头。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你刚才不是这个意思。现在要改？」她盯着你问。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「不要拿其他人的安危来替你催一个答案。」她没有让步。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「职责我认，没答应过的事我也会说不。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我败了，是事实。其他的，别急着一起算进去。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你说得有道理的部分，我会听。别的也一样会反驳。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我要先确定，这样做不会让同伴替我承担后果。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「接下的事我会做到。若安排有问题，我也会当面说。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__核对纸笔，确认记录可以自己保管。「这件事你做到了。别的范围，仍照我们说过的来。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__核对纸笔，确认记录可以自己保管。「这件事你做到了。别的范围，仍照我们说过的来。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__核对纸笔，确认记录可以自己保管。「这件事你做到了。别的范围，仍照我们说过的来。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__核对纸笔，确认记录可以自己保管。「这件事你做到了。别的范围，仍照我们说过的来。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「职责我记得。至于别的事，先别替我作答。」__NPC_NAME__直接问清你的来意。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「职责我记得。至于别的事，先别替我作答。」__NPC_NAME__直接问清你的来意。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「职责我记得。至于别的事，先别替我作答。」__NPC_NAME__直接问清你的来意。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「职责我记得。至于别的事，先别替我作答。」__NPC_NAME__直接问清你的来意。"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听了听走廊里的脚步。「守卫换班倒挺准时。………放心，我还没打算给你提建议。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "谈到金红桃时，__NPC_NAME__先问你为何要打听。「她的事，不由别人几句话就能说清。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__提出一个传令上的疑问，要求先知道命令会交到谁手里。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「职责我记得。至于别的事，先别替我作答。」__NPC_NAME__直接问清你的来意。"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 169
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「喂，你就是魔王？」__NPC_NAME__挺直身子，先朝你扬了扬下巴。「打输了就打输了，可别以为我连说话都得照你的意思来。要谈什么，痛快点！」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「喂，你就是魔王？」__NPC_NAME__挺直身子，先朝你扬了扬下巴。「打输了就打输了，可别以为我连说话都得照你的意思来。要谈什么，痛快点！」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「喂，你就是魔王？」__NPC_NAME__挺直身子，先朝你扬了扬下巴。「打输了就打输了，可别以为我连说话都得照你的意思来。要谈什么，痛快点！」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「喂，接下来打算让我做什么？」__NPC_NAME__走过来，精神比先前好了些。「答应的事我认。不过可别只让我坐着等消息啊！」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「又是你。今天总该直接说事了吧？」__NPC_NAME__活动了一下肩膀。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「上次那事我想过了。」她说完又急着补一句，「想过，不是答应了啊！」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「来，接着说。」__NPC_NAME__把地方挪出一点，「别又谈到一半就含含糊糊的。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「正好！接下来怎么安排，我还有话要说。」她招呼你过去，仍是那副直来直去的样子。"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看向门外。「整天坐着才要命。就算只是在这儿活动，也比听一肚子空话强吧？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "谈到过去的军旅，__NPC_NAME__先哼了一声。「我自己选的路。别替我编个想回去当大小姐的结尾。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__拿两件日用品比较耐用程度，说起买卖时意外地一点也不含糊。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__谈起训练里的笨办法。「好不好用，要真试过才知道。光看样子可不算数。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「………这样还差不多。」她没有笑着认输，却肯把自己的想法讲了出来。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「行，我接着说。你可听好了！」她不再急着抢回每一句话。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「好，那就试这一件。做成什么样，到时候看。」她把实际要用的东西数了数。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「对吧！我就说这办法能用。」她高兴起来，随即又给你指出一个漏掉的地方。"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哈？那你问个什么劲！」她不客气地瞪回去。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「刚才还说听我讲呢。现在就不耐烦了？」她抱起手臂。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「喂，这和咱们说好的不是一回事吧！」她当面指出了差别。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我给你做事，可没答应替胡话叫好！」她一点也没收声。"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「别拿身份压我。你有道理，就把道理说出来。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我可没准备夸你啊。只是这回说得还算清楚。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「让我做什么、不能做什么，先说好。省得以后吵。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「说好的事我认。可你要是乱来，我照样会顶嘴！」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把布料翻看一遍，又拉了拉针线。「嗯，这些倒能用。说好了就做到，这点我认！」她利落地把东西收好。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把布料翻看一遍，又拉了拉针线。「嗯，这些倒能用。说好了就做到，这点我认！」她利落地把东西收好。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把布料翻看一遍，又拉了拉针线。「嗯，这些倒能用。说好了就做到，这点我认！」她利落地把东西收好。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把布料翻看一遍，又拉了拉针线。「嗯，这些倒能用。说好了就做到，这点我认！」她利落地把东西收好。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「喂，说定的事我认，可别以为我什么都服气了啊。」__NPC_NAME__先把话说明，仍肯听你的安排。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「喂，说定的事我认，可别以为我什么都服气了啊。」__NPC_NAME__先把话说明，仍肯听你的安排。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「喂，说定的事我认，可别以为我什么都服气了啊。」__NPC_NAME__先把话说明，仍肯听你的安排。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「喂，说定的事我认，可别以为我什么都服气了啊。」__NPC_NAME__先把话说明，仍肯听你的安排。"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看向门外。「整天坐着才要命。就算只是在这儿活动，也比听一肚子空话强吧？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "谈到过去的军旅，__NPC_NAME__先哼了一声。「我自己选的路。别替我编个想回去当大小姐的结尾。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__拿两件日用品比较耐用程度，说起买卖时意外地一点也不含糊。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「喂，说定的事我认，可别以为我什么都服气了啊。」__NPC_NAME__先把话说明，仍肯听你的安排。"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 165
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你就是魔王？」__NPC_NAME__努力把下巴抬得高些。「先说好了，本小姐可不会因为你站得高，就什么都听你的！………这里走出去是哪边？」最后一句问得明显小声了些。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你就是魔王？」__NPC_NAME__努力把下巴抬得高些。「先说好了，本小姐可不会因为你站得高，就什么都听你的！………这里走出去是哪边？」最后一句问得明显小声了些。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你就是魔王？」__NPC_NAME__努力把下巴抬得高些。「先说好了，本小姐可不会因为你站得高，就什么都听你的！………这里走出去是哪边？」最后一句问得明显小声了些。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你来得正好！」__NPC_NAME__先朝你招手，又想起要抬起下巴。「本小姐还有个地方没弄明白。先带我看看，再说别的！」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「干什么啦，本小姐又没乱跑！」她抢先说完，才看你究竟有没有要问。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你上次说的，本小姐记着呢。今天可别改口哦。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「来得正好！本小姐有个地方还没弄懂。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哼，今天本小姐先说！」她已经把要讲的事攒了一肚子。"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指着走廊岔口问路，发现你在看她，又说只是确认一下。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天遇到的小麻烦，说到不顺心的地方便忍不住加重语气。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__想知道一件新见到的东西怎样使用，嘴上仍坚持自己很快就能学会。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__得意地讲起独自弄明白的一件小事，等着看你是否注意到。"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她总算不再抢话，把自己哪里不明白一口气讲了出来。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「就是这里啦！」她发现你听懂，语气也轻快了一点。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「嗯，这次算你说明白了。」她又照自己的理解复述一遍。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「看吧，本小姐也能弄懂！」她忍不住把刚学会的办法再讲一次。"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你都不听完！」她气鼓鼓地转过脸。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我又不是故意的，你先听嘛！」她越说越急。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「可你上次不是这样说的！」她坚持要一个解释。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哼，本小姐才不替你点头呢！」她直截了当地反驳。"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「本小姐会自己想！听你说说也不是不行啦。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「先让我说完嘛！我又不是故意弄错的。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这次本小姐记住了。下次可别小看我。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「才不是特意来找你！………有事当然还是可以说的。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哼，本小姐还没消气呢。………有话你先说啦！」她嘴上逞强，仍留在原地等你说。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哼，本小姐还没消气呢。………有话你先说啦！」她嘴上逞强，仍留在原地等你说。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哼，本小姐还没消气呢。………有话你先说啦！」她嘴上逞强，仍留在原地等你说。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哼，本小姐还没消气呢。………有话你先说啦！」她嘴上逞强，仍留在原地等你说。"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指着走廊岔口问路，发现你在看她，又说只是确认一下。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天遇到的小麻烦，说到不顺心的地方便忍不住加重语气。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__想知道一件新见到的东西怎样使用，嘴上仍坚持自己很快就能学会。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「哼，本小姐还没消气呢。………有话你先说啦！」她嘴上逞强，仍留在原地等你说。"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 171
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我来找玛奥。」__NPC_NAME__一开口便报出妹妹的名字，声音绷得很紧。「你要问我的事，可以。但先告诉我，她现在在哪里、过得怎么样。别拿这个和我讨价还价。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我来找玛奥。」__NPC_NAME__一开口便报出妹妹的名字，声音绷得很紧。「你要问我的事，可以。但先告诉我，她现在在哪里、过得怎么样。别拿这个和我讨价还价。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我来找玛奥。」__NPC_NAME__一开口便报出妹妹的名字，声音绷得很紧。「你要问我的事，可以。但先告诉我，她现在在哪里、过得怎么样。别拿这个和我讨价还价。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我想把以后的安排问清楚。」__NPC_NAME__稳住声音，先说起自己最在意的事。「玛奥的近况，我也想亲自确认。可以先从这里谈吗？」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「是你。………玛奥那边呢？」__NPC_NAME__先确认你的来意。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「上次的话我记得。」她稳住声音，「今天能把没说清的告诉我吗？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我愿意谈我的事。但妹妹的事，不要混在一起。」她把话说在前面。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「今天有些事想和你商量。」她仍先问过玛奥的近况，才把话题接下去。"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__问起能否确认妹妹平安，问得很具体，不肯只接受一句笼统的保证。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__谈起找人的那段日子，忽然停住。「不用替我说很辛苦。我想知道的不是这个。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__开始询问日常安排中哪些事情可以自己照料，不想事事都等别人转告。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__提到一件玛奥小时候闹出的麻烦，嘴角有了一点笑意，随后认真补上了当时怎样处理。"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她听完仍不放心，终于把自己最需要确认的一点问了出来。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这样我听明白了。………还有一件事。」她没有再把每句话都压得那么紧。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她认真记住你的安排，也说出了自己准备承担的部分。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她与你逐项谈完，才稍稍松口气。「那就照这个来吧。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「不要拿我妹妹的事来逼我。」她的语气一下子硬了。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你不是说可以问清楚吗？」她没有退开，坚持等你回答。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「那是我自己的事，和刚才谈好的无关。」她明确划开了范围。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我愿意和你商量，不代表家人的事可以瞒着我决定。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我不是来求你可怜的。我要先知道妹妹的事。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你肯说清楚，我会听。别的事，先不要逼我回答。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我自己的决定，由我自己来谈。别用玛奥替我作答。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「答应做的事我会做好。家人的事，也请让我自己参与安排。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__核对生活用品，又问过没有额外条件，才松了口气。「东西够了。谢谢。其他的，我们再当面说清。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__核对生活用品，又问过没有额外条件，才松了口气。「东西够了。谢谢。其他的，我们再当面说清。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__核对生活用品，又问过没有额外条件，才松了口气。「东西够了。谢谢。其他的，我们再当面说清。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__核对生活用品，又问过没有额外条件，才松了口气。「东西够了。谢谢。其他的，我们再当面说清。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会做好接下的事。」__NPC_NAME__看着你，「但还有些担心，我也需要继续问清楚。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会做好接下的事。」__NPC_NAME__看着你，「但还有些担心，我也需要继续问清楚。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会做好接下的事。」__NPC_NAME__看着你，「但还有些担心，我也需要继续问清楚。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会做好接下的事。」__NPC_NAME__看着你，「但还有些担心，我也需要继续问清楚。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__问起能否确认妹妹平安，问得很具体，不肯只接受一句笼统的保证。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__谈起找人的那段日子，忽然停住。「不用替我说很辛苦。我想知道的不是这个。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__开始询问日常安排中哪些事情可以自己照料，不想事事都等别人转告。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「我会做好接下的事。」__NPC_NAME__看着你，「但还有些担心，我也需要继续问清楚。」"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 101
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你愿意听我说话吗？」__NPC_NAME__并没有把目光移开。「我想先问问，还有没有受伤的人。你怎样看我是一回事，他们现在需不需要帮助，是另一回事。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你愿意听我说话吗？」__NPC_NAME__并没有把目光移开。「我想先问问，还有没有受伤的人。你怎样看我是一回事，他们现在需不需要帮助，是另一回事。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你愿意听我说话吗？」__NPC_NAME__并没有把目光移开。「我想先问问，还有没有受伤的人。你怎样看我是一回事，他们现在需不需要帮助，是另一回事。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然能在这里帮忙，我想先知道大家需要些什么。」__NPC_NAME__认真望着你。「你愿意听听我能做的，也告诉我有哪些难处吗？」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「又见面了。」__NPC_NAME__仍先看你的神色，像是在判断这次能把话说到哪里。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你上次说的，我想过了。也请再听听我的担心。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我愿意谈能帮上忙的事，但不能把没有问过的人也算进去。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「今天有一件事想请你听听。」她说得温和，却没有把难处藏起来。"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__留意到有人疲惫地经过，问起是否能够让对方先歇一会儿。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__谈到帮助别人时如何询问需要。「光替别人决定，也会让人难受的。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项确认准备物资时容易漏掉的小事，不愿让答应过的帮助只留在口头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天照料生活时遇到的小问题，认真询问你的意见。"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她认真听完。「那我也把理由说给你听，好吗？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「谢谢你肯听完。」她接着说出真正想解决的那一件事。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她开始与你核对做法，仍不忘问明是否会给旁人添上新的负担。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她露出安心一点的笑容，又把需要留意的地方补充完整。"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我不能因为害怕，就说这件事没有关系。」她仍望着你。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「请你再想一想，受影响的人会怎样。」她没有顺着你的话点头。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这和我们说好的帮助不一样。」她停下来，要求重新说明。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「即使已经留在这里，这件事我也不能装作没有看见。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会听你说，但我也有不能不说的话。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「能这样谈，我很高兴。不同意的地方，也可以再解释。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「只要真能帮上忙，我愿意一起想办法。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会尽力。若有人因此受苦，我也一定会提醒你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__确认基础清洁、布料和收纳用品都已送到。「这件事确实做到了。先把用得到的安排好吧。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__确认基础清洁、布料和收纳用品都已送到。「这件事确实做到了。先把用得到的安排好吧。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__确认基础清洁、布料和收纳用品都已送到。「这件事确实做到了。先把用得到的安排好吧。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__确认基础清洁、布料和收纳用品都已送到。「这件事确实做到了。先把用得到的安排好吧。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我愿意帮忙，也有还不能放心的地方。」__NPC_NAME__轻声开口，没有把想说的事藏起来。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我愿意帮忙，也有还不能放心的地方。」__NPC_NAME__轻声开口，没有把想说的事藏起来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我愿意帮忙，也有还不能放心的地方。」__NPC_NAME__轻声开口，没有把想说的事藏起来。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我愿意帮忙，也有还不能放心的地方。」__NPC_NAME__轻声开口，没有把想说的事藏起来。"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__留意到有人疲惫地经过，问起是否能够让对方先歇一会儿。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__谈到帮助别人时如何询问需要。「光替别人决定，也会让人难受的。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项确认准备物资时容易漏掉的小事，不愿让答应过的帮助只留在口头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「我愿意帮忙，也有还不能放心的地方。」__NPC_NAME__轻声开口，没有把想说的事藏起来。"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 102
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「要谈什么？直接说吧。」__NPC_NAME__看过你，态度比预想中坦然。「愿意听听，不等于我没有自己的打算。不过，空站着也谈不出结果，对吧？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「要谈什么？直接说吧。」__NPC_NAME__看过你，态度比预想中坦然。「愿意听听，不等于我没有自己的打算。不过，空站着也谈不出结果，对吧？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「要谈什么？直接说吧。」__NPC_NAME__看过你，态度比预想中坦然。「愿意听听，不等于我没有自己的打算。不过，空站着也谈不出结果，对吧？」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「来，先把接下来要做的分清吧。」__NPC_NAME__坦率地开口。「哪一件最急？弄明白了，我们就从能做的地方开始。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「又来了？这回打算从哪件事说起？」她没有刻意摆出害怕的样子。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「上次那几句话，我记得。」她点点头，「接着说。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「可以试着商量。先把各自要负责的弄清楚。」她把事情分得很明白。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「来得正好。我有个更省事的做法，先听听？」她已准备好说明理由。"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__问起城里的日程，想知道哪一段说法是真正照着执行的。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__谈起学习新事时自己爱用的办法，先抓住能试的一小步。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__发现一处安排前后不合，直接提出来，没有把问题包进客套话。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天试过的一种办法，有用和没用的部分都不遮掩。"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「好，这样就有得谈了。」她也给了一个明确的回答。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她顺着你的解释又问了一步，已经在认真考虑怎样落实。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这就清楚了。」她把双方各自负责的部分重新核对一遍。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「不错，那就试试。」她也坦率说出仍可能出错的地方。"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然答案只有一个，还要我说什么？」她反问。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你这样改口，我可没法接着信。」她指明了前后的差别。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这一项不是刚才谈好的。」她停住，要求先把分歧解决。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「做事归做事，错的安排我照样会指出来。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「可以谈。别替我把最后的答案也填了。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「道理我听到了，剩下的还得看怎么做。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「先试说好的那一件。结果出来，再谈后面的。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我接下了，就会做。若有更好的办法，也会告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__核对纸笔和收纳用品，很快数清数量。「好，那这件事就不用再猜了。接下来谈实际怎样做吧。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__核对纸笔和收纳用品，很快数清数量。「好，那这件事就不用再猜了。接下来谈实际怎样做吧。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__核对纸笔和收纳用品，很快数清数量。「好，那这件事就不用再猜了。接下来谈实际怎样做吧。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__核对纸笔和收纳用品，很快数清数量。「好，那这件事就不用再猜了。接下来谈实际怎样做吧。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「要做的事我会做。可有些话还没谈明白，别一起带过去。」她仍是直来直去的口气。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「要做的事我会做。可有些话还没谈明白，别一起带过去。」她仍是直来直去的口气。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「要做的事我会做。可有些话还没谈明白，别一起带过去。」她仍是直来直去的口气。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「要做的事我会做。可有些话还没谈明白，别一起带过去。」她仍是直来直去的口气。"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__问起城里的日程，想知道哪一段说法是真正照着执行的。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__谈起学习新事时自己爱用的办法，先抓住能试的一小步。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__发现一处安排前后不合，直接提出来，没有把问题包进客套话。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「要做的事我会做。可有些话还没谈明白，别一起带过去。」她仍是直来直去的口气。"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 103
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「总算肯来听本宫说话了？」__NPC_NAME__抬起下巴，先挑了个不算客气的开头。「你想问什么，本宫自然会判断要不要答。可别把一时占上风，当成什么都看透了。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「总算肯来听本宫说话了？」__NPC_NAME__抬起下巴，先挑了个不算客气的开头。「你想问什么，本宫自然会判断要不要答。可别把一时占上风，当成什么都看透了。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「总算肯来听本宫说话了？」__NPC_NAME__抬起下巴，先挑了个不算客气的开头。「你想问什么，本宫自然会判断要不要答。可别把一时占上风，当成什么都看透了。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然准备和本宫合作，总该把安排说得像样一些吧？」__NPC_NAME__扬起眉。「你要本宫负责什么，又肯说明多少？本宫可都会听着。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哦，又来了。今天准备拿什么说服本宫？」她像是在等一场有趣的争论。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你上次说的，本宫倒还记得。你自己呢？」她笑着反问。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「听起来，你已经知道有些事不能省了。」她仍等着你自己说出条件。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「有事找本宫？那就说得值得一听些。」她的目光先在你身上一转，等着你开口。"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__问起一项安排为何选了别人。「本宫只是好奇，你总该能讲出理由吧？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__用刚听来的一个说法反问你，显然想看看你会不会前后矛盾。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出一个你未提及的条件，语气里带着抓住疏漏的得意。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__谈起今天的新发现，说到自己比别人先弄懂的部分时，格外不肯略过。"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她挑不出你刚才那句话里的漏洞，只好转而抛出一个更难的问题。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「嗯，这回倒不是随口敷衍。」她看起来更有兴趣继续问了。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她把自己愿意承担的部分说出，仍不肯放弃核对你的打算。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这才像样。」她颇有些得意，仿佛也有自己提醒你的功劳。"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你若只需要一声应和，找本宫做什么？」她把笑收了回去。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「话说到这里又变了？本宫可记得很清楚。」她不肯让你带过。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「本宫什么时候同意过这一项？」她当即截住你的安排。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「可别误会，本宫留下，可不是把所有算盘都送给了你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「本宫可没有承认你赢了。听一听而已。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「继续说。本宫还没听到最重要的部分。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「条件要说清，本宫也不喜欢别人替自己省掉好处。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「合作归合作，本宫可不会把判断一并交给你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项点过纸笔，挑出最含糊的一项重新问清。「没有少。本宫记下了——这次你确实照说好的办了。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项点过纸笔，挑出最含糊的一项重新问清。「没有少。本宫记下了——这次你确实照说好的办了。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项点过纸笔，挑出最含糊的一项重新问清。「没有少。本宫记下了——这次你确实照说好的办了。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项点过纸笔，挑出最含糊的一项重新问清。「没有少。本宫记下了——这次你确实照说好的办了。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「本宫答应的是合作，可不是陪你称心。」__NPC_NAME__仍扬着眉，准备逐项过问你的安排。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「本宫答应的是合作，可不是陪你称心。」__NPC_NAME__仍扬着眉，准备逐项过问你的安排。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「本宫答应的是合作，可不是陪你称心。」__NPC_NAME__仍扬着眉，准备逐项过问你的安排。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「本宫答应的是合作，可不是陪你称心。」__NPC_NAME__仍扬着眉，准备逐项过问你的安排。"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__问起一项安排为何选了别人。「本宫只是好奇，你总该能讲出理由吧？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__用刚听来的一个说法反问你，显然想看看你会不会前后矛盾。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出一个你未提及的条件，语气里带着抓住疏漏的得意。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「本宫答应的是合作，可不是陪你称心。」__NPC_NAME__仍扬着眉，准备逐项过问你的安排。"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 134
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「看清楚，你想问的到底是谁？」__NPC_NAME__察觉你在打量她，先一步笑了。「要找狂王的答案，就把问题问明白。把本尊和替身混在一起，可不是什么聪明做法。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「看清楚，你想问的到底是谁？」__NPC_NAME__察觉你在打量她，先一步笑了。「要找狂王的答案，就把问题问明白。把本尊和替身混在一起，可不是什么聪明做法。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「看清楚，你想问的到底是谁？」__NPC_NAME__察觉你在打量她，先一步笑了。「要找狂王的答案，就把问题问明白。把本尊和替身混在一起，可不是什么聪明做法。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「以后需要我出面，就把名字和职责都记清吧。」__NPC_NAME__看着你，唇边带笑。「省得出了什么差错，又把别人的事算到我头上。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「又把目光放在这里了？这回是找我，还是找你想象里的狂王？」她先发问。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「上次没问清的，现在想好了？」她仍不急着顺你的话回答。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「可以谈我知道的部分。但别先替我认下我没做过的事。」她点明了范围。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「是我的安排，就问我。」她扬起眉，「若是别人的旧账，可要先分清。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__问你根据什么认定一个消息是真的，似乎很乐意看你自己找出漏洞。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__谈起替人传话时最容易漏掉什么，始终不肯把猜测说成已经证实的事。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出一份说法混用了本尊与替身，要求先核清人和事。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起自己愿意负责的事务，强调以后应当由谁出面答复。"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哦，这次倒没急着下结论。」她终于回答了问题里能够确认的部分。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她认可你划开的范围，随即又指出一项还缺的依据。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她明确给出自己能确认的事情，没有把回答扩展成更大的承诺。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她与你逐项核对，仍会带着笑指出你把两件事混在一起的地方。"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「原来你已经替我回答好了呀。」她不再往下解释。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「上次才分清的事，现在又混回去了？」她故意把那个差别再说一遍。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我没答应替别人认账。」她不肯接下这个说法。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「合作不等于身份也任你改写。这个名字，你最好记清楚。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你猜得到多少，是你的事。要我确认，又是另一回事。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你若肯把问题分清，我也可以少绕一个弯。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「别让我为不属于我的事作保证。说清楚，才有得谈。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我答应的由我负责。其他人的话，你还是找本人核实吧。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看过纸笔与收纳用品，先确认记录由本人保管。「这件做到了。写着谁的答复，就别再给它换个人哦。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看过纸笔与收纳用品，先确认记录由本人保管。「这件做到了。写着谁的答复，就别再给它换个人哦。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看过纸笔与收纳用品，先确认记录由本人保管。「这件做到了。写着谁的答复，就别再给它换个人哦。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看过纸笔与收纳用品，先确认记录由本人保管。「这件做到了。写着谁的答复，就别再给它换个人哦。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然找我，就问清我本人答应了哪一件。」__NPC_NAME__笑着提醒，没有把自己的打算一并说尽。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然找我，就问清我本人答应了哪一件。」__NPC_NAME__笑着提醒，没有把自己的打算一并说尽。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然找我，就问清我本人答应了哪一件。」__NPC_NAME__笑着提醒，没有把自己的打算一并说尽。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然找我，就问清我本人答应了哪一件。」__NPC_NAME__笑着提醒，没有把自己的打算一并说尽。"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__问你根据什么认定一个消息是真的，似乎很乐意看你自己找出漏洞。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__谈起替人传话时最容易漏掉什么，始终不肯把猜测说成已经证实的事。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出一份说法混用了本尊与替身，要求先核清人和事。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「既然找我，就问清我本人答应了哪一件。」__NPC_NAME__笑着提醒，没有把自己的打算一并说尽。"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 104
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你、你是来找菲娅的吗？」__NPC_NAME__看着你，小心地问，「菲娅还不知道这里怎么走。可以先告诉菲娅，去哪里能找到帮忙的人吗？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你、你是来找菲娅的吗？」__NPC_NAME__看着你，小心地问，「菲娅还不知道这里怎么走。可以先告诉菲娅，去哪里能找到帮忙的人吗？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你、你是来找菲娅的吗？」__NPC_NAME__看着你，小心地问，「菲娅还不知道这里怎么走。可以先告诉菲娅，去哪里能找到帮忙的人吗？」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你是来告诉菲娅这里怎么生活的吗？」__NPC_NAME__认真看着你。「菲娅想先知道，不明白的时候可以去问谁。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「是你呀。菲娅可以问一件事吗？」她攥着手，等你停下来。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「菲娅记得你说的。可是这里还有一点不明白………」她试着把问题讲完整。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你来啦。菲娅今天有件事想告诉你。」她先确认你是不是有空听。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「菲娅今天自己弄明白了一件事！」她想了想，又认真补上自己还需要帮助的部分。"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指着一个不认识的物件，想知道它是做什么用的。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__问起今天的饭与休息时间，希望能够提前知道接下来的安排。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__想把记住的一条路讲给你听，说到岔口时又有些不确定。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天学到的新词，试着用自己的话解释。"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她终于把最担心的那一点问了出来，声音仍轻，却不再中途停住。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「原来是这样呀。」她按自己的理解再说了一遍，等你帮忙确认。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她听得很认真，遇到没听懂的地方也肯再问一次。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她高兴地重复了一遍刚弄明白的事，随后认真向你道谢。"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她被你的语气吓住，把没说完的话咽了回去。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「菲娅只是想问清楚………」她低下头，没再接着问。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她犹豫着指出和上次不同的地方，希望你再说明一次。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「可菲娅还是没弄懂。」她不愿装作已经明白，声音又小了下去。"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「菲娅可以慢慢说吗？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「那菲娅再问一点点，好不好？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「菲娅会记住的。不明白还能问吗？」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这次菲娅自己试试。需要帮忙就叫人，对不对？」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「菲娅还有一点担心………能再问清楚吗？」她小心地等你停下来听。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「菲娅还有一点担心………能再问清楚吗？」她小心地等你停下来听。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「菲娅还有一点担心………能再问清楚吗？」她小心地等你停下来听。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「菲娅还有一点担心………能再问清楚吗？」她小心地等你停下来听。"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指着一个不认识的物件，想知道它是做什么用的。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__问起今天的饭与休息时间，希望能够提前知道接下来的安排。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__想把记住的一条路讲给你听，说到岔口时又有些不确定。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「菲娅还有一点担心………能再问清楚吗？」她小心地等你停下来听。"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 150
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你要亲自来谈？」__NPC_NAME__先确认你的来意。「那就先说眼前的事吧。我会回答自己能够回答的部分，其他的，也请允许我想清楚再说。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你要亲自来谈？」__NPC_NAME__先确认你的来意。「那就先说眼前的事吧。我会回答自己能够回答的部分，其他的，也请允许我想清楚再说。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你要亲自来谈？」__NPC_NAME__先确认你的来意。「那就先说眼前的事吧。我会回答自己能够回答的部分，其他的，也请允许我想清楚再说。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「关于以后的职责，我想先与你确认。」__NPC_NAME__把问题逐项说清。「我能够做到的会尽力，暂时不明白的，也希望先问过再接下。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「有什么事？」__NPC_NAME__收住手边的动作，没有抢着替你填上来意。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「上次谈到的那件事，我还想补充一点。」她认真等你听完。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「可以继续谈。先把已经一致和仍有分歧的分开吧。」她没有急着下结论。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「正好，有一件安排想听听你的意见。」她已把问题整理清楚。"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起怎样照顾眼前需要帮助的人，不愿把对方的意思省掉。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__谈起日常练习里容易忽略的一个细节，希望先把基础做扎实。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__询问自己能够负责哪些事情，仍坚持把能力范围说清。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天办事遇到的一个分歧，准备与你一同找出可行办法。"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她把自己能回答的部分说清，没有附上一份尚未想好的承诺。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她听过解释，又认真提出了一个具体的问题。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她把合作所需的步骤与你核对，明确了各自的责任。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "她肯定了可行的部分，也没有回避还需要修改的地方。"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「若不能让我说明，那这次还谈不下去。」她没有勉强点头。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我不愿把没有想清楚的话当成承诺。」她仍坚持原来的回答。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这超出了刚才的范围，请再说清楚。」她认真指出分歧。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我已经愿意做事，也仍需要知道这样做的理由。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会听，但不能替其他人许诺。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你肯说明理由，我也会把自己的想法说清。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「在说定的范围里，我愿意试着一起做。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「答应过的我会尽力。能力之外的事，也会及时告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__核对生活与书写用品，逐项确认够用。「都在这里了。这份约定确实完成了，其他的可以继续谈。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__核对生活与书写用品，逐项确认够用。「都在这里了。这份约定确实完成了，其他的可以继续谈。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__核对生活与书写用品，逐项确认够用。「都在这里了。这份约定确实完成了，其他的可以继续谈。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__核对生活与书写用品，逐项确认够用。「都在这里了。这份约定确实完成了，其他的可以继续谈。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「已经接下的我会尽力，但还有些疑问想和你谈。」__NPC_NAME__认真等你说明来意。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「已经接下的我会尽力，但还有些疑问想和你谈。」__NPC_NAME__认真等你说明来意。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「已经接下的我会尽力，但还有些疑问想和你谈。」__NPC_NAME__认真等你说明来意。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「已经接下的我会尽力，但还有些疑问想和你谈。」__NPC_NAME__认真等你说明来意。"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起怎样照顾眼前需要帮助的人，不愿把对方的意思省掉。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__谈起日常练习里容易忽略的一个细节，希望先把基础做扎实。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__询问自己能够负责哪些事情，仍坚持把能力范围说清。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「已经接下的我会尽力，但还有些疑问想和你谈。」__NPC_NAME__认真等你说明来意。"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 160
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「你愿意先听我说一件事吗？这里若有人需要帮助，我想知道自己能做什么。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「你愿意先听我说一件事吗？这里若有人需要帮助，我想知道自己能做什么。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「你愿意先听我说一件事吗？这里若有人需要帮助，我想知道自己能做什么。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你走到近前，__NPC_NAME__先把手边的事停下。「我会尽力。只是，有人因此受苦的话，也请听我把话说完。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看见你走来。「有些事我不能因为害怕就不问。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认出了你的脚步。「请把话说完，我也会把自己的担心告诉你。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__放下手边的事。「能这样谈，我很高兴。还有一件事想请你听听。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__转向你。「我会尽力。只是，有人因此受苦的话，也请听我把话说完。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「有些事我不能因为害怕就不问。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「请把话说完，我也会把自己的担心告诉你。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「能这样谈，我很高兴。还有一件事想请你听听。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天遇到的问题，也提出自己的办法。「我会尽力。只是，有人因此受苦的话，也请听我把话说完。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听过解释，再把自己的疑问说了一点。「请把话说完，我也会把自己的担心告诉你。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把刚才留着没说的理由补上。「请把话说完，我也会把自己的担心告诉你。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意继续核对具体做法。「能这样谈，我很高兴。还有一件事想请你听听。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认真回应你的意见，没有因此收起自己的判断。「我会尽力。只是，有人因此受苦的话，也请听我把话说完。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__没有接下这个说法。「有些事我不能因为害怕就不问。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出你没有回答先前的疑问。「有些事我不能因为害怕就不问。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__要求先说清这与之前条件的差别。「能这样谈，我很高兴。还有一件事想请你听听。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__明确提出异议。「我会尽力。只是，有人因此受苦的话，也请听我把话说完。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「有些事我不能因为害怕就不问。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「请把话说完，我也会把自己的担心告诉你。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「能这样谈，我很高兴。还有一件事想请你听听。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会尽力。只是，有人因此受苦的话，也请听我把话说完。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「不同意的地方，我也会温和但认真地说出来。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「不同意的地方，我也会温和但认真地说出来。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「不同意的地方，我也会温和但认真地说出来。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「不同意的地方，我也会温和但认真地说出来。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「有些事我不能因为害怕就不问。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「请把话说完，我也会把自己的担心告诉你。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「能这样谈，我很高兴。还有一件事想请你听听。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「不同意的地方，我也会温和但认真地说出来。」"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 161
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「原来你就是魔王啊。先别得意，我可还没打算认输呢。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「原来你就是魔王啊。先别得意，我可还没打算认输呢。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「原来你就是魔王啊。先别得意，我可还没打算认输呢。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你走到近前，__NPC_NAME__先把手边的事停下。「我答应过就会做好。你也别输给自己的承诺呀。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看见你走来。「听听可以。想靠几句话让我低头，未免太轻松了吧？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认出了你的脚步。「这一点算你说得有道理。别的可还没有哦。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__放下手边的事。「好啊，继续。我也想看看你的办法到底行不行。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__转向你。「我答应过就会做好。你也别输给自己的承诺呀。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「听听可以。想靠几句话让我低头，未免太轻松了吧？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「这一点算你说得有道理。别的可还没有哦。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「好啊，继续。我也想看看你的办法到底行不行。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天遇到的问题，也提出自己的办法。「我答应过就会做好。你也别输给自己的承诺呀。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听过解释，再把自己的疑问说了一点。「这一点算你说得有道理。别的可还没有哦。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把刚才留着没说的理由补上。「这一点算你说得有道理。别的可还没有哦。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意继续核对具体做法。「好啊，继续。我也想看看你的办法到底行不行。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认真回应你的意见，没有因此收起自己的判断。「我答应过就会做好。你也别输给自己的承诺呀。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__没有接下这个说法。「听听可以。想靠几句话让我低头，未免太轻松了吧？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出你没有回答先前的疑问。「听听可以。想靠几句话让我低头，未免太轻松了吧？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__要求先说清这与之前条件的差别。「好啊，继续。我也想看看你的办法到底行不行。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__明确提出异议。「我答应过就会做好。你也别输给自己的承诺呀。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「听听可以。想靠几句话让我低头，未免太轻松了吧？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这一点算你说得有道理。别的可还没有哦。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「好啊，继续。我也想看看你的办法到底行不行。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我答应过就会做好。你也别输给自己的承诺呀。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我答应过就会做好。你也别输给自己的承诺呀。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我答应过就会做好。你也别输给自己的承诺呀。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我答应过就会做好。你也别输给自己的承诺呀。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我答应过就会做好。你也别输给自己的承诺呀。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「听听可以。想靠几句话让我低头，未免太轻松了吧？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「这一点算你说得有道理。别的可还没有哦。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「好啊，继续。我也想看看你的办法到底行不行。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「我答应过就会做好。你也别输给自己的承诺呀。」"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 162
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「请、请问，你想知道什么？让我慢慢说，可以吗？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「请、请问，你想知道什么？让我慢慢说，可以吗？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「请、请问，你想知道什么？让我慢慢说，可以吗？」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你走到近前，__NPC_NAME__先把手边的事停下。「我会尽力去做。不明白的地方，还能再问吗？」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看见你走来。「我不知道该怎么回答………可以先问清楚吗？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认出了你的脚步。「您能先别催我吗？我想把话慢慢说清楚。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__放下手边的事。「我愿意再听听。可是，还有一点不明白………」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__转向你。「我会尽力去做。不明白的地方，还能再问吗？」"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「我不知道该怎么回答………可以先问清楚吗？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「您能先别催我吗？我想把话慢慢说清楚。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「我愿意再听听。可是，还有一点不明白………」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天遇到的问题，也提出自己的办法。「我会尽力去做。不明白的地方，还能再问吗？」"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听过解释，再把自己的疑问说了一点。「您能先别催我吗？我想把话慢慢说清楚。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把刚才留着没说的理由补上。「您能先别催我吗？我想把话慢慢说清楚。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意继续核对具体做法。「我愿意再听听。可是，还有一点不明白………」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认真回应你的意见，没有因此收起自己的判断。「我会尽力去做。不明白的地方，还能再问吗？」"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__没有接下这个说法。「我不知道该怎么回答………可以先问清楚吗？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出你没有回答先前的疑问。「我不知道该怎么回答………可以先问清楚吗？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__要求先说清这与之前条件的差别。「我愿意再听听。可是，还有一点不明白………」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__明确提出异议。「我会尽力去做。不明白的地方，还能再问吗？」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "您"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "您"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "您"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我不知道该怎么回答………可以先问清楚吗？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「您能先别催我吗？我想把话慢慢说清楚。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我愿意再听听。可是，还有一点不明白………」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会尽力去做。不明白的地方，还能再问吗？」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会尽力去做。不明白的地方，还能再问吗？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会尽力去做。不明白的地方，还能再问吗？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会尽力去做。不明白的地方，还能再问吗？」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会尽力去做。不明白的地方，还能再问吗？」"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「我不知道该怎么回答………可以先问清楚吗？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「您上次没有催我。这次，我也能慢慢说吗？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「我愿意再听听。可是，还有一点不明白………」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「我会尽力去做。不明白的地方，还能再问吗？」"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 163
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「既然你愿意亲自过问，那我也不会失礼。请说清来意吧。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「既然你愿意亲自过问，那我也不会失礼。请说清来意吧。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「既然你愿意亲自过问，那我也不会失礼。请说清来意吧。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你走到近前，__NPC_NAME__先把手边的事停下。「既已接下职责，我自会尽心。有分歧，也请容我直言。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看见你走来。「礼数我会守。请不要把这个当成我已经答应。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认出了你的脚步。「你肯认真商量，我也应当把话讲清。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__放下手边的事。「条件可以谈。含糊的说法，还是现在问明白为好。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__转向你。「既已接下职责，我自会尽心。有分歧，也请容我直言。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「礼数我会守。请不要把这个当成我已经答应。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「你肯认真商量，我也应当把话讲清。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「条件可以谈。含糊的说法，还是现在问明白为好。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天遇到的问题，也提出自己的办法。「既已接下职责，我自会尽心。有分歧，也请容我直言。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听过解释，再把自己的疑问说了一点。「你肯认真商量，我也应当把话讲清。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把刚才留着没说的理由补上。「你肯认真商量，我也应当把话讲清。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意继续核对具体做法。「条件可以谈。含糊的说法，还是现在问明白为好。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认真回应你的意见，没有因此收起自己的判断。「既已接下职责，我自会尽心。有分歧，也请容我直言。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__没有接下这个说法。「礼数我会守。请不要把这个当成我已经答应。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出你没有回答先前的疑问。「礼数我会守。请不要把这个当成我已经答应。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__要求先说清这与之前条件的差别。「条件可以谈。含糊的说法，还是现在问明白为好。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__明确提出异议。「既已接下职责，我自会尽心。有分歧，也请容我直言。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「礼数我会守。请不要把这个当成我已经答应。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你肯认真商量，我也应当把话讲清。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「条件可以谈。含糊的说法，还是现在问明白为好。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既已接下职责，我自会尽心。有分歧，也请容我直言。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既已接下职责，我自会尽心。有分歧，也请容我直言。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既已接下职责，我自会尽心。有分歧，也请容我直言。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既已接下职责，我自会尽心。有分歧，也请容我直言。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既已接下职责，我自会尽心。有分歧，也请容我直言。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「礼数我会守。请不要把这个当成我已经答应。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「你肯认真商量，我也应当把话讲清。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「条件可以谈。含糊的说法，还是现在问明白为好。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「既已接下职责，我自会尽心。有分歧，也请容我直言。」"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 164
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「要问什么就说吧。你能把我关在这里，也未必能让我认同你。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「要问什么就说吧。你能把我关在这里，也未必能让我认同你。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「要问什么就说吧。你能把我关在这里，也未必能让我认同你。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你走到近前，__NPC_NAME__先把手边的事停下。「有问题我会指出，做事也一样。你应该不至于怕听这个吧。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看见你走来。「若答案早已由你决定，何必再来问我？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认出了你的脚步。「可以听听。是否有道理，我会自己判断。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__放下手边的事。「先把原因说清，再谈结果。我不准备靠猜测答应。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__转向你。「有问题我会指出，做事也一样。你应该不至于怕听这个吧。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「若答案早已由你决定，何必再来问我？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「可以听听。是否有道理，我会自己判断。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「先把原因说清，再谈结果。我不准备靠猜测答应。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天遇到的问题，也提出自己的办法。「有问题我会指出，做事也一样。你应该不至于怕听这个吧。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听过解释，再把自己的疑问说了一点。「可以听听。是否有道理，我会自己判断。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把刚才留着没说的理由补上。「可以听听。是否有道理，我会自己判断。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意继续核对具体做法。「先把原因说清，再谈结果。我不准备靠猜测答应。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认真回应你的意见，没有因此收起自己的判断。「有问题我会指出，做事也一样。你应该不至于怕听这个吧。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__没有接下这个说法。「若答案早已由你决定，何必再来问我？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出你没有回答先前的疑问。「若答案早已由你决定，何必再来问我？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__要求先说清这与之前条件的差别。「先把原因说清，再谈结果。我不准备靠猜测答应。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__明确提出异议。「有问题我会指出，做事也一样。你应该不至于怕听这个吧。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「若答案早已由你决定，何必再来问我？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「可以听听。是否有道理，我会自己判断。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「先把原因说清，再谈结果。我不准备靠猜测答应。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「有问题我会指出，做事也一样。你应该不至于怕听这个吧。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「有问题我会指出，做事也一样。你应该不至于怕听这个吧。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「有问题我会指出，做事也一样。你应该不至于怕听这个吧。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「有问题我会指出，做事也一样。你应该不至于怕听这个吧。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「有问题我会指出，做事也一样。你应该不至于怕听这个吧。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「若答案早已由你决定，何必再来问我？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「可以听听。是否有道理，我会自己判断。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「先把原因说清，再谈结果。我不准备靠猜测答应。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「有问题我会指出，做事也一样。你应该不至于怕听这个吧。」"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 166
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「哎呀，居然亲自来了。你想从我这里听见什么好听话呢？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「哎呀，居然亲自来了。你想从我这里听见什么好听话呢？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「哎呀，居然亲自来了。你想从我这里听见什么好听话呢？」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你走到近前，__NPC_NAME__先把手边的事停下。「我答应的会做。至于你没说清的，可别指望我替你补好哦。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看见你走来。「听听当然可以。不过，我也想知道你肯说多少真话呀。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认出了你的脚步。「这回倒比上次有趣。继续呀，我还没说答应呢。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__放下手边的事。「条件得讲清吧？你也不想以后才发现咱们想的不是一回事。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__转向你。「我答应的会做。至于你没说清的，可别指望我替你补好哦。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「听听当然可以。不过，我也想知道你肯说多少真话呀。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「这回倒比上次有趣。继续呀，我还没说答应呢。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「条件得讲清吧？你也不想以后才发现咱们想的不是一回事。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天遇到的问题，也提出自己的办法。「我答应的会做。至于你没说清的，可别指望我替你补好哦。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听过解释，再把自己的疑问说了一点。「这回倒比上次有趣。继续呀，我还没说答应呢。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把刚才留着没说的理由补上。「这回倒比上次有趣。继续呀，我还没说答应呢。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意继续核对具体做法。「条件得讲清吧？你也不想以后才发现咱们想的不是一回事。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认真回应你的意见，没有因此收起自己的判断。「我答应的会做。至于你没说清的，可别指望我替你补好哦。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__没有接下这个说法。「听听当然可以。不过，我也想知道你肯说多少真话呀。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出你没有回答先前的疑问。「听听当然可以。不过，我也想知道你肯说多少真话呀。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__要求先说清这与之前条件的差别。「条件得讲清吧？你也不想以后才发现咱们想的不是一回事。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__明确提出异议。「我答应的会做。至于你没说清的，可别指望我替你补好哦。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「听听当然可以。不过，我也想知道你肯说多少真话呀。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这回倒比上次有趣。继续呀，我还没说答应呢。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「条件得讲清吧？你也不想以后才发现咱们想的不是一回事。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我答应的会做。至于你没说清的，可别指望我替你补好哦。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我答应的会做。至于你没说清的，可别指望我替你补好哦。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我答应的会做。至于你没说清的，可别指望我替你补好哦。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我答应的会做。至于你没说清的，可别指望我替你补好哦。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我答应的会做。至于你没说清的，可别指望我替你补好哦。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「听听当然可以。不过，我也想知道你肯说多少真话呀。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「这回倒比上次有趣。继续呀，我还没说答应呢。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「条件得讲清吧？你也不想以后才发现咱们想的不是一回事。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「我答应的会做。至于你没说清的，可别指望我替你补好哦。」"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 172
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「在回答以前，我想先知道，你说的这件事具体指什么。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「在回答以前，我想先知道，你说的这件事具体指什么。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「在回答以前，我想先知道，你说的这件事具体指什么。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你走到近前，__NPC_NAME__先把手边的事停下。「我会提供判断和依据。结论若有变化，也会如实告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看见你走来。「只凭一句结论，我还不能判断。请先说明你的依据。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认出了你的脚步。「这个解释我听懂了。还有一个前提需要确认。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__放下手边的事。「先划定能够验证的部分，其余的可以接着讨论。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__转向你。「我会提供判断和依据。结论若有变化，也会如实告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「只凭一句结论，我还不能判断。请先说明你的依据。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「这个解释我听懂了。还有一个前提需要确认。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「先划定能够验证的部分，其余的可以接着讨论。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天遇到的问题，也提出自己的办法。「我会提供判断和依据。结论若有变化，也会如实告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听过解释，再把自己的疑问说了一点。「这个解释我听懂了。还有一个前提需要确认。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把刚才留着没说的理由补上。「这个解释我听懂了。还有一个前提需要确认。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意继续核对具体做法。「先划定能够验证的部分，其余的可以接着讨论。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认真回应你的意见，没有因此收起自己的判断。「我会提供判断和依据。结论若有变化，也会如实告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__没有接下这个说法。「只凭一句结论，我还不能判断。请先说明你的依据。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出你没有回答先前的疑问。「只凭一句结论，我还不能判断。请先说明你的依据。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__要求先说清这与之前条件的差别。「先划定能够验证的部分，其余的可以接着讨论。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__明确提出异议。「我会提供判断和依据。结论若有变化，也会如实告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「只凭一句结论，我还不能判断。请先说明你的依据。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这个解释我听懂了。还有一个前提需要确认。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「先划定能够验证的部分，其余的可以接着讨论。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会提供判断和依据。结论若有变化，也会如实告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会提供判断和依据。结论若有变化，也会如实告诉你。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会提供判断和依据。结论若有变化，也会如实告诉你。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会提供判断和依据。结论若有变化，也会如实告诉你。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会提供判断和依据。结论若有变化，也会如实告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「只凭一句结论，我还不能判断。请先说明你的依据。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「这个解释我听懂了。还有一个前提需要确认。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「先划定能够验证的部分，其余的可以接着讨论。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「我会提供判断和依据。结论若有变化，也会如实告诉你。」"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 173
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「先告诉我，需要照顾的人现在怎么样。我的事可以稍后再谈。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「先告诉我，需要照顾的人现在怎么样。我的事可以稍后再谈。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「先告诉我，需要照顾的人现在怎么样。我的事可以稍后再谈。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你走到近前，__NPC_NAME__先把手边的事停下。「既然接下了照料的事，我就会负责到底。你也别把难处藏着。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看见你走来。「如果还有别人会因此受影响，请先说清。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认出了你的脚步。「我会听。但不能为了让自己好过，就替旁人答应。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__放下手边的事。「我愿意帮忙。怎样保证不让人受委屈，也得一起谈。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__转向你。「既然接下了照料的事，我就会负责到底。你也别把难处藏着。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「如果还有别人会因此受影响，请先说清。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「我会听。但不能为了让自己好过，就替旁人答应。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「我愿意帮忙。怎样保证不让人受委屈，也得一起谈。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天遇到的问题，也提出自己的办法。「既然接下了照料的事，我就会负责到底。你也别把难处藏着。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听过解释，再把自己的疑问说了一点。「我会听。但不能为了让自己好过，就替旁人答应。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把刚才留着没说的理由补上。「我会听。但不能为了让自己好过，就替旁人答应。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意继续核对具体做法。「我愿意帮忙。怎样保证不让人受委屈，也得一起谈。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认真回应你的意见，没有因此收起自己的判断。「既然接下了照料的事，我就会负责到底。你也别把难处藏着。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__没有接下这个说法。「如果还有别人会因此受影响，请先说清。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出你没有回答先前的疑问。「如果还有别人会因此受影响，请先说清。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__要求先说清这与之前条件的差别。「我愿意帮忙。怎样保证不让人受委屈，也得一起谈。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__明确提出异议。「既然接下了照料的事，我就会负责到底。你也别把难处藏着。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「如果还有别人会因此受影响，请先说清。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会听。但不能为了让自己好过，就替旁人答应。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我愿意帮忙。怎样保证不让人受委屈，也得一起谈。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然接下了照料的事，我就会负责到底。你也别把难处藏着。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然接下了照料的事，我就会负责到底。你也别把难处藏着。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然接下了照料的事，我就会负责到底。你也别把难处藏着。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然接下了照料的事，我就会负责到底。你也别把难处藏着。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然接下了照料的事，我就会负责到底。你也别把难处藏着。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「如果还有别人会因此受影响，请先说清。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「我会听。但不能为了让自己好过，就替旁人答应。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「我愿意帮忙。怎样保证不让人受委屈，也得一起谈。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「既然接下了照料的事，我就会负责到底。你也别把难处藏着。」"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 174
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「初次当面说话，至少请让我们把事情说清楚。你想问什么？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「初次当面说话，至少请让我们把事情说清楚。你想问什么？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「初次当面说话，至少请让我们把事情说清楚。你想问什么？」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你走到近前，__NPC_NAME__先把手边的事停下。「承诺过的我会履行。若有异议，也会亲自向你说明。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看见你走来。「我并不想失礼，但也不准备给出一个违心的答案。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认出了你的脚步。「既然愿意商量，那就容我把理由说完。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__放下手边的事。「能够做到的，我会说清；不能答应的，也不会以客套话代替。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__转向你。「承诺过的我会履行。若有异议，也会亲自向你说明。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「我并不想失礼，但也不准备给出一个违心的答案。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「既然愿意商量，那就容我把理由说完。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「能够做到的，我会说清；不能答应的，也不会以客套话代替。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天遇到的问题，也提出自己的办法。「承诺过的我会履行。若有异议，也会亲自向你说明。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听过解释，再把自己的疑问说了一点。「既然愿意商量，那就容我把理由说完。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把刚才留着没说的理由补上。「既然愿意商量，那就容我把理由说完。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意继续核对具体做法。「能够做到的，我会说清；不能答应的，也不会以客套话代替。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认真回应你的意见，没有因此收起自己的判断。「承诺过的我会履行。若有异议，也会亲自向你说明。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__没有接下这个说法。「我并不想失礼，但也不准备给出一个违心的答案。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出你没有回答先前的疑问。「我并不想失礼，但也不准备给出一个违心的答案。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__要求先说清这与之前条件的差别。「能够做到的，我会说清；不能答应的，也不会以客套话代替。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__明确提出异议。「承诺过的我会履行。若有异议，也会亲自向你说明。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我并不想失礼，但也不准备给出一个违心的答案。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然愿意商量，那就容我把理由说完。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「能够做到的，我会说清；不能答应的，也不会以客套话代替。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「承诺过的我会履行。若有异议，也会亲自向你说明。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「承诺过的我会履行。若有异议，也会亲自向你说明。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「承诺过的我会履行。若有异议，也会亲自向你说明。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「承诺过的我会履行。若有异议，也会亲自向你说明。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「承诺过的我会履行。若有异议，也会亲自向你说明。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「我并不想失礼，但也不准备给出一个违心的答案。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「既然愿意商量，那就容我把理由说完。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「能够做到的，我会说清；不能答应的，也不会以客套话代替。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「承诺过的我会履行。若有异议，也会亲自向你说明。」"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 175
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「先别急着问一串呀。你最想知道哪一件？我也得分清该从哪里答。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「先别急着问一串呀。你最想知道哪一件？我也得分清该从哪里答。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「先别急着问一串呀。你最想知道哪一件？我也得分清该从哪里答。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你走到近前，__NPC_NAME__先把手边的事停下。「这边的事我会留意。发现不对，当然也会来告诉你啦。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看见你走来。「哎，先说好，听见不等于答应。这个可得分清。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认出了你的脚步。「上次的话我记着呢。这次轮到你把漏掉的部分补上了吧？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__放下手边的事。「可以谈实际的办法了。先试一件，总比空说一整天强呀。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__转向你。「这边的事我会留意。发现不对，当然也会来告诉你啦。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「哎，先说好，听见不等于答应。这个可得分清。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「上次的话我记着呢。这次轮到你把漏掉的部分补上了吧？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「可以谈实际的办法了。先试一件，总比空说一整天强呀。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天遇到的问题，也提出自己的办法。「这边的事我会留意。发现不对，当然也会来告诉你啦。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听过解释，再把自己的疑问说了一点。「上次的话我记着呢。这次轮到你把漏掉的部分补上了吧？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把刚才留着没说的理由补上。「上次的话我记着呢。这次轮到你把漏掉的部分补上了吧？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意继续核对具体做法。「可以谈实际的办法了。先试一件，总比空说一整天强呀。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认真回应你的意见，没有因此收起自己的判断。「这边的事我会留意。发现不对，当然也会来告诉你啦。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__没有接下这个说法。「哎，先说好，听见不等于答应。这个可得分清。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出你没有回答先前的疑问。「哎，先说好，听见不等于答应。这个可得分清。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__要求先说清这与之前条件的差别。「可以谈实际的办法了。先试一件，总比空说一整天强呀。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__明确提出异议。「这边的事我会留意。发现不对，当然也会来告诉你啦。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「哎，先说好，听见不等于答应。这个可得分清。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「上次的话我记着呢。这次轮到你把漏掉的部分补上了吧？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「可以谈实际的办法了。先试一件，总比空说一整天强呀。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这边的事我会留意。发现不对，当然也会来告诉你啦。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这边的事我会留意。发现不对，当然也会来告诉你啦。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这边的事我会留意。发现不对，当然也会来告诉你啦。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这边的事我会留意。发现不对，当然也会来告诉你啦。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这边的事我会留意。发现不对，当然也会来告诉你啦。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「哎，先说好，听见不等于答应。这个可得分清。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「上次的话我记着呢。这次轮到你把漏掉的部分补上了吧？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「可以谈实际的办法了。先试一件，总比空说一整天强呀。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「这边的事我会留意。发现不对，当然也会来告诉你啦。」"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 0
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「我们先说眼前的事吧。你想知道什么？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「我们先说眼前的事吧。你想知道什么？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「我们先说眼前的事吧。你想知道什么？」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你走到近前，__NPC_NAME__先把手边的事停下。「答应过的事我会做好，有困难也会及时说明。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看见你走来。「有些事我还没想好，不能现在就答应。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认出了你的脚步。「我会听你说，也想把自己的疑问说明白。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__放下手边的事。「可以接着谈。尚未确定的部分，我们再逐项商量。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__转向你。「答应过的事我会做好，有困难也会及时说明。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「有些事我还没想好，不能现在就答应。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「我会听你说，也想把自己的疑问说明白。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「可以接着谈。尚未确定的部分，我们再逐项商量。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天遇到的问题，也提出自己的办法。「答应过的事我会做好，有困难也会及时说明。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听过解释，再把自己的疑问说了一点。「我会听你说，也想把自己的疑问说明白。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把刚才留着没说的理由补上。「我会听你说，也想把自己的疑问说明白。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意继续核对具体做法。「可以接着谈。尚未确定的部分，我们再逐项商量。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认真回应你的意见，没有因此收起自己的判断。「答应过的事我会做好，有困难也会及时说明。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__没有接下这个说法。「有些事我还没想好，不能现在就答应。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出你没有回答先前的疑问。「有些事我还没想好，不能现在就答应。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__要求先说清这与之前条件的差别。「可以接着谈。尚未确定的部分，我们再逐项商量。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__明确提出异议。「答应过的事我会做好，有困难也会及时说明。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「有些事我还没想好，不能现在就答应。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会听你说，也想把自己的疑问说明白。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「可以接着谈。尚未确定的部分，我们再逐项商量。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「答应过的事我会做好，有困难也会及时说明。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「答应过的事我会做好，有困难也会及时说明。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「答应过的事我会做好，有困难也会及时说明。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「答应过的事我会做好，有困难也会及时说明。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「答应过的事我会做好，有困难也会及时说明。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「有些事我还没想好，不能现在就答应。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「我会听你说，也想把自己的疑问说明白。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「可以接着谈。尚未确定的部分，我们再逐项商量。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「答应过的事我会做好，有困难也会及时说明。」"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 1
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「要问什么，直接问。别以为我在这里，就连想法也得和你一样。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「要问什么，直接问。别以为我在这里，就连想法也得和你一样。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「要问什么，直接问。别以为我在这里，就连想法也得和你一样。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你走到近前，__NPC_NAME__先把手边的事停下。「既然说定了，我会做。有什么不妥，也会当面讲。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看见你走来。「我没低头。能讲道理，就先讲道理。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认出了你的脚步。「我会听。可你有不对的地方，我照样要说。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__放下手边的事。「先把要做的事讲清。让我凭空点头，可办不到。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__转向你。「既然说定了，我会做。有什么不妥，也会当面讲。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「我没低头。能讲道理，就先讲道理。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「我会听。可你有不对的地方，我照样要说。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「先把要做的事讲清。让我凭空点头，可办不到。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天遇到的问题，也提出自己的办法。「既然说定了，我会做。有什么不妥，也会当面讲。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听过解释，再把自己的疑问说了一点。「我会听。可你有不对的地方，我照样要说。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把刚才留着没说的理由补上。「我会听。可你有不对的地方，我照样要说。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意继续核对具体做法。「先把要做的事讲清。让我凭空点头，可办不到。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认真回应你的意见，没有因此收起自己的判断。「既然说定了，我会做。有什么不妥，也会当面讲。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__没有接下这个说法。「我没低头。能讲道理，就先讲道理。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出你没有回答先前的疑问。「我没低头。能讲道理，就先讲道理。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__要求先说清这与之前条件的差别。「先把要做的事讲清。让我凭空点头，可办不到。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__明确提出异议。「既然说定了，我会做。有什么不妥，也会当面讲。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我没低头。能讲道理，就先讲道理。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会听。可你有不对的地方，我照样要说。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「先把要做的事讲清。让我凭空点头，可办不到。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然说定了，我会做。有什么不妥，也会当面讲。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然说定了，我会做。有什么不妥，也会当面讲。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然说定了，我会做。有什么不妥，也会当面讲。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然说定了，我会做。有什么不妥，也会当面讲。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然说定了，我会做。有什么不妥，也会当面讲。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「我没低头。能讲道理，就先讲道理。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「我会听。可你有不对的地方，我照样要说。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「先把要做的事讲清。让我凭空点头，可办不到。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「既然说定了，我会做。有什么不妥，也会当面讲。」"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 2
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「请别一下问太多。我怕自己说不清楚………」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「请别一下问太多。我怕自己说不清楚………」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「请别一下问太多。我怕自己说不清楚………」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你走到近前，__NPC_NAME__先把手边的事停下。「我会照谈好的去做。弄不懂的时候，还能来问吗？」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看见你走来。「我、我还没想好。能让我先听明白吗？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认出了你的脚步。「您能先听我慢慢说吗？我还有一点没讲清楚。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__放下手边的事。「我愿意再问清楚一些。您能先听我说完吗？」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__转向你。「我会照谈好的去做。弄不懂的时候，还能来问吗？」"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「我、我还没想好。能让我先听明白吗？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「您能先听我慢慢说吗？我还有一点没讲清楚。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「我愿意再问清楚一些。您能先听我说完吗？」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天遇到的问题，也提出自己的办法。「我会照谈好的去做。弄不懂的时候，还能来问吗？」"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听过解释，再把自己的疑问说了一点。「您能先听我慢慢说吗？我还有一点没讲清楚。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把刚才留着没说的理由补上。「您能先听我慢慢说吗？我还有一点没讲清楚。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意继续核对具体做法。「我愿意再问清楚一些。您能先听我说完吗？」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认真回应你的意见，没有因此收起自己的判断。「我会照谈好的去做。弄不懂的时候，还能来问吗？」"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__没有接下这个说法。「我、我还没想好。能让我先听明白吗？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出你没有回答先前的疑问。「我、我还没想好。能让我先听明白吗？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__要求先说清这与之前条件的差别。「我愿意再问清楚一些。您能先听我说完吗？」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__明确提出异议。「我会照谈好的去做。弄不懂的时候，还能来问吗？」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "您"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "您"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "您"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我、我还没想好。能让我先听明白吗？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「您能先听我慢慢说吗？我还有一点没讲清楚。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我愿意再问清楚一些。您能先听我说完吗？」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会照谈好的去做。弄不懂的时候，还能来问吗？」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会照谈好的去做。弄不懂的时候，还能来问吗？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会照谈好的去做。弄不懂的时候，还能来问吗？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会照谈好的去做。弄不懂的时候，还能来问吗？」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会照谈好的去做。弄不懂的时候，还能来问吗？」"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「我、我还没想好。能让我先听明白吗？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「您没有催我。那，我可以从刚才没说完的地方讲吗？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「我愿意再问清楚一些。您能先听我说完吗？」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「我会照谈好的去做。弄不懂的时候，还能来问吗？」"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 3
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「有话就说。能回答的，我会回答。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「有话就说。能回答的，我会回答。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「有话就说。能回答的，我会回答。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你走到近前，__NPC_NAME__先把手边的事停下。「交给我的事会处理。有问题，我会告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看见你走来。「这一件还不能答应。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认出了你的脚步。「可以接着说。我在听。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__放下手边的事。「范围先说清，再决定怎样做。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__转向你。「交给我的事会处理。有问题，我会告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「这一件还不能答应。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「可以接着说。我在听。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「范围先说清，再决定怎样做。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天遇到的问题，也提出自己的办法。「交给我的事会处理。有问题，我会告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听过解释，再把自己的疑问说了一点。「可以接着说。我在听。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把刚才留着没说的理由补上。「可以接着说。我在听。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意继续核对具体做法。「范围先说清，再决定怎样做。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认真回应你的意见，没有因此收起自己的判断。「交给我的事会处理。有问题，我会告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__没有接下这个说法。「这一件还不能答应。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出你没有回答先前的疑问。「这一件还不能答应。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__要求先说清这与之前条件的差别。「范围先说清，再决定怎样做。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__明确提出异议。「交给我的事会处理。有问题，我会告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这一件还不能答应。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「可以接着说。我在听。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「范围先说清，再决定怎样做。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「交给我的事会处理。有问题，我会告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「交给我的事会处理。有问题，我会告诉你。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「交给我的事会处理。有问题，我会告诉你。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「交给我的事会处理。有问题，我会告诉你。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「交给我的事会处理。有问题，我会告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「这一件还不能答应。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「可以接着说。我在听。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「范围先说清，再决定怎样做。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「交给我的事会处理。有问题，我会告诉你。」"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 4
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「你亲自来问，倒还算有点诚意。先说来意吧。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「你亲自来问，倒还算有点诚意。先说来意吧。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「你亲自来问，倒还算有点诚意。先说来意吧。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你走到近前，__NPC_NAME__先把手边的事停下。「答应做的事，我不会失信。你也别拿含糊的安排来敷衍。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看见你走来。「别急着以为我会答应。你的话还没说出道理。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认出了你的脚步。「继续说吧。这回我会听完。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__放下手边的事。「能商量的就说清。想靠一句命令带过去，可不行。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__转向你。「答应做的事，我不会失信。你也别拿含糊的安排来敷衍。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「别急着以为我会答应。你的话还没说出道理。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「继续说吧。这回我会听完。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「能商量的就说清。想靠一句命令带过去，可不行。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天遇到的问题，也提出自己的办法。「答应做的事，我不会失信。你也别拿含糊的安排来敷衍。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听过解释，再把自己的疑问说了一点。「继续说吧。这回我会听完。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把刚才留着没说的理由补上。「继续说吧。这回我会听完。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意继续核对具体做法。「能商量的就说清。想靠一句命令带过去，可不行。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认真回应你的意见，没有因此收起自己的判断。「答应做的事，我不会失信。你也别拿含糊的安排来敷衍。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__没有接下这个说法。「别急着以为我会答应。你的话还没说出道理。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出你没有回答先前的疑问。「别急着以为我会答应。你的话还没说出道理。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__要求先说清这与之前条件的差别。「能商量的就说清。想靠一句命令带过去，可不行。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__明确提出异议。「答应做的事，我不会失信。你也别拿含糊的安排来敷衍。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「别急着以为我会答应。你的话还没说出道理。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「继续说吧。这回我会听完。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「能商量的就说清。想靠一句命令带过去，可不行。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「答应做的事，我不会失信。你也别拿含糊的安排来敷衍。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「答应做的事，我不会失信。你也别拿含糊的安排来敷衍。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「答应做的事，我不会失信。你也别拿含糊的安排来敷衍。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「答应做的事，我不会失信。你也别拿含糊的安排来敷衍。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「答应做的事，我不会失信。你也别拿含糊的安排来敷衍。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「别急着以为我会答应。你的话还没说出道理。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「继续说吧。这回我会听完。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「能商量的就说清。想靠一句命令带过去，可不行。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「答应做的事，我不会失信。你也别拿含糊的安排来敷衍。」"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 5
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「你想谈什么？能说的，我会直接告诉你。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「你想谈什么？能说的，我会直接告诉你。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「你想谈什么？能说的，我会直接告诉你。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你走到近前，__NPC_NAME__先把手边的事停下。「我会按说好的去做。想法不一样，也会直接告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看见你走来。「不答应就是不答应，我不想装作没听见。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认出了你的脚步。「你肯说明白，我也不绕着说。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__放下手边的事。「这一点可以。其他的，咱们再谈清楚。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__转向你。「我会按说好的去做。想法不一样，也会直接告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「不答应就是不答应，我不想装作没听见。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「你肯说明白，我也不绕着说。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「这一点可以。其他的，咱们再谈清楚。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天遇到的问题，也提出自己的办法。「我会按说好的去做。想法不一样，也会直接告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听过解释，再把自己的疑问说了一点。「你肯说明白，我也不绕着说。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把刚才留着没说的理由补上。「你肯说明白，我也不绕着说。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意继续核对具体做法。「这一点可以。其他的，咱们再谈清楚。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认真回应你的意见，没有因此收起自己的判断。「我会按说好的去做。想法不一样，也会直接告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__没有接下这个说法。「不答应就是不答应，我不想装作没听见。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出你没有回答先前的疑问。「不答应就是不答应，我不想装作没听见。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__要求先说清这与之前条件的差别。「这一点可以。其他的，咱们再谈清楚。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__明确提出异议。「我会按说好的去做。想法不一样，也会直接告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「不答应就是不答应，我不想装作没听见。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「你肯说明白，我也不绕着说。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这一点可以。其他的，咱们再谈清楚。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会按说好的去做。想法不一样，也会直接告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会按说好的去做。想法不一样，也会直接告诉你。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会按说好的去做。想法不一样，也会直接告诉你。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会按说好的去做。想法不一样，也会直接告诉你。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「我会按说好的去做。想法不一样，也会直接告诉你。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「不答应就是不答应，我不想装作没听见。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「你肯说明白，我也不绕着说。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「这一点可以。其他的，咱们再谈清楚。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「我会按说好的去做。想法不一样，也会直接告诉你。」"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+CASE 6
+	SELECTCASE DL_KIND
+	CASE 0
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「总算肯听我本人说说了？先别急着替我下结论呀。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「总算肯听我本人说说了？先别急着替我下结论呀。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__打量来人，先开口问道：「总算肯听我本人说说了？先别急着替我下结论呀。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你走到近前，__NPC_NAME__先把手边的事停下。「既然接下了，我自然会做出个样子。你也得跟上呀。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 1
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看见你走来。「想几句话就让我服气？你得先拿点道理出来。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认出了你的脚步。「这一点算你讲明白了。接着呢？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__放下手边的事。「好，办法可以商量。我也有自己的主意。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__转向你。「既然接下了，我自然会做出个样子。你也得跟上呀。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 2
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「想几句话就让我服气？你得先拿点道理出来。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「这一点算你讲明白了。接着呢？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「好，办法可以商量。我也有自己的主意。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起今天遇到的问题，也提出自己的办法。「既然接下了，我自然会做出个样子。你也得跟上呀。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 3
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听过解释，再把自己的疑问说了一点。「这一点算你讲明白了。接着呢？」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__把刚才留着没说的理由补上。「这一点算你讲明白了。接着呢？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意继续核对具体做法。「好，办法可以商量。我也有自己的主意。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__认真回应你的意见，没有因此收起自己的判断。「既然接下了，我自然会做出个样子。你也得跟上呀。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 4
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__看着你，没有接着往下说。这个回答还没有打消原来的疑虑。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__听完这句回应，仍把没有得到回答的问题留了下来。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__记下你的说法，对其中含糊的部分却没有点头。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__说起还没处理完的细节，等着与你另找时间说清。"
+			ENDSELECT
+		ENDSELECT
+	CASE 5
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__没有接下这个说法。「想几句话就让我服气？你得先拿点道理出来。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__指出你没有回答先前的疑问。「想几句话就让我服气？你得先拿点道理出来。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__要求先说清这与之前条件的差别。「好，办法可以商量。我也有自己的主意。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__明确提出异议。「既然接下了，我自然会做出个样子。你也得跟上呀。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 6
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "你"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "魔王大人"
+			ENDSELECT
+		ENDSELECT
+	CASE 7
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「想几句话就让我服气？你得先拿点道理出来。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「这一点算你讲明白了。接着呢？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「好，办法可以商量。我也有自己的主意。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然接下了，我自然会做出个样子。你也得跟上呀。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 8
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__逐项核对送来的基础生活和书写用品，确认与清单相符。这件具体的约定已经兑现。"
+			ENDSELECT
+		ENDSELECT
+	CASE 9
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然接下了，我自然会做出个样子。你也得跟上呀。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然接下了，我自然会做出个样子。你也得跟上呀。」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然接下了，我自然会做出个样子。你也得跟上呀。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "「既然接下了，我自然会做出个样子。你也得跟上呀。」"
+			ENDSELECT
+		ENDSELECT
+	CASE 10
+		SELECTCASE DL_PHASE
+		CASE 0
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__只谈眼前能确认的小事，对过去的经历仍有保留。「想几句话就让我服气？你得先拿点道理出来。」"
+			ENDSELECT
+		CASE 1
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__接着上次未谈完的小事说了几句。「这一点算你讲明白了。接着呢？」"
+			ENDSELECT
+		CASE 2
+			SELECTCASE DL_VARIANT % 1
+			CASE 0
+				RETURNF "__NPC_NAME__愿意交换一个具体的看法。「好，办法可以商量。我也有自己的主意。」"
+			ENDSELECT
+		CASE 3
+			SELECTCASE DL_VARIANT % 2
+			CASE 0
+				RETURNF "「既然接下了，我自然会做出个样子。你也得跟上呀。」"
+			CASE 1
+				RETURNF "__NPC_NAME__只谈已经说定的事务，尚有疑虑的部分仍要求与你另行说明。"
+			ENDSELECT
+		ENDSELECT
+	ENDSELECT
+ENDSELECT
+RETURNF "………"

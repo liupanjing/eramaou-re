@@ -1,0 +1,303 @@
+﻿; 只在隔离的原Emuera测试副本中加载。所有旧成人事件只验证拒绝分支。
+@IP_RUN
+#DIM DYNAMIC IP_UID
+#DIM DYNAMIC IP_OTHER_UID
+#DIM DYNAMIC IP_I
+#DIM DYNAMIC IP_AGE
+#DIM DYNAMIC IP_STATE
+#DIMS DYNAMIC IP_BEFORE
+CALL IP_RESET
+CALL CT_ASSERT(CASTLE_ROLE(0) == CR_MASTER && CASTLE_ROLE(1) == CR_CAPTIVE && CASTLE_ROLE(2) == CR_FOLLOWER && CASTLE_ROLE(3) == CR_FAMILY && CASTLE_ROLE(4) == CR_HOSTILE, "canonical identity distinguishes master captive follower family enemy")
+CALL CT_ASSERT(CASTLE_ROLE(-1) == 0 && CASTLE_ROLE(CHARANUM) == 0, "invalid identities are rejected without indexing characters")
+CALL CT_ASSERT(CASTLE_KIN_KIND(3, MASTER) == 5 && CASTLE_KIN_KIND(-1, MASTER) == 0, "trusted kin lookup identifies the parent and rejects invalid indices")
+CFLAG:1:6 = 0
+CFLAG:2:6 = 0
+CALL R_SET(MASTER, 1, 8)
+CALL CT_ASSERT(CASTLE_HAS_FAMILY(1) == 0 && CASTLE_ROLE(1) == CR_CAPTIVE, "ambiguous uninitialized legacy relation cannot create a permanent family identity")
+CALL IP_RESET
+CFLAG:1:0 = 2
+TALENT:1:85 = 1
+CALL CT_ASSERT(CASTLE_ACCESS_REASON(1, CA_DEPLOY) != 0, "old assistant and love flags cannot turn a captive into a deployable follower")
+CFLAG:2:0 = 0
+TALENT:2:85 = 0
+TALENT:2:76 = 0
+CALL CT_ASSERT(CASTLE_INTERCEPT_REASON(2) == 0, "confirmed dialogue follower can serve without old adult-training qualification flags")
+CALL CT_ASSERT(CASTLE_ACCESS_REASON(3, CA_DEPLOY) != 0 && CASTLE_ACCESS_REASON(3, CA_DISPOSE) != 0, "child remains excluded from deployment and disposal despite old settings")
+CASTLE_STATE:2 = CL_FAMILY
+CALL CT_ASSERT(CASTLE_ACCESS_REASON(3, CA_SUPPORT) == 0 && IS_ABLE_TO_CLOTH(3), "family care and ordinary clothing remain available locally")
+CALL CT_ASSERT(CASTLE_PROTECTED_REASON(3) != 0 && CHECK_ABLE_TO_MARRIAGE(3) == 1 && IS_TRAINABLE(3) != 0, "family care does not open adult interaction or marriage")
+IP_BEFORE '= IP_SNAPSHOT(3)
+CT_QUEUE = 1
+CT_POS = 0
+CT_SIZE = 1
+CALL CHARA_INFO_RECOVER_HP(3)
+CALL CT_ASSERT(IP_BEFORE == IP_SNAPSHOT(3), "cancelled local child care preserves resources")
+CASTLE_STATE:2 = CL_THRONE
+IP_BEFORE '= IP_SNAPSHOT(3)
+CALL CHARA_INFO_RECOVER_HP(3)
+CALL CHARA_INFO_UP_LEVEL(3)
+CALL CT_ASSERT(IP_BEFORE == IP_SNAPSHOT(3), "direct remote care cannot bypass the local service check")
+; Same identity throughout work, nursery and an absence; no forced new allegiance.
+CASTLE_PERSON:2:CP_HOME = CL_CHAMBER
+CASTLE_PERSON:2:CP_WORK = CL_BARRACKS
+TIME = 0
+CALL CT_ASSERT(CASTLE_WHERE(2) == CL_BARRACKS, "morning duty uses workplace")
+TIME = 1
+CALL CT_ASSERT(CASTLE_WHERE(2) == CL_CHAMBER, "afternoon duty uses residence")
+CFLAG:2:1 = 10
+CALL CT_ASSERT(CASTLE_ROLE(2) == CR_FOLLOWER && CASTLE_WHERE(2) == CL_FAMILY, "nursery is an activity and does not change follower identity")
+CFLAG:2:1 = 9
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_ROLE(2) == CR_FOLLOWER && CASTLE_WHERE(2) == 0 && CASTLE_PERSON:2:CP_ORIGIN == 3, "captured or absent follower retains allegiance but is unavailable")
+CFLAG:2:1 = 0
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_PERSON:2:CP_HOME == CL_CHAMBER && CASTLE_PERSON:2:CP_WORK == CL_BARRACKS, "returning follower resumes saved residence and job")
+CFLAG:4:1 = 0
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_ROLE(4) == CR_CAPTIVE && CASTLE_WHERE(4) == CL_DUNGEON && CASTLE_PERSON:4:CP_ORIGIN == 0, "captured enemy enters dungeon without free recruitment")
+; Late family markers win immediately, before a menu refresh.
+CASTLE_PERSON:1:CP_HOME = CL_CHAMBER
+CASTLE_PERSON:1:CP_WORK = CL_WORKSHOP
+EX_TALENT:1:2 = 1
+CALL CT_ASSERT(CASTLE_ROLE(1) == CR_FAMILY && IS_TRAINABLE(1) != 0, "late descendant marker blocks stale direct training selection")
+CFLAG:1:1 = 8
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_PERSON:1:CP_ROLE == CR_FAMILY && CASTLE_PERSON:1:CP_HOME == CL_FAMILY && CFLAG:1:1 == 0, "legacy restrained family member is released into family housing")
+CALL IP_RESET
+CALL FAMILY_SETBOTH(1, 0, 2)
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_ROLE(1) == CR_FAMILY && CASTLE_PERSON:1:CP_HOME == CL_FAMILY, "siblings and other close relatives use the family identity too")
+; Restore an invalid old deployment without clearing unrelated party or marriage data.
+CALL IP_RESET
+CFLAG:1:1 = 3
+CFLAG:1:531 = 2
+CFLAG:2:533 = 1
+CFLAG:2:601 = 901
+CFLAG:3:1 = 12
+CFLAG:3:534 = 1
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CFLAG:1:1 == 0 && CFLAG:3:1 == 0 && CFLAG:3:534 == 0, "legacy captive and child deployments are cancelled")
+CALL CT_ASSERT(CFLAG:2:533 == 0 && CFLAG:2:601 == 901, "task cancellation detaches only relevant party links and preserves personal relationships")
+; Exercise real old military input: reject a forged captive number, then accept a follower.
+CALL IP_RESET
+CT_QUEUE = 1, 999
+CT_POS = 0
+CT_SIZE = 2
+IP_BEFORE '= IP_SNAPSHOT(1)
+CALL INTERCEPT
+CALL CT_ASSERT(CFLAG:1:1 == 0 && MONEY == 10000 && CT_POS == 2, "old interception rejects captive input and cancellation costs nothing")
+CT_QUEUE = 2, 998
+CT_POS = 0
+CT_SIZE = 2
+CALL INTERCEPT
+CALL CT_ASSERT(CFLAG:2:1 == 3 && CASTLE_ROLE(2) == CR_FOLLOWER && MONEY == 10000, "old interception executes a real follower order without sexual qualification or hidden hire fee")
+CFLAG:2:9 = 10
+CFLAG:MASTER:9 = 20
+BASE:MASTER:1 = 1000
+MAXBASE:MASTER:1 = 1000
+CT_QUEUE = 1
+CT_POS = 0
+CT_SIZE = 1
+IP_BEFORE '= IP_SNAPSHOT(2)
+CALL CHARA_INFO_CALLBACK(2)
+CALL CT_ASSERT(IP_BEFORE == IP_SNAPSHOT(2), "cancelled actual recall preserves task and energy")
+CT_QUEUE = 0
+CT_POS = 0
+CALL CHARA_INFO_CALLBACK(2)
+CALL CT_ASSERT(CFLAG:2:1 == 0 && CASTLE_ROLE(2) == CR_FOLLOWER && CASTLE_PERSON:2:CP_ORIGIN == 3, "successful actual recall restores availability without changing allegiance")
+; Single and batch menus must reject typed hidden identities, not just hide them.
+CALL IP_RESET
+CT_QUEUE = 3, 100
+CT_POS = 0
+CT_SIZE = 2
+CALL EXECUTION
+CALL CT_ASSERT(CHARANUM == 5 && CFLAG:3:1 == 0 && CASTLE_ROLE(3) == CR_FAMILY && CT_POS == 2, "old single disposal rejects a hidden family index")
+CT_QUEUE = 121, 3, 2, 4, 5, 100, 100
+CT_POS = 0
+CT_SIZE = 7
+CALL EXECUTION
+CALL CT_ASSERT(CHARANUM == 5 && CASTLE_ROLE(2) == CR_FOLLOWER && CASTLE_ROLE(3) == CR_FAMILY && CT_POS == 7 && MONEY == 10000, "batch selection rejects family follower hostile and out-of-bounds indices without state changes")
+; The release API does not double as a free teleport from any old status.
+CALL IP_RESET
+FOR IP_STATE, 0, 13
+	CFLAG:1:1 = IP_STATE
+	IP_BEFORE '= IP_SNAPSHOT(1)
+	CALL CASTLE_RELEASE_LEGACY(1)
+	CALL CT_ASSERT(RESULT == 0 && IP_BEFORE == IP_SNAPSHOT(1), "release outside dungeon cannot rewrite any old status")
+NEXT
+CFLAG:1:1 = 8
+CASTLE_STATE:2 = CL_DUNGEON
+CALL CASTLE_RELEASE_LEGACY(1)
+CALL CT_ASSERT(RESULT == 1 && CFLAG:1:1 == 0 && CASTLE_ROLE(1) == CR_CAPTIVE, "dungeon release changes activity while retaining captive identity")
+; Denial is shared by real old event entry points, including direct calls.
+CALL IP_RESET
+FOR IP_AGE, 0, 3
+	IF IP_AGE == 0
+		CFLAG:3:451 = 8
+	ELSEIF IP_AGE == 1
+		CFLAG:3:451 = 25
+	ELSE
+		CFLAG:3:451 = 0
+	ENDIF
+	TARGET = 3
+	A = 3
+	CFLAG:3:666 = 1
+	IP_BEFORE '= IP_SNAPSHOT(3)
+	CALL FORMAT_AUTOTRAIN
+	CALL BEFORE_AUTOTRAIN
+	CALL AFTER_AUTOTRAIN
+	CALL SOURCE_CHECK_AUTO
+	CALL COM0_AUTO
+	CALL COM3_AUTO
+	CALL COM13_AUTO
+	CALL COM50_AUTO
+	CALL COM63_AUTO
+	CALL PILLORY
+	CALL GOHOUBI
+	CALL OSIOKI
+	CALL SABBATH
+	CALL NTR_VIDEO
+	CALL EVENT_VIDEO_DAY
+	CALL BENKI, 3
+	CALL NAEDOKO, 3
+	CALL MARRIAGE_DAY, 3
+	CALL MARRIAGE(3)
+	CALL TEMPTATION(3)
+	CALL LOVE_GAS_TRAP
+	CALL SYOKUSYU_FLOOR_TRAP
+	CALL LOVE_BATH_TRAP
+	CALL SELF_SAIMIN_TRAP
+	CALL IMITATER_TRAP
+	CALL SUCCUBUS_TRAP
+	CALL SLIME_ROOM_TRAP
+	CALL A_WORM_TRAP
+	CALL LOVE_BUG_TRAP
+	CALL DARK_JUEL_TRAP
+	CALL HUANJING_DOWN_TRAP
+	CALL CHECK_SELLASSIABLE
+	CALL SALE_CHARA
+	CALL CT_ASSERT(IP_BEFORE == IP_SNAPSHOT(3), "young adult and unknown-age family members are untouched by direct legacy adult events and disposal")
+	; The old mini execution acts on TARGET, never an unrelated global A.
+	A = 1
+	IP_BEFORE '= IP_SNAPSHOT(3)
+	CALL EXECUTION_MINI
+	CALL CT_ASSERT(IP_BEFORE == IP_SNAPSHOT(3), "automatic mini execution checks its actual target rather than stale A")
+NEXT
+; A room event cannot summon a distant person based solely on legacy status 0.
+CALL IP_RESET
+CASTLE_STATE:2 = CL_CHAMBER
+CASTLE_PERSON:2:CP_HOME = CL_QUARTERS
+CALL CT_ASSERT(CASTLE_AUTO_REASON(2) != 0, "remote follower is excluded from chamber auto events")
+CASTLE_PERSON:2:CP_HOME = CL_CHAMBER
+CALL CT_ASSERT(CASTLE_AUTO_REASON(2) == 0, "adult non-kin resident is present for existing chamber auto events")
+CFLAG:2:1 = 3
+CALL CT_ASSERT(CASTLE_AUTO_REASON(2) != 0, "deployed resident cannot participate remotely")
+; Round trip the actual legacy departure string and restore both identity and memory.
+CALL IP_RESET
+CASTLE_PERSON:2:CP_HOME = CL_QUARTERS
+CASTLE_PERSON:2:CP_WORK = CL_WORKSHOP
+DIALOGUE_PERSON:2:DP_CHAPTER = 2
+DIALOGUE_PERSON:2:DP_TRUST = 50
+DIALOGUE_PERSON:2:DP_AGREE = 50
+DIALOGUE_PERSON:2:DP_PROMISE = 1
+DIALOGUE_SEEN:2:4 = 3
+DIALOGUE_CHOICES:2:8 = 2
+EX_TALENT:2:101 = 1
+CFLAG:2:9 = 1
+IP_UID = CASTLE_PERSON:2:CP_UID
+FLAG:1 = 3
+FLAG:2 = 2
+STR:90 = 0_
+CALL EVENT_CHARA_LEAVE(90, 2)
+CALL CT_ASSERT(CHARANUM == 4 && FLAG:1 == 2 && FLAG:2 == -1, "real departure removes one actor and remaps prior target and assistant")
+CALL EVENT_CHARA_RETURN(90)
+CALL CT_ASSERT(CHARANUM == 5 && CASTLE_PERSON:4:CP_UID == IP_UID && CASTLE_ROLE(4) == CR_FOLLOWER, "real return restores permanent identity and confirmed allegiance")
+CALL CT_ASSERT(CASTLE_PERSON:4:CP_HOME == CL_QUARTERS && CASTLE_PERSON:4:CP_WORK == CL_WORKSHOP && CASTLE_PERSON:4:CP_ORIGIN == 3, "real return preserves housing appointment and recruitment source")
+CALL CT_ASSERT(DIALOGUE_PERSON:4:DP_CHAPTER == 2 && DIALOGUE_PERSON:4:DP_PROMISE == 1 && DIALOGUE_SEEN:4:4 == 3 && DIALOGUE_CHOICES:4:8 == 2, "real return preserves dialogue chapter promise seen and choices")
+CALL CT_ASSERT(EX_TALENT:4:101 == 1 && CFLAG:4:9 == 1, "real return preserves special identity without granting spurious levels")
+; Departure and reappearance of a child must preserve the actual parent link too.
+CALL IP_RESET
+IP_UID = CASTLE_PERSON:3:CP_UID
+IP_OTHER_UID = CASTLE_PERSON:4:CP_UID
+STR:90 = 0_
+CALL EVENT_CHARA_LEAVE(90, 3)
+CALL EVENT_CHARA_RETURN(90)
+CALL CT_ASSERT(CASTLE_PERSON:4:CP_UID == IP_UID && EX_TALENT:4:2 && CASTLE_ROLE(4) == CR_FAMILY && RF_GET(4, MASTER) == 5, "returning child retains UID descendant mark and parent relation")
+CALL CT_ASSERT(CASTLE_PERSON:3:CP_UID == IP_OTHER_UID && CASTLE_ROLE(3) == CR_HOSTILE, "returning child cannot overwrite the intervening enemy identity")
+; Compatibility with old departure strings that have no appended module fields.
+CALL IP_RESET
+STR:90 = 0_
+CALL EVENT_CHARA_LEAVE(90, 2)
+IP_I = STRFIND(STR:90, "_CP1_")
+STR:90 '= SUBSTRING(STR:90, 0, IP_I)
+CALL EVENT_CHARA_RETURN(90)
+CALL CT_ASSERT(CHARANUM == 5 && CASTLE_ROLE(4) == CR_CAPTIVE && CASTLE_PERSON:4:CP_UID > 0, "old departure strings still load without inventing allegiance history")
+; Leave a known modern save for a separate native reload.
+CALL IP_RESET
+CASTLE_PERSON:2:CP_HOME = CL_CHAMBER
+CASTLE_PERSON:2:CP_WORK = CL_BARRACKS
+CASTLE_PERSON:2:CP_ORIGIN = 2
+CASTLE_LEVEL:CL_BARRACKS = 3
+ITEM:170 = 2
+CASTLE_GUARD:170 = 2
+CASTLE_STATE:2 = CL_BARRACKS
+PRINTL IDENTITY ENGINE ASSERTIONS PASSED
+RETURN
+
+@IP_RESET
+#DIM DYNAMIC IP_P
+RESETDATA
+CALL CHARA_NAME_INIT
+ADDCHARA 0
+ADDCHARA 1
+ADDCHARA 2
+ADDCHARA 3
+ADDCHARA 4
+MASTER = 0
+PLAYER = 0
+TARGET = -1
+ASSI = -1
+FLAG:1 = -1
+FLAG:2 = -1
+FLAG:7 = 0
+MONEY = 10000
+DAY = 1
+TIME = 0
+FOR IP_P, 0, CHARANUM
+	CFLAG:IP_P:6 = 21000 + IP_P
+	CFLAG:IP_P:451 = 25
+	CFLAG:IP_P:1 = 0
+	CFLAG:IP_P:9 = 1
+	MAXBASE:IP_P:0 = 2000
+	MAXBASE:IP_P:1 = 1000
+	BASE:IP_P:0 = 1000
+	BASE:IP_P:1 = 500
+	CALLNAME:IP_P = person{IP_P}
+	SAVESTR:IP_P = person{IP_P}
+NEXT
+CFLAG:3:451 = 8
+EX_TALENT:3:2 = 1
+CALL FAMILY_SETBOTH(3, 0, 5)
+CFLAG:4:1 = 2
+CALL CASTLE_SYNC
+CASTLE_PERSON:2:CP_ROLE = CR_FOLLOWER
+CASTLE_PERSON:2:CP_HOME = CL_QUARTERS
+CASTLE_PERSON:2:CP_ORIGIN = 3
+CASTLE_STATE:2 = CL_THRONE
+RETURN
+
+@IP_SNAPSHOT(IP_P)
+#FUNCTIONS
+#DIM DYNAMIC IP_P
+RETURNF @"{CHARANUM}/{MONEY}/{DAY}/{TIME}/{TARGET}/{ASSI}/{A}/{PLAYER}/{BASE:MASTER:1}/{CASTLE_STATE:5}/{CASTLE_PERSON:IP_P:CP_ROLE}/{CASTLE_PERSON:IP_P:CP_HOME}/{CASTLE_PERSON:IP_P:CP_WORK}/{CASTLE_PERSON:IP_P:CP_ORIGIN}/{CFLAG:IP_P:0}/{CFLAG:IP_P:1}/{CFLAG:IP_P:9}/{CFLAG:IP_P:666}/{BASE:IP_P:0}/{BASE:IP_P:1}/{JUEL:IP_P:0}/{JUEL:IP_P:5}/{JUEL:IP_P:8}/{EXP:IP_P:20}/{PALAM:IP_P:0}/{PALAM:IP_P:5}/{SOURCE:IP_P:0}/{UP:0}/{DOWN:0}/{MARK:IP_P:3}/{TFLAG:16}"
+
+@CT_INPUT
+#DIM DYNAMIC IP_VALUE
+IF CT_POS >= CT_SIZE
+	PRINTL IDENTITY TEST FAIL: scripted input exhausted
+	OUTPUTLOG
+	QUIT
+ENDIF
+IP_VALUE = CT_QUEUE:CT_POS
+CT_POS += 1
+RETURN IP_VALUE

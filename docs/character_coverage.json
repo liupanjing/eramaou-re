@@ -1,0 +1,5474 @@
+{
+  "schema_version": 1,
+  "scope": "新增非露骨城内、战斗与结局反应；不宣称全部成人口上已补齐。",
+  "profiles": [
+    {
+      "id": 170,
+      "name": "白梅花",
+      "kind": "unique"
+    },
+    {
+      "id": 167,
+      "name": "金红桃",
+      "kind": "unique"
+    },
+    {
+      "id": 168,
+      "name": "银黑桃",
+      "kind": "unique"
+    },
+    {
+      "id": 169,
+      "name": "黑方片",
+      "kind": "unique"
+    },
+    {
+      "id": 165,
+      "name": "玛奥",
+      "kind": "unique"
+    },
+    {
+      "id": 171,
+      "name": "莉莉",
+      "kind": "unique"
+    },
+    {
+      "id": 101,
+      "name": "琼",
+      "kind": "unique"
+    },
+    {
+      "id": 102,
+      "name": "普林希斯",
+      "kind": "unique"
+    },
+    {
+      "id": 103,
+      "name": "嘉德",
+      "kind": "unique"
+    },
+    {
+      "id": 134,
+      "name": "葵希罗",
+      "kind": "unique"
+    },
+    {
+      "id": 104,
+      "name": "菲娅",
+      "kind": "unique"
+    },
+    {
+      "id": 150,
+      "name": "柯迪莉亚",
+      "kind": "unique"
+    },
+    {
+      "id": 160,
+      "name": "慈爱",
+      "kind": "personality"
+    },
+    {
+      "id": 161,
+      "name": "自信家",
+      "kind": "personality"
+    },
+    {
+      "id": 162,
+      "name": "懦弱",
+      "kind": "personality"
+    },
+    {
+      "id": 163,
+      "name": "高贵",
+      "kind": "personality"
+    },
+    {
+      "id": 164,
+      "name": "冷静",
+      "kind": "personality"
+    },
+    {
+      "id": 166,
+      "name": "恶女",
+      "kind": "personality"
+    },
+    {
+      "id": 172,
+      "name": "智慧",
+      "kind": "personality"
+    },
+    {
+      "id": 173,
+      "name": "庇护者",
+      "kind": "personality"
+    },
+    {
+      "id": 174,
+      "name": "贵公子",
+      "kind": "personality"
+    },
+    {
+      "id": 175,
+      "name": "伶俐",
+      "kind": "personality"
+    },
+    {
+      "id": 0,
+      "name": "平和",
+      "kind": "personality"
+    },
+    {
+      "id": 1,
+      "name": "刚强",
+      "kind": "personality"
+    },
+    {
+      "id": 2,
+      "name": "胆怯",
+      "kind": "personality"
+    },
+    {
+      "id": 3,
+      "name": "寡言",
+      "kind": "personality"
+    },
+    {
+      "id": 4,
+      "name": "高傲",
+      "kind": "personality"
+    },
+    {
+      "id": 5,
+      "name": "坦率",
+      "kind": "personality"
+    },
+    {
+      "id": 6,
+      "name": "自负",
+      "kind": "personality"
+    }
+  ],
+  "new_coverage": {
+    "voice_profiles": 29,
+    "first_encounter_profiles": 29,
+    "story_packs": 14,
+    "story_scenes": 56,
+    "event_hooks": [
+      {
+        "id": 1,
+        "name": "攻击",
+        "key": "attack",
+        "hook": "EVENT_K.ERB:ATTACK_KOUJO/ATTACK_KOUJO_B",
+        "authored_profiles": 29,
+        "defined_attitudes": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "checked_functions": [
+          "ERB/EVENT_K.ERB:ATTACK_KOUJO",
+          "ERB/EVENT_K.ERB:ATTACK_KOUJO_B"
+        ],
+        "status": "native_hook_connected"
+      },
+      {
+        "id": 2,
+        "name": "战斗胜利",
+        "key": "victory",
+        "hook": "EVENT_K.ERB:VICTORY_KOUJO",
+        "authored_profiles": 29,
+        "defined_attitudes": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "checked_functions": [
+          "ERB/EVENT_K.ERB:VICTORY_KOUJO"
+        ],
+        "status": "native_hook_connected"
+      },
+      {
+        "id": 3,
+        "name": "进入地下城",
+        "key": "arrival",
+        "hook": "EVENT_K.ERB:ENTERENEMY_KOUJO",
+        "authored_profiles": 29,
+        "defined_attitudes": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "checked_functions": [
+          "ERB/EVENT_K.ERB:ENTERENEMY_KOUJO"
+        ],
+        "status": "native_hook_connected"
+      },
+      {
+        "id": 4,
+        "name": "正式加入",
+        "key": "join",
+        "hook": "CASTLE.ERB:CASTLE_PERSON_MENU/CASTLE_COMMAND",
+        "authored_profiles": 29,
+        "defined_attitudes": [
+          3
+        ],
+        "checked_functions": [
+          "ERB/CASTLE.ERB:CASTLE_PERSON_MENU",
+          "ERB/CASTLE.ERB:CASTLE_COMMAND"
+        ],
+        "status": "native_hook_connected"
+      },
+      {
+        "id": 5,
+        "name": "迁居",
+        "key": "home",
+        "hook": "CASTLE.ERB:CASTLE_ASSIGN",
+        "authored_profiles": 29,
+        "defined_attitudes": [
+          3
+        ],
+        "checked_functions": [
+          "ERB/CASTLE.ERB:CASTLE_ASSIGN"
+        ],
+        "status": "native_hook_connected"
+      },
+      {
+        "id": 6,
+        "name": "任职",
+        "key": "job",
+        "hook": "CASTLE.ERB:CASTLE_ASSIGN",
+        "authored_profiles": 29,
+        "defined_attitudes": [
+          3
+        ],
+        "checked_functions": [
+          "ERB/CASTLE.ERB:CASTLE_ASSIGN"
+        ],
+        "status": "native_hook_connected"
+      },
+      {
+        "id": 7,
+        "name": "解除职责",
+        "key": "job_clear",
+        "hook": "CASTLE.ERB:CASTLE_ASSIGN",
+        "authored_profiles": 29,
+        "defined_attitudes": [
+          3
+        ],
+        "checked_functions": [
+          "ERB/CASTLE.ERB:CASTLE_ASSIGN"
+        ],
+        "status": "native_hook_connected"
+      },
+      {
+        "id": 8,
+        "name": "当前设施休息",
+        "key": "rest",
+        "hook": "CASTLE.ERB:CASTLE_COMMAND(21190)",
+        "authored_profiles": 29,
+        "defined_attitudes": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "checked_functions": [
+          "ERB/CASTLE.ERB:CASTLE_COMMAND"
+        ],
+        "status": "native_hook_connected"
+      },
+      {
+        "id": 9,
+        "name": "征服人间后的反应",
+        "key": "world_end",
+        "hook": "ENDING.ERB:ENDING_1",
+        "authored_profiles": 29,
+        "defined_attitudes": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "checked_functions": [
+          "ERB/ENDING.ERB:ENDING_1"
+        ],
+        "status": "native_hook_connected"
+      },
+      {
+        "id": 10,
+        "name": "其他领域结局反应",
+        "key": "realm_end",
+        "hook": "ENDING.ERB:ENDING_3/4/5",
+        "authored_profiles": 29,
+        "defined_attitudes": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "checked_functions": [
+          "ERB/ENDING.ERB:ENDING_3",
+          "ERB/ENDING.ERB:ENDING_4",
+          "ERB/ENDING.ERB:ENDING_5"
+        ],
+        "status": "native_hook_connected"
+      },
+      {
+        "id": 11,
+        "name": "魔王城陷落后的反应",
+        "key": "castle_fall",
+        "hook": "ENDING.ERB:ENDING_2",
+        "authored_profiles": 29,
+        "defined_attitudes": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "checked_functions": [
+          "ERB/ENDING.ERB:ENDING_2"
+        ],
+        "status": "native_hook_connected"
+      },
+      {
+        "id": 12,
+        "name": "长期结局反应",
+        "key": "normal_end",
+        "hook": "ENDING.ERB:ENDING_N",
+        "authored_profiles": 29,
+        "defined_attitudes": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "checked_functions": [
+          "ERB/ENDING.ERB:ENDING_N"
+        ],
+        "status": "native_hook_connected"
+      }
+    ],
+    "event_branch_slots": 1044,
+    "note": "分支槽数包含有意复用的台词，不是互不重复的新增台词数量；实际触发仍受身份、年龄、在场及口上开关限制。"
+  },
+  "retained_legacy": [
+    {
+      "file": "ERB/EVENT_K0_慈愛.ERB",
+      "sections": [
+        {
+          "function": "EVENTTRAIN",
+          "line": 73,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 79,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTTRAIN",
+          "line": 87,
+          "static_prints": 132,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K0_KOJO2",
+          "line": 489,
+          "static_prints": 33,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 601,
+          "static_prints": 12,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "KOJO_MESSAGE_COM_0",
+          "line": 674,
+          "static_prints": 1526,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            19,
+            20,
+            21,
+            22,
+            23,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            55,
+            56,
+            69,
+            80,
+            87,
+            123,
+            124,
+            125,
+            126,
+            127
+          ]
+        },
+        {
+          "function": "DOG_KOJO_0",
+          "line": 5481,
+          "static_prints": 364,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            5,
+            6,
+            9,
+            21,
+            27,
+            30,
+            31,
+            34,
+            37,
+            43,
+            56
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_PALAMCNG_0",
+          "line": 6507,
+          "static_prints": 64,
+          "status": "has_text",
+          "command_conditions": [
+            50,
+            51
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_MARKCNG_0",
+          "line": 6756,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "SELF_KOJO_K0",
+          "line": 6832,
+          "static_prints": 105,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_K0",
+          "line": 7236,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_AFTER_K0",
+          "line": 7302,
+          "static_prints": 14,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_VICTORY_K0",
+          "line": 7361,
+          "static_prints": 11,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BENKI_KOUJO_K0",
+          "line": 7415,
+          "static_prints": 64,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_ATTACK_K0",
+          "line": 7637,
+          "static_prints": 19,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "COLOSSEUM_KOJO_0",
+          "line": 7735,
+          "static_prints": 40,
+          "status": "has_text",
+          "command_conditions": [
+            5,
+            21,
+            27,
+            31,
+            51,
+            55,
+            56
+          ]
+        },
+        {
+          "function": "NTR_KOUJO_K0",
+          "line": 7866,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EXUCUTION_KOUJO_K0",
+          "line": 7946,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "MUSEUM_KOUJO_K0",
+          "line": 7963,
+          "static_prints": 10,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BANISHMENT_KOUJO_K0",
+          "line": 7998,
+          "static_prints": 5,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "PUBLIC_EXUCUTION_KOUJO_K0",
+          "line": 8019,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GROTESQUE_KOUJO_K0",
+          "line": 8034,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "ENTERENEMY_KOUJO_K0",
+          "line": 8061,
+          "static_prints": 32,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_REQUEST_KOUJO_K0",
+          "line": 8169,
+          "static_prints": 12,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_AFTER_KOUJO_K0",
+          "line": 8208,
+          "static_prints": 19,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "OSIOKI_KOUJO_K0",
+          "line": 8285,
+          "static_prints": 15,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOBI_KOUJO_K0",
+          "line": 8346,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        }
+      ],
+      "caveat": "静态PRINT存在不等于该函数所有条件分支都有口上；未逐条改写成人文本。"
+    },
+    {
+      "file": "ERB/EVENT_K10_クラブ.ERB",
+      "sections": [
+        {
+          "function": "EVENTTRAIN",
+          "line": 62,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 68,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTTRAIN",
+          "line": 76,
+          "static_prints": 247,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K10_KOJO2",
+          "line": 603,
+          "static_prints": 88,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 816,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "KOJO_MESSAGE_COM_10",
+          "line": 900,
+          "static_prints": 1374,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            15,
+            16,
+            17,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            55,
+            56,
+            69,
+            80,
+            87,
+            123,
+            124,
+            125,
+            126,
+            127
+          ]
+        },
+        {
+          "function": "DOG_KOJO_10",
+          "line": 4850,
+          "static_prints": 157,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            5,
+            6,
+            9,
+            21,
+            27,
+            30,
+            31,
+            34,
+            37,
+            43,
+            56
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_PALAMCNG_10",
+          "line": 5654,
+          "static_prints": 96,
+          "status": "has_text",
+          "command_conditions": [
+            50,
+            51
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_MARKCNG_10",
+          "line": 5949,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "SELF_KOJO_K10",
+          "line": 6031,
+          "static_prints": 159,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_K10",
+          "line": 6479,
+          "static_prints": 6,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_AFTER_K10",
+          "line": 6497,
+          "static_prints": 19,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_VICTORY_K10",
+          "line": 6557,
+          "static_prints": 5,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_ATTACK_K10",
+          "line": 6581,
+          "static_prints": 6,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BENKI_KOUJO_K10",
+          "line": 6611,
+          "static_prints": 24,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "COLOSSEUM_KOJO_10",
+          "line": 6716,
+          "static_prints": 46,
+          "status": "has_text",
+          "command_conditions": [
+            5,
+            21,
+            27,
+            31,
+            51,
+            55,
+            56
+          ]
+        },
+        {
+          "function": "NTR_KOUJO_K10",
+          "line": 6853,
+          "static_prints": 39,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EXUCUTION_KOUJO_K10",
+          "line": 6964,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "MUSEUM_KOUJO_K10",
+          "line": 6981,
+          "static_prints": 10,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BANISHMENT_KOUJO_K10",
+          "line": 7016,
+          "static_prints": 5,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "PUBLIC_EXUCUTION_KOUJO_K10",
+          "line": 7037,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GROTESQUE_KOUJO_K10",
+          "line": 7052,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "ENTERENEMY_KOUJO_K10",
+          "line": 7079,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_REQUEST_KOUJO_K10",
+          "line": 7093,
+          "static_prints": 19,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_AFTER_KOUJO_K10",
+          "line": 7137,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "OSIOKI_KOUJO_K10",
+          "line": 7213,
+          "static_prints": 15,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOBI_KOUJO_K10",
+          "line": 7275,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        }
+      ],
+      "caveat": "静态PRINT存在不等于该函数所有条件分支都有口上；未逐条改写成人文本。"
+    },
+    {
+      "file": "ERB/EVENT_K11_リリィ.ERB",
+      "sections": [
+        {
+          "function": "EVENTTRAIN",
+          "line": 100,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 106,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTTRAIN",
+          "line": 114,
+          "static_prints": 178,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K11_KOJO2",
+          "line": 515,
+          "static_prints": 54,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 651,
+          "static_prints": 31,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "KOJO_MESSAGE_COM_11",
+          "line": 749,
+          "static_prints": 4625,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            19,
+            20,
+            21,
+            22,
+            23,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            55,
+            56,
+            63,
+            64,
+            65,
+            66,
+            68,
+            69,
+            80,
+            87,
+            123,
+            124,
+            125,
+            126,
+            127
+          ]
+        },
+        {
+          "function": "DOG_KOJO_11",
+          "line": 10658,
+          "static_prints": 157,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            5,
+            6,
+            9,
+            21,
+            27,
+            30,
+            31,
+            34,
+            37,
+            43,
+            56
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_PALAMCNG_11",
+          "line": 11463,
+          "static_prints": 128,
+          "status": "has_text",
+          "command_conditions": [
+            50,
+            51
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_MARKCNG_11",
+          "line": 11794,
+          "static_prints": 22,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "SELF_KOJO_K11",
+          "line": 11881,
+          "static_prints": 118,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_K11",
+          "line": 12262,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_AFTER_K11",
+          "line": 12280,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BENKI_KOUJO_K11",
+          "line": 12339,
+          "static_prints": 24,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_VICTORY_K11",
+          "line": 12439,
+          "static_prints": 5,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_ATTACK_K11",
+          "line": 12463,
+          "static_prints": 6,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "COLOSSEUM_KOJO_11",
+          "line": 12492,
+          "static_prints": 17,
+          "status": "has_text",
+          "command_conditions": [
+            5,
+            21,
+            27,
+            31,
+            51,
+            55,
+            56
+          ]
+        },
+        {
+          "function": "NTR_KOUJO_K11",
+          "line": 12597,
+          "static_prints": 87,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EXUCUTION_KOUJO_K11",
+          "line": 12779,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "MUSEUM_KOUJO_K11",
+          "line": 12797,
+          "static_prints": 9,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BANISHMENT_KOUJO_K11",
+          "line": 12830,
+          "static_prints": 5,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "PUBLIC_EXUCUTION_KOUJO_K11",
+          "line": 12851,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GROTESQUE_KOUJO_K11",
+          "line": 12866,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "ENTERENEMY_KOUJO_K11",
+          "line": 12893,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_REQUEST_KOUJO_K11",
+          "line": 12907,
+          "static_prints": 12,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_AFTER_KOUJO_K11",
+          "line": 12945,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "OSIOKI_KOUJO_K11",
+          "line": 13025,
+          "static_prints": 15,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "AEGI_K11",
+          "line": 13090,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        }
+      ],
+      "caveat": "静态PRINT存在不等于该函数所有条件分支都有口上；未逐条改写成人文本。"
+    },
+    {
+      "file": "ERB/EVENT_K12_知的.ERB",
+      "sections": [
+        {
+          "function": "EVENTTRAIN",
+          "line": 67,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 73,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTTRAIN",
+          "line": 81,
+          "static_prints": 23,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K12_KOJO2",
+          "line": 237,
+          "static_prints": 15,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 312,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "KOJO_MESSAGE_COM_12",
+          "line": 401,
+          "static_prints": 583,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            19,
+            20,
+            21,
+            22,
+            23,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            55,
+            56,
+            69,
+            80,
+            87,
+            123,
+            124,
+            125,
+            126,
+            127
+          ]
+        },
+        {
+          "function": "DOG_KOJO_12",
+          "line": 3538,
+          "static_prints": 165,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            5,
+            6,
+            9,
+            21,
+            27,
+            30,
+            31,
+            34,
+            37,
+            43,
+            56
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_PALAMCNG_12",
+          "line": 4349,
+          "static_prints": 30,
+          "status": "has_text",
+          "command_conditions": [
+            50,
+            51
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_MARKCNG_12",
+          "line": 4551,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "SELF_KOJO_K12",
+          "line": 4614,
+          "static_prints": 36,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_K12",
+          "line": 4870,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_AFTER_K12",
+          "line": 4960,
+          "static_prints": 13,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BENKI_KOUJO_K12",
+          "line": 5024,
+          "static_prints": 85,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_VICTORY_K12",
+          "line": 5278,
+          "static_prints": 11,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_ATTACK_K12",
+          "line": 5332,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "COLOSSEUM_KOJO_12",
+          "line": 5421,
+          "static_prints": 17,
+          "status": "has_text",
+          "command_conditions": [
+            5,
+            21,
+            27,
+            31,
+            51,
+            55,
+            56
+          ]
+        },
+        {
+          "function": "NTR_KOUJO_K12",
+          "line": 5526,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EXUCUTION_KOUJO_K12",
+          "line": 5603,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "MUSEUM_KOUJO_K12",
+          "line": 5621,
+          "static_prints": 10,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BANISHMENT_KOUJO_K12",
+          "line": 5657,
+          "static_prints": 5,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "PUBLIC_EXUCUTION_KOUJO_K12",
+          "line": 5678,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GROTESQUE_KOUJO_K12",
+          "line": 5693,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "ENTERENEMY_KOUJO_K12",
+          "line": 5720,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_REQUEST_KOUJO_K12",
+          "line": 5738,
+          "static_prints": 20,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_AFTER_KOUJO_K12",
+          "line": 5784,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "OSIOKI_KOUJO_K12",
+          "line": 5864,
+          "static_prints": 15,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOBI_KOUJO_K12",
+          "line": 5927,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        }
+      ],
+      "caveat": "静态PRINT存在不等于该函数所有条件分支都有口上；未逐条改写成人文本。"
+    },
+    {
+      "file": "ERB/EVENT_K13_庇護者.ERB",
+      "sections": [
+        {
+          "function": "EVENTTRAIN",
+          "line": 71,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 77,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTTRAIN",
+          "line": 85,
+          "static_prints": 53,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K13_KOJO2",
+          "line": 324,
+          "static_prints": 46,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 438,
+          "static_prints": 31,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "KOJO_MESSAGE_COM_13",
+          "line": 536,
+          "static_prints": 584,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            19,
+            20,
+            21,
+            22,
+            23,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            55,
+            56,
+            69,
+            80,
+            87,
+            123,
+            124,
+            125,
+            126,
+            127
+          ]
+        },
+        {
+          "function": "DOG_KOJO_13",
+          "line": 3637,
+          "static_prints": 157,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            5,
+            6,
+            9,
+            21,
+            27,
+            30,
+            31,
+            34,
+            37,
+            43,
+            56
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_PALAMCNG_13",
+          "line": 4442,
+          "static_prints": 28,
+          "status": "has_text",
+          "command_conditions": [
+            50,
+            51
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_SYASEI_13",
+          "line": 4640,
+          "static_prints": 12,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "KOJO_MESSAGE_MARKCNG_13",
+          "line": 4688,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "SELF_KOJO_K13",
+          "line": 4751,
+          "static_prints": 35,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_K13",
+          "line": 5000,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_AFTER_K13",
+          "line": 5090,
+          "static_prints": 14,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BENKI_KOUJO_K13",
+          "line": 5155,
+          "static_prints": 24,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_VICTORY_K13",
+          "line": 5253,
+          "static_prints": 11,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_ATTACK_K13",
+          "line": 5307,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "COLOSSEUM_KOJO_13",
+          "line": 5396,
+          "static_prints": 17,
+          "status": "has_text",
+          "command_conditions": [
+            5,
+            21,
+            27,
+            31,
+            51,
+            55,
+            56
+          ]
+        },
+        {
+          "function": "NTR_KOUJO_K13",
+          "line": 5501,
+          "static_prints": 53,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EXUCUTION_KOUJO_K13",
+          "line": 5646,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "MUSEUM_KOUJO_K13",
+          "line": 5664,
+          "static_prints": 10,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BANISHMENT_KOUJO_K13",
+          "line": 5700,
+          "static_prints": 5,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "PUBLIC_EXUCUTION_KOUJO_K13",
+          "line": 5721,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GROTESQUE_KOUJO_K13",
+          "line": 5736,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "ENTERENEMY_KOUJO_K13",
+          "line": 5763,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_REQUEST_KOUJO_K13",
+          "line": 5781,
+          "static_prints": 20,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_AFTER_KOUJO_K13",
+          "line": 5827,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "OSIOKI_KOUJO_K13",
+          "line": 5907,
+          "static_prints": 15,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOBI_KOUJO_K13",
+          "line": 5970,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        }
+      ],
+      "caveat": "静态PRINT存在不等于该函数所有条件分支都有口上；未逐条改写成人文本。"
+    },
+    {
+      "file": "ERB/EVENT_K14_貴公子.ERB",
+      "sections": [
+        {
+          "function": "EVENTTRAIN",
+          "line": 39,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 45,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTTRAIN",
+          "line": 53,
+          "static_prints": 87,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K14_KOJO2",
+          "line": 427,
+          "static_prints": 13,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 500,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "KOJO_MESSAGE_COM_14",
+          "line": 603,
+          "static_prints": 525,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            17,
+            19,
+            20,
+            21,
+            22,
+            23,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            55,
+            56,
+            69,
+            80,
+            87,
+            114,
+            123,
+            124,
+            126,
+            127
+          ]
+        },
+        {
+          "function": "DOG_KOJO_14",
+          "line": 3563,
+          "static_prints": 157,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            5,
+            6,
+            9,
+            21,
+            27,
+            30,
+            31,
+            34,
+            37,
+            43,
+            56
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_PALAMCNG_14",
+          "line": 4368,
+          "static_prints": 28,
+          "status": "has_text",
+          "command_conditions": [
+            50,
+            51
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_MARKCNG_14",
+          "line": 4566,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "SELF_KOJO_K14",
+          "line": 4629,
+          "static_prints": 36,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_K14",
+          "line": 4884,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_AFTER_K14",
+          "line": 4974,
+          "static_prints": 11,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BENKI_KOUJO_K14",
+          "line": 5039,
+          "static_prints": 64,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_VICTORY_K14",
+          "line": 5273,
+          "static_prints": 11,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_ATTACK_K14",
+          "line": 5327,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "COLOSSEUM_KOJO_14",
+          "line": 5416,
+          "static_prints": 17,
+          "status": "has_text",
+          "command_conditions": [
+            5,
+            21,
+            27,
+            31,
+            51,
+            55,
+            56
+          ]
+        },
+        {
+          "function": "NTR_KOUJO_K14",
+          "line": 5521,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EXUCUTION_KOUJO_K14",
+          "line": 5598,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "MUSEUM_KOUJO_K14",
+          "line": 5616,
+          "static_prints": 10,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BANISHMENT_KOUJO_K14",
+          "line": 5652,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "PUBLIC_EXUCUTION_KOUJO_K14",
+          "line": 5670,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GROTESQUE_KOUJO_K14",
+          "line": 5685,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "ENTERENEMY_KOUJO_K14",
+          "line": 5712,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_REQUEST_KOUJO_K14",
+          "line": 5730,
+          "static_prints": 12,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_AFTER_KOUJO_K14",
+          "line": 5768,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "OSIOKI_KOUJO_K14",
+          "line": 5848,
+          "static_prints": 15,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOBI_KOUJO_K14",
+          "line": 5911,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        }
+      ],
+      "caveat": "静态PRINT存在不等于该函数所有条件分支都有口上；未逐条改写成人文本。"
+    },
+    {
+      "file": "ERB/EVENT_K15_伶俐.ERB",
+      "sections": [
+        {
+          "function": "EVENTTRAIN",
+          "line": 29,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 35,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTTRAIN",
+          "line": 43,
+          "static_prints": 50,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K15_KOJO2",
+          "line": 245,
+          "static_prints": 17,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 316,
+          "static_prints": 19,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "KOJO_MESSAGE_COM_15",
+          "line": 406,
+          "static_prints": 755,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            19,
+            20,
+            21,
+            22,
+            23,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            55,
+            56,
+            69,
+            80,
+            87,
+            123,
+            124,
+            125,
+            126,
+            127
+          ]
+        },
+        {
+          "function": "DOG_KOJO_15",
+          "line": 4027,
+          "static_prints": 196,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            5,
+            6,
+            9,
+            21,
+            27,
+            30,
+            31,
+            34,
+            37,
+            43,
+            56
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_PALAMCNG_15",
+          "line": 4894,
+          "static_prints": 41,
+          "status": "has_text",
+          "command_conditions": [
+            50,
+            51
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_MARKCNG_15",
+          "line": 5105,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "SELF_KOJO_K15",
+          "line": 5168,
+          "static_prints": 55,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_K15",
+          "line": 5443,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_AFTER_K15",
+          "line": 5507,
+          "static_prints": 15,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BENKI_KOUJO_K15",
+          "line": 5554,
+          "static_prints": 24,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_VICTORY_K15",
+          "line": 5654,
+          "static_prints": 11,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_ATTACK_K15",
+          "line": 5708,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "COLOSSEUM_KOJO_15",
+          "line": 5797,
+          "static_prints": 34,
+          "status": "has_text",
+          "command_conditions": [
+            5,
+            21,
+            27,
+            31,
+            51,
+            55,
+            56
+          ]
+        },
+        {
+          "function": "NTR_KOUJO_K15",
+          "line": 5921,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EXUCUTION_KOUJO_K15",
+          "line": 5998,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "MUSEUM_KOUJO_K15",
+          "line": 6016,
+          "static_prints": 10,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BANISHMENT_KOUJO_K15",
+          "line": 6052,
+          "static_prints": 5,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "PUBLIC_EXUCUTION_KOUJO_K15",
+          "line": 6073,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GROTESQUE_KOUJO_K15",
+          "line": 6088,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "ENTERENEMY_KOUJO_K15",
+          "line": 6115,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_REQUEST_KOUJO_K15",
+          "line": 6133,
+          "static_prints": 12,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_AFTER_KOUJO_K15",
+          "line": 6171,
+          "static_prints": 36,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "OSIOKI_KOUJO_K15",
+          "line": 6269,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOBI_KOUJO_K15",
+          "line": 6336,
+          "static_prints": 6,
+          "status": "has_text",
+          "command_conditions": []
+        }
+      ],
+      "caveat": "静态PRINT存在不等于该函数所有条件分支都有口上；未逐条改写成人文本。"
+    },
+    {
+      "file": "ERB/EVENT_K19_菲娅.ERB",
+      "sections": [
+        {
+          "function": "EVENTTRAIN",
+          "line": 51,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 57,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTTRAIN",
+          "line": 65,
+          "static_prints": 99,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K19_KOJO2",
+          "line": 360,
+          "static_prints": 115,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K19_FUKU",
+          "line": 577,
+          "static_prints": 25,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 654,
+          "static_prints": 31,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "KOJO_MESSAGE_COM_19",
+          "line": 750,
+          "static_prints": 1583,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            19,
+            20,
+            21,
+            22,
+            23,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            55,
+            56,
+            69,
+            80,
+            123,
+            124,
+            125,
+            126,
+            127
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_PALAMCNG_19",
+          "line": 4858,
+          "static_prints": 118,
+          "status": "has_text",
+          "command_conditions": [
+            50,
+            51
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_MARKCNG_19",
+          "line": 5197,
+          "static_prints": 19,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "SELF_KOJO_K19",
+          "line": 5287,
+          "static_prints": 186,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_K19",
+          "line": 5831,
+          "static_prints": 5,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_AFTER_K19",
+          "line": 5850,
+          "static_prints": 17,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BENKI_KOUJO_K19",
+          "line": 5903,
+          "static_prints": 24,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_VICTORY_K19",
+          "line": 6003,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_ATTACK_K19",
+          "line": 6069,
+          "static_prints": 9,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "COLOSSEUM_KOJO_19",
+          "line": 6113,
+          "static_prints": 40,
+          "status": "has_text",
+          "command_conditions": [
+            5,
+            21,
+            27,
+            31,
+            51,
+            55,
+            56
+          ]
+        },
+        {
+          "function": "NTR_KOUJO_K19",
+          "line": 6247,
+          "static_prints": 28,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EXUCUTION_KOUJO_K19",
+          "line": 6337,
+          "static_prints": 6,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "MUSEUM_KOUJO_K19",
+          "line": 6363,
+          "static_prints": 22,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BANISHMENT_KOUJO_K19",
+          "line": 6425,
+          "static_prints": 11,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "PUBLIC_EXUCUTION_KOUJO_K19",
+          "line": 6455,
+          "static_prints": 5,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GROTESQUE_KOUJO_K19",
+          "line": 6476,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "ENTERENEMY_KOUJO_K19",
+          "line": 6503,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_REQUEST_KOUJO_K19",
+          "line": 6517,
+          "static_prints": 12,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_AFTER_KOUJO_K19",
+          "line": 6555,
+          "static_prints": 17,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "OSIOKI_KOUJO_K19",
+          "line": 6629,
+          "static_prints": 15,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOBI_KOUJO_K19",
+          "line": 6693,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        }
+      ],
+      "caveat": "静态PRINT存在不等于该函数所有条件分支都有口上；未逐条改写成人文本。"
+    },
+    {
+      "file": "ERB/EVENT_K1_自信家.ERB",
+      "sections": [
+        {
+          "function": "EVENTTRAIN",
+          "line": 84,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 90,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTTRAIN",
+          "line": 98,
+          "static_prints": 191,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K1_KOJO2",
+          "line": 648,
+          "static_prints": 69,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 869,
+          "static_prints": 14,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "KOJO_MESSAGE_COM_1",
+          "line": 980,
+          "static_prints": 1566,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            19,
+            20,
+            21,
+            22,
+            23,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            55,
+            56,
+            69,
+            80,
+            87,
+            123,
+            124,
+            125,
+            126,
+            127
+          ]
+        },
+        {
+          "function": "DOG_KOJO_1",
+          "line": 5583,
+          "static_prints": 204,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            5,
+            6,
+            9,
+            21,
+            27,
+            30,
+            31,
+            34,
+            37,
+            43,
+            56
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_PALAMCNG_1",
+          "line": 6471,
+          "static_prints": 62,
+          "status": "has_text",
+          "command_conditions": [
+            50,
+            51
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_MARKCNG_1",
+          "line": 6716,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "SELF_KOJO_K1",
+          "line": 6792,
+          "static_prints": 152,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_K1",
+          "line": 7320,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_AFTER_K1",
+          "line": 7386,
+          "static_prints": 11,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BENKI_KOUJO_K1",
+          "line": 7440,
+          "static_prints": 31,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_VICTORY_K1",
+          "line": 7572,
+          "static_prints": 11,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_ATTACK_K1",
+          "line": 7626,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "COLOSSEUM_KOJO_1",
+          "line": 7716,
+          "static_prints": 40,
+          "status": "has_text",
+          "command_conditions": [
+            5,
+            21,
+            27,
+            31,
+            51,
+            55,
+            56
+          ]
+        },
+        {
+          "function": "NTR_KOUJO_K1",
+          "line": 7849,
+          "static_prints": 22,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EXUCUTION_KOUJO_K1",
+          "line": 7933,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "MUSEUM_KOUJO_K1",
+          "line": 7950,
+          "static_prints": 11,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BANISHMENT_KOUJO_K1",
+          "line": 7986,
+          "static_prints": 5,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "PUBLIC_EXUCUTION_KOUJO_K1",
+          "line": 8007,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GROTESQUE_KOUJO_K1",
+          "line": 8022,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "ENTERENEMY_KOUJO_K1",
+          "line": 8049,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_REQUEST_KOUJO_K1",
+          "line": 8067,
+          "static_prints": 12,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_AFTER_KOUJO_K1",
+          "line": 8105,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "OSIOKI_KOUJO_K1",
+          "line": 8183,
+          "static_prints": 15,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOBI_KOUJO_K1",
+          "line": 8246,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        }
+      ],
+      "caveat": "静态PRINT存在不等于该函数所有条件分支都有口上；未逐条改写成人文本。"
+    },
+    {
+      "file": "ERB/EVENT_K2_気弱.ERB",
+      "sections": [
+        {
+          "function": "EVENTTRAIN",
+          "line": 80,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 86,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTTRAIN",
+          "line": 94,
+          "static_prints": 155,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K2_KOJO2",
+          "line": 524,
+          "static_prints": 86,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 740,
+          "static_prints": 24,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "KOJO_MESSAGE_COM_2",
+          "line": 852,
+          "static_prints": 1239,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            19,
+            20,
+            21,
+            22,
+            23,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            55,
+            56,
+            69,
+            80,
+            87,
+            123,
+            124,
+            125,
+            126,
+            127
+          ]
+        },
+        {
+          "function": "DOG_KOJO_2",
+          "line": 4722,
+          "static_prints": 157,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            5,
+            6,
+            9,
+            21,
+            27,
+            30,
+            31,
+            34,
+            37,
+            43,
+            56
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_PALAMCNG_2",
+          "line": 5527,
+          "static_prints": 66,
+          "status": "has_text",
+          "command_conditions": [
+            50,
+            51
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_MARKCNG_2",
+          "line": 5775,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "SELF_KOJO_K2",
+          "line": 5854,
+          "static_prints": 91,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_K2",
+          "line": 6229,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_AFTER_K2",
+          "line": 6295,
+          "static_prints": 11,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BENKI_KOUJO_K2",
+          "line": 6349,
+          "static_prints": 28,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_VICTORY_K2",
+          "line": 6471,
+          "static_prints": 11,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_ATTACK_K2",
+          "line": 6525,
+          "static_prints": 19,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "COLOSSEUM_KOJO_2",
+          "line": 6627,
+          "static_prints": 40,
+          "status": "has_text",
+          "command_conditions": [
+            5,
+            21,
+            27,
+            31,
+            51,
+            55,
+            56
+          ]
+        },
+        {
+          "function": "NTR_KOUJO_K2",
+          "line": 6760,
+          "static_prints": 20,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EXUCUTION_KOUJO_K2",
+          "line": 6843,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "MUSEUM_KOUJO_K2",
+          "line": 6860,
+          "static_prints": 10,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BANISHMENT_KOUJO_K2",
+          "line": 6895,
+          "static_prints": 5,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "PUBLIC_EXUCUTION_KOUJO_K2",
+          "line": 6916,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GROTESQUE_KOUJO_K2",
+          "line": 6931,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "ENTERENEMY_KOUJO_K2",
+          "line": 6958,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_REQUEST_KOUJO_K2",
+          "line": 6976,
+          "static_prints": 12,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_AFTER_KOUJO_K2",
+          "line": 7014,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "OSIOKI_KOUJO_K2",
+          "line": 7094,
+          "static_prints": 15,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOBI_KOUJO_K2",
+          "line": 7157,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        }
+      ],
+      "caveat": "静态PRINT存在不等于该函数所有条件分支都有口上；未逐条改写成人文本。"
+    },
+    {
+      "file": "ERB/EVENT_K3_高貴.ERB",
+      "sections": [
+        {
+          "function": "EVENTTRAIN",
+          "line": 81,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 87,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTTRAIN",
+          "line": 95,
+          "static_prints": 178,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K3_KOJO2",
+          "line": 602,
+          "static_prints": 66,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 790,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "KOJO_MESSAGE_COM_3",
+          "line": 887,
+          "static_prints": 1664,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            55,
+            56,
+            69,
+            80,
+            87,
+            123,
+            124,
+            125,
+            126,
+            127
+          ]
+        },
+        {
+          "function": "DOG_KOJO_3",
+          "line": 5800,
+          "static_prints": 296,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            5,
+            6,
+            9,
+            21,
+            27,
+            56
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_PALAMCNG_3",
+          "line": 7075,
+          "static_prints": 103,
+          "status": "has_text",
+          "command_conditions": [
+            46,
+            50,
+            51
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_MARKCNG_3",
+          "line": 7414,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "SELF_KOJO_K3",
+          "line": 7492,
+          "static_prints": 118,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_K3",
+          "line": 7908,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_AFTER_K3",
+          "line": 7998,
+          "static_prints": 14,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BENKI_KOUJO_K3",
+          "line": 8062,
+          "static_prints": 74,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_VICTORY_K3",
+          "line": 8291,
+          "static_prints": 11,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_ATTACK_K3",
+          "line": 8345,
+          "static_prints": 19,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "COLOSSEUM_KOJO_3",
+          "line": 8445,
+          "static_prints": 40,
+          "status": "has_text",
+          "command_conditions": [
+            5,
+            21,
+            27,
+            31,
+            51,
+            55,
+            56
+          ]
+        },
+        {
+          "function": "NTR_KOUJO_K3",
+          "line": 8579,
+          "static_prints": 21,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EXUCUTION_KOUJO_K3",
+          "line": 8662,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "MUSEUM_KOUJO_K3",
+          "line": 8679,
+          "static_prints": 10,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BANISHMENT_KOUJO_K3",
+          "line": 8714,
+          "static_prints": 5,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "PUBLIC_EXUCUTION_KOUJO_K3",
+          "line": 8735,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GROTESQUE_KOUJO_K3",
+          "line": 8750,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "ENTERENEMY_KOUJO_K3",
+          "line": 8777,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_REQUEST_KOUJO_K3",
+          "line": 8795,
+          "static_prints": 12,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_AFTER_KOUJO_K3",
+          "line": 8833,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "OSIOKI_KOUJO_K3",
+          "line": 8911,
+          "static_prints": 15,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOBI_KOUJO_K3",
+          "line": 8974,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        }
+      ],
+      "caveat": "静态PRINT存在不等于该函数所有条件分支都有口上；未逐条改写成人文本。"
+    },
+    {
+      "file": "ERB/EVENT_K4_冷徹.ERB",
+      "sections": [
+        {
+          "function": "EVENTTRAIN",
+          "line": 61,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 67,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTTRAIN",
+          "line": 75,
+          "static_prints": 24,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K4_KOJO2",
+          "line": 236,
+          "static_prints": 46,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 456,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "KOJO_MESSAGE_COM_4",
+          "line": 521,
+          "static_prints": 507,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            19,
+            20,
+            21,
+            22,
+            23,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            55,
+            56,
+            80
+          ]
+        },
+        {
+          "function": "DOG_KOJO_4",
+          "line": 3094,
+          "static_prints": 188,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            5,
+            6,
+            9,
+            21,
+            27,
+            30,
+            31,
+            34,
+            37,
+            43,
+            56
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_PALAMCNG_4",
+          "line": 3915,
+          "static_prints": 30,
+          "status": "has_text",
+          "command_conditions": [
+            50,
+            51
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_MARKCNG_4",
+          "line": 4119,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "SELF_KOJO_K4",
+          "line": 4182,
+          "static_prints": 47,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_K4",
+          "line": 4463,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_AFTER_K4",
+          "line": 4553,
+          "static_prints": 14,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BENKI_KOUJO_K4",
+          "line": 4619,
+          "static_prints": 37,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_VICTORY_K4",
+          "line": 4757,
+          "static_prints": 11,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_ATTACK_K4",
+          "line": 4812,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "COLOSSEUM_KOJO_4",
+          "line": 4904,
+          "static_prints": 40,
+          "status": "has_text",
+          "command_conditions": [
+            5,
+            21,
+            27,
+            31,
+            51,
+            55,
+            56
+          ]
+        },
+        {
+          "function": "NTR_KOUJO_K4",
+          "line": 5037,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EXUCUTION_KOUJO_K4",
+          "line": 5118,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "MUSEUM_KOUJO_K4",
+          "line": 5135,
+          "static_prints": 10,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BANISHMENT_KOUJO_K4",
+          "line": 5170,
+          "static_prints": 5,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "PUBLIC_EXUCUTION_KOUJO_K4",
+          "line": 5191,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GROTESQUE_KOUJO_K4",
+          "line": 5206,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "ENTERENEMY_KOUJO_K4",
+          "line": 5233,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_REQUEST_KOUJO_K4",
+          "line": 5250,
+          "static_prints": 12,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_AFTER_KOUJO_K4",
+          "line": 5287,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "OSIOKI_KOUJO_K4",
+          "line": 5365,
+          "static_prints": 15,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOBI_KOUJO_K4",
+          "line": 5428,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        }
+      ],
+      "caveat": "静态PRINT存在不等于该函数所有条件分支都有口上；未逐条改写成人文本。"
+    },
+    {
+      "file": "ERB/EVENT_K5_マオ.ERB",
+      "sections": [
+        {
+          "function": "EVENTTRAIN",
+          "line": 80,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 86,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTTRAIN",
+          "line": 94,
+          "static_prints": 108,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K5_KOJO2",
+          "line": 407,
+          "static_prints": 85,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K5_FUKU",
+          "line": 604,
+          "static_prints": 11,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 664,
+          "static_prints": 26,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "KOJO_MESSAGE_COM_5",
+          "line": 770,
+          "static_prints": 1823,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            19,
+            20,
+            21,
+            22,
+            23,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            55,
+            56,
+            69,
+            80,
+            87,
+            123,
+            124,
+            125,
+            126,
+            127
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_PALAMCNG_5",
+          "line": 5654,
+          "static_prints": 108,
+          "status": "has_text",
+          "command_conditions": [
+            50,
+            51
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_MARKCNG_5",
+          "line": 5970,
+          "static_prints": 19,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "SELF_KOJO_K5",
+          "line": 6060,
+          "static_prints": 405,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_K5",
+          "line": 6958,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_AFTER_K5",
+          "line": 6981,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BENKI_KOUJO_K5",
+          "line": 7036,
+          "static_prints": 24,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_VICTORY_K5",
+          "line": 7137,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_ATTACK_K5",
+          "line": 7192,
+          "static_prints": 6,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "COLOSSEUM_KOJO_5",
+          "line": 7227,
+          "static_prints": 40,
+          "status": "has_text",
+          "command_conditions": [
+            5,
+            21,
+            27,
+            31,
+            51,
+            55,
+            56
+          ]
+        },
+        {
+          "function": "NTR_KOUJO_K5",
+          "line": 7361,
+          "static_prints": 20,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EXUCUTION_KOUJO_K5",
+          "line": 7441,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "MUSEUM_KOUJO_K5",
+          "line": 7458,
+          "static_prints": 10,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BANISHMENT_KOUJO_K5",
+          "line": 7493,
+          "static_prints": 5,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "PUBLIC_EXUCUTION_KOUJO_K5",
+          "line": 7514,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GROTESQUE_KOUJO_K5",
+          "line": 7529,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "ENTERENEMY_KOUJO_K5",
+          "line": 7556,
+          "static_prints": 2,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_REQUEST_KOUJO_K5",
+          "line": 7567,
+          "static_prints": 12,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_AFTER_KOUJO_K5",
+          "line": 7603,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "OSIOKI_KOUJO_K5",
+          "line": 7681,
+          "static_prints": 15,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOBI_KOUJO_K5",
+          "line": 7745,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        }
+      ],
+      "caveat": "静态PRINT存在不等于该函数所有条件分支都有口上；未逐条改写成人文本。"
+    },
+    {
+      "file": "ERB/EVENT_K6_悪女.ERB",
+      "sections": [
+        {
+          "function": "EVENTTRAIN",
+          "line": 73,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 79,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTTRAIN",
+          "line": 87,
+          "static_prints": 148,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K6_KOJO2",
+          "line": 491,
+          "static_prints": 32,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 586,
+          "static_prints": 23,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "KOJO_MESSAGE_COM_6",
+          "line": 679,
+          "static_prints": 1818,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            19,
+            20,
+            21,
+            22,
+            23,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            55,
+            56,
+            69,
+            80,
+            87,
+            123,
+            124,
+            125,
+            126,
+            127
+          ]
+        },
+        {
+          "function": "DOG_KOJO_6",
+          "line": 5590,
+          "static_prints": 283,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            5,
+            6,
+            9,
+            21,
+            27,
+            30,
+            31,
+            34,
+            37,
+            43,
+            56
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_PALAMCNG_6",
+          "line": 6560,
+          "static_prints": 92,
+          "status": "has_text",
+          "command_conditions": [
+            50,
+            51
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_MARKCNG_6",
+          "line": 6858,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "SELF_KOJO_K6",
+          "line": 6930,
+          "static_prints": 154,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_K6",
+          "line": 7428,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_AFTER_K6",
+          "line": 7518,
+          "static_prints": 14,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BENKI_KOUJO_K6",
+          "line": 7583,
+          "static_prints": 52,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_VICTORY_K6",
+          "line": 7763,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_ATTACK_K6",
+          "line": 7837,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "COLOSSEUM_KOJO_6",
+          "line": 7932,
+          "static_prints": 40,
+          "status": "has_text",
+          "command_conditions": [
+            5,
+            21,
+            27,
+            31,
+            51,
+            55,
+            56
+          ]
+        },
+        {
+          "function": "NTR_KOUJO_K6",
+          "line": 8065,
+          "static_prints": 20,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EXUCUTION_KOUJO_K6",
+          "line": 8148,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "MUSEUM_KOUJO_K6",
+          "line": 8165,
+          "static_prints": 12,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BANISHMENT_KOUJO_K6",
+          "line": 8202,
+          "static_prints": 5,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "PUBLIC_EXUCUTION_KOUJO_K6",
+          "line": 8223,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GROTESQUE_KOUJO_K6",
+          "line": 8238,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "ENTERENEMY_KOUJO_K6",
+          "line": 8265,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_REQUEST_KOUJO_K6",
+          "line": 8284,
+          "static_prints": 12,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_AFTER_KOUJO_K6",
+          "line": 8322,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "OSIOKI_KOUJO_K6",
+          "line": 8398,
+          "static_prints": 15,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOBI_KOUJO_K6",
+          "line": 8460,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        }
+      ],
+      "caveat": "静态PRINT存在不等于该函数所有条件分支都有口上；未逐条改写成人文本。"
+    },
+    {
+      "file": "ERB/EVENT_K7_ハート.ERB",
+      "sections": [
+        {
+          "function": "EVENTTRAIN",
+          "line": 62,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 68,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTTRAIN",
+          "line": 75,
+          "static_prints": 244,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K7_KOJO2",
+          "line": 589,
+          "static_prints": 110,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 825,
+          "static_prints": 23,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "KOJO_MESSAGE_COM_7",
+          "line": 908,
+          "static_prints": 2161,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            19,
+            20,
+            21,
+            22,
+            23,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            55,
+            56,
+            69,
+            80,
+            87,
+            123,
+            124,
+            125,
+            126,
+            127
+          ]
+        },
+        {
+          "function": "DOG_KOJO_7",
+          "line": 6281,
+          "static_prints": 157,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            5,
+            6,
+            9,
+            21,
+            27,
+            30,
+            31,
+            34,
+            37,
+            43,
+            56
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_PALAMCNG_7",
+          "line": 7086,
+          "static_prints": 155,
+          "status": "has_text",
+          "command_conditions": [
+            50,
+            51
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_MARKCNG_7",
+          "line": 7463,
+          "static_prints": 14,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "SELF_KOJO_K7",
+          "line": 7544,
+          "static_prints": 156,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_K7",
+          "line": 7975,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_AFTER_K7",
+          "line": 7993,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BENKI_KOUJO_K7",
+          "line": 8049,
+          "static_prints": 25,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_VICTORY_K7",
+          "line": 8150,
+          "static_prints": 6,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_ATTACK_K7",
+          "line": 8174,
+          "static_prints": 6,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "COLOSSEUM_KOJO_7",
+          "line": 8206,
+          "static_prints": 50,
+          "status": "has_text",
+          "command_conditions": [
+            5,
+            21,
+            27,
+            31,
+            51,
+            55,
+            56
+          ]
+        },
+        {
+          "function": "NTR_KOUJO_K7",
+          "line": 8350,
+          "static_prints": 92,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EXUCUTION_KOUJO_K7",
+          "line": 8539,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "MUSEUM_KOUJO_K7",
+          "line": 8556,
+          "static_prints": 10,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BANISHMENT_KOUJO_K7",
+          "line": 8591,
+          "static_prints": 9,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "PUBLIC_EXUCUTION_KOUJO_K7",
+          "line": 8616,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GROTESQUE_KOUJO_K7",
+          "line": 8631,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "ENTERENEMY_KOUJO_K7",
+          "line": 8658,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_REQUEST_KOUJO_K7",
+          "line": 8672,
+          "static_prints": 17,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_AFTER_KOUJO_K7",
+          "line": 8715,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "OSIOKI_KOUJO_K7",
+          "line": 8793,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOBI_KOUJO_K7",
+          "line": 8858,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        }
+      ],
+      "caveat": "静态PRINT存在不等于该函数所有条件分支都有口上；未逐条改写成人文本。"
+    },
+    {
+      "file": "ERB/EVENT_K8_スペード.ERB",
+      "sections": [
+        {
+          "function": "EVENTTRAIN",
+          "line": 61,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 67,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTTRAIN",
+          "line": 75,
+          "static_prints": 255,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K8_KOJO2",
+          "line": 607,
+          "static_prints": 86,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 813,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "KOJO_MESSAGE_COM_8",
+          "line": 891,
+          "static_prints": 1832,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            19,
+            20,
+            21,
+            22,
+            23,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            55,
+            56,
+            69,
+            80,
+            87,
+            123,
+            124,
+            125,
+            126,
+            127
+          ]
+        },
+        {
+          "function": "DOG_KOJO_8",
+          "line": 5446,
+          "static_prints": 157,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            5,
+            6,
+            9,
+            21,
+            27,
+            30,
+            31,
+            34,
+            37,
+            43,
+            56
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_PALAMCNG_8",
+          "line": 6250,
+          "static_prints": 110,
+          "status": "has_text",
+          "command_conditions": [
+            50,
+            51
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_MARKCNG_8",
+          "line": 6568,
+          "static_prints": 15,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "SELF_KOJO_K8",
+          "line": 6649,
+          "static_prints": 147,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_K8",
+          "line": 7073,
+          "static_prints": 6,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_AFTER_K8",
+          "line": 7093,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_VICTORY_K8",
+          "line": 7146,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_ATTACK_K8",
+          "line": 7171,
+          "static_prints": 6,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BENKI_KOUJO_K8",
+          "line": 7199,
+          "static_prints": 26,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "COLOSSEUM_KOJO_8",
+          "line": 7304,
+          "static_prints": 49,
+          "status": "has_text",
+          "command_conditions": [
+            5,
+            21,
+            27,
+            31,
+            51,
+            55,
+            56
+          ]
+        },
+        {
+          "function": "NTR_KOUJO_K8",
+          "line": 7447,
+          "static_prints": 73,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EXUCUTION_KOUJO_K8",
+          "line": 7606,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "MUSEUM_KOUJO_K8",
+          "line": 7623,
+          "static_prints": 10,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BANISHMENT_KOUJO_K8",
+          "line": 7658,
+          "static_prints": 5,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "PUBLIC_EXUCUTION_KOUJO_K8",
+          "line": 7679,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GROTESQUE_KOUJO_K8",
+          "line": 7694,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "ENTERENEMY_KOUJO_K8",
+          "line": 7721,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_REQUEST_KOUJO_K8",
+          "line": 7735,
+          "static_prints": 19,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_AFTER_KOUJO_K8",
+          "line": 7780,
+          "static_prints": 19,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "OSIOKI_KOUJO_K8",
+          "line": 7857,
+          "static_prints": 15,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOBI_KOUJO_K8",
+          "line": 7918,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        }
+      ],
+      "caveat": "静态PRINT存在不等于该函数所有条件分支都有口上；未逐条改写成人文本。"
+    },
+    {
+      "file": "ERB/EVENT_K903_嘉德.ERB",
+      "sections": [
+        {
+          "function": "EVENTTRAIN",
+          "line": 59,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 65,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTTRAIN",
+          "line": 73,
+          "static_prints": 32,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K903_KOJO2",
+          "line": 234,
+          "static_prints": 88,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 464,
+          "static_prints": 11,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "KOJO_MESSAGE_COM_903",
+          "line": 532,
+          "static_prints": 675,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            19,
+            20,
+            21,
+            22,
+            23,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            55,
+            56,
+            80
+          ]
+        },
+        {
+          "function": "DOG_KOJO_903",
+          "line": 3224,
+          "static_prints": 463,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            5,
+            6,
+            9,
+            21,
+            27,
+            30,
+            31,
+            34,
+            37,
+            43,
+            56
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_PALAMCNG_903",
+          "line": 4341,
+          "static_prints": 33,
+          "status": "has_text",
+          "command_conditions": [
+            50,
+            51
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_MARKCNG_903",
+          "line": 4548,
+          "static_prints": 9,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "SELF_KOJO_K903",
+          "line": 4612,
+          "static_prints": 71,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_K903",
+          "line": 4940,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_AFTER_K903",
+          "line": 5030,
+          "static_prints": 14,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BENKI_KOUJO_K903",
+          "line": 5096,
+          "static_prints": 24,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_VICTORY_K903",
+          "line": 5196,
+          "static_prints": 11,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_ATTACK_K903",
+          "line": 5251,
+          "static_prints": 16,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "COLOSSEUM_KOJO_903",
+          "line": 5343,
+          "static_prints": 40,
+          "status": "has_text",
+          "command_conditions": [
+            5,
+            21,
+            27,
+            31,
+            51,
+            55,
+            56
+          ]
+        },
+        {
+          "function": "NTR_KOUJO_K903",
+          "line": 5476,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EXUCUTION_KOUJO_K903",
+          "line": 5557,
+          "static_prints": 6,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "MUSEUM_KOUJO_K903",
+          "line": 5577,
+          "static_prints": 10,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BANISHMENT_KOUJO_K903",
+          "line": 5613,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "PUBLIC_EXUCUTION_KOUJO_K903",
+          "line": 5631,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GROTESQUE_KOUJO_K903",
+          "line": 5646,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "ENTERENEMY_KOUJO_K903",
+          "line": 5674,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_REQUEST_KOUJO_K903",
+          "line": 5691,
+          "static_prints": 12,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_AFTER_KOUJO_K903",
+          "line": 5728,
+          "static_prints": 151,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "OSIOKI_KOUJO_K903",
+          "line": 5939,
+          "static_prints": 15,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOBI_KOUJO_K903",
+          "line": 6002,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        }
+      ],
+      "caveat": "静态PRINT存在不等于该函数所有条件分支都有口上；未逐条改写成人文本。"
+    },
+    {
+      "file": "ERB/EVENT_K904_菲娅.ERB",
+      "sections": [
+        {
+          "function": "EVENTTRAIN",
+          "line": 51,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 57,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTTRAIN",
+          "line": 65,
+          "static_prints": 99,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K904_KOJO2",
+          "line": 360,
+          "static_prints": 115,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K904_FUKU",
+          "line": 577,
+          "static_prints": 25,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 654,
+          "static_prints": 31,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "KOJO_MESSAGE_COM_904",
+          "line": 750,
+          "static_prints": 1583,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            19,
+            20,
+            21,
+            22,
+            23,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            55,
+            56,
+            69,
+            80,
+            123,
+            124,
+            125,
+            126,
+            127
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_PALAMCNG_904",
+          "line": 4858,
+          "static_prints": 118,
+          "status": "has_text",
+          "command_conditions": [
+            50,
+            51
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_MARKCNG_904",
+          "line": 5197,
+          "static_prints": 19,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "SELF_KOJO_K904",
+          "line": 5287,
+          "static_prints": 186,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_K904",
+          "line": 5831,
+          "static_prints": 5,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_AFTER_K904",
+          "line": 5850,
+          "static_prints": 17,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BENKI_KOUJO_K904",
+          "line": 5903,
+          "static_prints": 24,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_VICTORY_K904",
+          "line": 6003,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_ATTACK_K904",
+          "line": 6069,
+          "static_prints": 9,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "COLOSSEUM_KOJO_904",
+          "line": 6113,
+          "static_prints": 40,
+          "status": "has_text",
+          "command_conditions": [
+            5,
+            21,
+            27,
+            31,
+            51,
+            55,
+            56
+          ]
+        },
+        {
+          "function": "NTR_KOUJO_K904",
+          "line": 6247,
+          "static_prints": 28,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EXUCUTION_KOUJO_K904",
+          "line": 6337,
+          "static_prints": 6,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "MUSEUM_KOUJO_K904",
+          "line": 6363,
+          "static_prints": 22,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BANISHMENT_KOUJO_K904",
+          "line": 6425,
+          "static_prints": 11,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "PUBLIC_EXUCUTION_KOUJO_K904",
+          "line": 6455,
+          "static_prints": 5,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GROTESQUE_KOUJO_K904",
+          "line": 6476,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "ENTERENEMY_KOUJO_K904",
+          "line": 6503,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_REQUEST_KOUJO_K904",
+          "line": 6517,
+          "static_prints": 12,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_AFTER_KOUJO_K904",
+          "line": 6555,
+          "static_prints": 17,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "OSIOKI_KOUJO_K904",
+          "line": 6629,
+          "static_prints": 15,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOBI_KOUJO_K904",
+          "line": 6693,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        }
+      ],
+      "caveat": "静态PRINT存在不等于该函数所有条件分支都有口上；未逐条改写成人文本。"
+    },
+    {
+      "file": "ERB/EVENT_K9_ダイヤ.ERB",
+      "sections": [
+        {
+          "function": "EVENTTRAIN",
+          "line": 54,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 60,
+          "static_prints": 0,
+          "status": "declaration_or_delegation_only",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTTRAIN",
+          "line": 67,
+          "static_prints": 243,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "K9_KOJO2",
+          "line": 588,
+          "static_prints": 93,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EVENTEND",
+          "line": 797,
+          "static_prints": 19,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "KOJO_MESSAGE_COM_9",
+          "line": 877,
+          "static_prints": 1553,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            19,
+            20,
+            21,
+            22,
+            23,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            55,
+            56,
+            69,
+            80,
+            87,
+            123,
+            124,
+            125,
+            126,
+            127
+          ]
+        },
+        {
+          "function": "DOG_KOJO_9",
+          "line": 5211,
+          "static_prints": 157,
+          "status": "has_text",
+          "command_conditions": [
+            0,
+            1,
+            5,
+            6,
+            9,
+            21,
+            27,
+            30,
+            31,
+            34,
+            37,
+            43,
+            56
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_PALAMCNG_9",
+          "line": 6015,
+          "static_prints": 94,
+          "status": "has_text",
+          "command_conditions": [
+            50,
+            51
+          ]
+        },
+        {
+          "function": "KOJO_MESSAGE_MARKCNG_9",
+          "line": 6308,
+          "static_prints": 17,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "SELF_KOJO_K9",
+          "line": 6396,
+          "static_prints": 137,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_K9",
+          "line": 6800,
+          "static_prints": 6,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_RYOUZYOKU_AFTER_K9",
+          "line": 6818,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_VICTORY_K9",
+          "line": 6876,
+          "static_prints": 6,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "DUNGEON_ATTACK_K9",
+          "line": 6903,
+          "static_prints": 6,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BENKI_KOUJO_K9",
+          "line": 6933,
+          "static_prints": 25,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "COLOSSEUM_KOJO_9",
+          "line": 7038,
+          "static_prints": 45,
+          "status": "has_text",
+          "command_conditions": [
+            5,
+            21,
+            27,
+            31,
+            51,
+            55,
+            56
+          ]
+        },
+        {
+          "function": "NTR_KOUJO_K9",
+          "line": 7177,
+          "static_prints": 36,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "EXUCUTION_KOUJO_K9",
+          "line": 7277,
+          "static_prints": 4,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "MUSEUM_KOUJO_K9",
+          "line": 7294,
+          "static_prints": 10,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "BANISHMENT_KOUJO_K9",
+          "line": 7329,
+          "static_prints": 5,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "PUBLIC_EXUCUTION_KOUJO_K9",
+          "line": 7350,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GROTESQUE_KOUJO_K9",
+          "line": 7365,
+          "static_prints": 7,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "ENTERENEMY_KOUJO_K9",
+          "line": 7392,
+          "static_prints": 3,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_REQUEST_KOUJO_K9",
+          "line": 7406,
+          "static_prints": 17,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOHOUBI_AFTER_KOUJO_K9",
+          "line": 7448,
+          "static_prints": 18,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "OSIOKI_KOUJO_K9",
+          "line": 7524,
+          "static_prints": 15,
+          "status": "has_text",
+          "command_conditions": []
+        },
+        {
+          "function": "GOBI_KOUJO_K9",
+          "line": 7585,
+          "static_prints": 8,
+          "status": "has_text",
+          "command_conditions": []
+        }
+      ],
+      "caveat": "静态PRINT存在不等于该函数所有条件分支都有口上；未逐条改写成人文本。"
+    }
+  ],
+  "explicitly_not_completed": [
+    {
+      "category": "露骨性行为与强迫性调教口上",
+      "status": "not_newly_authored"
+    },
+    {
+      "category": "含露骨内容的个人成人结局",
+      "status": "retained_legacy_not_rewritten"
+    },
+    {
+      "category": "未实装的狂王本尊主线结局",
+      "status": "not_invented_by_voice_extension"
+    }
+  ],
+  "protections": [
+    "年幼角色仅新增非性内容。",
+    "加入、迁居与任职的成功反应不会在取消或失败时触发。",
+    "事件显示不改写金钱、行动、人物属性、既有选择和结局标志，也不消耗RAND。"
+  ]
+}

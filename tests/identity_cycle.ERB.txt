@@ -1,0 +1,40 @@
+﻿; 实际BEGIN TURNEND与EVENTSHOP往返。仅外来敌人生成及等待在副本中替换。
+@SYSTEM_TITLE
+CALL IP_RESET
+DAY = 20
+TIME = 0
+CFLAG:4:1 = 0
+CASTLE_PERSON:2:CP_HOME = CL_QUARTERS
+CASTLE_PERSON:2:CP_WORK = CL_BARRACKS
+CALL CASTLE_SYNC
+IC_UID = CASTLE_PERSON:3:CP_UID
+IC_STAGE = 0
+JUMP IC_ADVANCE
+
+@IC_ADVANCE
+CALL CASTLE_COMMAND(21002)
+CALL CASTLE_BRING(1)
+CALL CT_ASSERT(RESULT == 1 && CASTLE_STATE:6 == CASTLE_PERSON:1:CP_UID, "cycle begins with a real temporary guest")
+CALL CASTLE_SPEND
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_STATE:5 == 2, "same-period synchronization cannot refill actions")
+CALL CASTLE_COMMAND(21190)
+CALL CT_ASSERT(RESULT == 1, "actual castle rest command requests original turn progression")
+BEGIN TURNEND
+
+@EVENTSHOP
+#PRI
+#SINGLE
+CALL CASTLE_SYNC
+CALL CT_ASSERT(DAY == 20 + (IC_STAGE + 1) / 2 && TIME == (IC_STAGE + 1) % 2, "original engine advances exactly one half day per rest")
+CALL CT_ASSERT(CHARANUM == 5 && CASTLE_PERSON:3:CP_UID == IC_UID && CASTLE_ROLE(3) == CR_FAMILY, "daily callbacks preserve child identity and existing people")
+CALL CT_ASSERT(CASTLE_ROLE(1) == CR_CAPTIVE && CASTLE_PERSON:1:CP_HOME == CL_DUNGEON && CASTLE_STATE:6 == 0 && CASTLE_WHERE(1) == CL_DUNGEON, "actual turn clears guest without changing captive allegiance")
+CALL CT_ASSERT(CASTLE_ROLE(2) == CR_FOLLOWER && CASTLE_PERSON:2:CP_ORIGIN == 3 && CASTLE_PERSON:2:CP_WORK == CL_BARRACKS && CASTLE_WHERE(2) == (TIME == 0 ? CL_BARRACKS # CL_QUARTERS), "daily schedule preserves follower job and switches work and home")
+CALL CT_ASSERT(CASTLE_WHERE(3) == CL_FAMILY && CASTLE_PERSON:3:CP_WORK == 0 && CASTLE_ACCESS_REASON(3, CA_DISPOSE) != 0 && CASTLE_PROTECTED_REASON(3) != 0, "daily events do not turn a child into staff or an adult-event target")
+CALL CT_ASSERT(CASTLE_STATE:5 == 3, "new half day restores exactly three actions")
+IC_STAGE += 1
+SIF IC_STAGE < 4
+	JUMP IC_ADVANCE
+PRINTL IDENTITY TIME CYCLE ASSERTIONS PASSED
+OUTPUTLOG
+QUIT
