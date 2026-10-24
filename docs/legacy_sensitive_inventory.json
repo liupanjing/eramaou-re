@@ -1,0 +1,6113 @@
+{
+  "schema_version": 1,
+  "mode": "inventory_only",
+  "authoring_enabled": false,
+  "scope": "已识别的遗留敏感与混合内容区域；按文件及函数索引，不是新增场景写作清单。",
+  "completeness": "未穷尽全项目所有文本和运行分支；不得据此宣称所有露骨场景已逐一定位。",
+  "caveats": [
+    "有文件、有PRINT不等于条件分支齐全或实际可达。",
+    "旧角色文件也含非露骨反应，不应整体归类为露骨。",
+    "涉及年幼角色的遗留文件仅作审计登记，不作为成人创作任务；现有保护保持。",
+    "不提供敏感正文、续写提纲或可导入的成人草稿字段。"
+  ],
+  "areas": [
+    {
+      "id": "LEGACY-01",
+      "name": "旧指令实现",
+      "mode": "inventory_only",
+      "status": "retained_not_fully_audited",
+      "authoring_enabled": false,
+      "note": "指令文件包含敏感正文，也包含会话、等待等非露骨指令，不能整批视为缺文。",
+      "shared_files": [
+        {
+          "file": "ERB/COMF0_愛撫.ERB",
+          "declarations": [
+            {
+              "function": "COM0",
+              "line": 7
+            },
+            {
+              "function": "COM0_AUTO",
+              "line": 174
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF100_触手召喚.ERB",
+          "declarations": [
+            {
+              "function": "COM100",
+              "line": 3
+            },
+            {
+              "function": "EQUIP_COM100",
+              "line": 67
+            },
+            {
+              "function": "COM101",
+              "line": 248
+            },
+            {
+              "function": "COM102",
+              "line": 253
+            },
+            {
+              "function": "COM103",
+              "line": 258
+            },
+            {
+              "function": "COM104",
+              "line": 263
+            },
+            {
+              "function": "COM105",
+              "line": 268
+            },
+            {
+              "function": "COM106",
+              "line": 273
+            },
+            {
+              "function": "COM107",
+              "line": 278
+            },
+            {
+              "function": "COM108",
+              "line": 283
+            },
+            {
+              "function": "EQUIP_COM108",
+              "line": 352
+            },
+            {
+              "function": "COM109",
+              "line": 407
+            },
+            {
+              "function": "SYOKUSYU_MILK",
+              "line": 412
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF10_振動の宝石.ERB",
+          "declarations": [
+            {
+              "function": "COM10",
+              "line": 8
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF110_服の着脱.ERB",
+          "declarations": [
+            {
+              "function": "COM110",
+              "line": 8
+            },
+            {
+              "function": "COM110_ABLE0T",
+              "line": 329
+            },
+            {
+              "function": "COM110_ABLE0W",
+              "line": 351
+            },
+            {
+              "function": "COM110_ABLE1T",
+              "line": 379
+            },
+            {
+              "function": "COM110_ABLE1W",
+              "line": 392
+            },
+            {
+              "function": "COM110_ABLE2T",
+              "line": 413
+            },
+            {
+              "function": "COM110_ABLE2W",
+              "line": 426
+            },
+            {
+              "function": "COM110_ABLE3T",
+              "line": 445
+            },
+            {
+              "function": "COM110_ABLE3W",
+              "line": 458
+            },
+            {
+              "function": "COM110_ABLE4T",
+              "line": 477
+            },
+            {
+              "function": "COM110_ABLE4W",
+              "line": 490
+            },
+            {
+              "function": "COM110_ABLE5T",
+              "line": 506
+            },
+            {
+              "function": "COM110_ABLE5W",
+              "line": 522
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF111_服を破る.ERB",
+          "declarations": [
+            {
+              "function": "COM111",
+              "line": 7
+            },
+            {
+              "function": "COM111_ABLE0L",
+              "line": 174
+            },
+            {
+              "function": "COM111_ABLE1L",
+              "line": 184
+            },
+            {
+              "function": "COM111_ABLE2L",
+              "line": 197
+            },
+            {
+              "function": "COM111_ABLE3L",
+              "line": 210
+            },
+            {
+              "function": "COM111_ABLE4L",
+              "line": 223
+            },
+            {
+              "function": "COM111_ABLE5L",
+              "line": 236
+            },
+            {
+              "function": "COM111_ABLE6L",
+              "line": 249
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF11_バイブ.ERB",
+          "declarations": [
+            {
+              "function": "COM11",
+              "line": 7
+            },
+            {
+              "function": "EQUIP_COM11",
+              "line": 177
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF120_挿入Ｇスポ責め.ERB",
+          "declarations": [
+            {
+              "function": "COM120",
+              "line": 6
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF121_挿入子宮口責め.ERB",
+          "declarations": [
+            {
+              "function": "COM121",
+              "line": 6
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF122_兜あわせ.ERB",
+          "declarations": [
+            {
+              "function": "COM122",
+              "line": 6
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF123_パイズリフェラ.ERB",
+          "declarations": [
+            {
+              "function": "COM123",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF124_ディープスロート.ERB",
+          "declarations": [
+            {
+              "function": "COM124",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF125_フェラ自慰.ERB",
+          "declarations": [
+            {
+              "function": "COM125",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF126_手コキフェラ.ERB",
+          "declarations": [
+            {
+              "function": "COM126",
+              "line": 6
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF127_バキュームフェラ.ERB",
+          "declarations": [
+            {
+              "function": "COM127",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF128_正常位・キス.ERB",
+          "declarations": [
+            {
+              "function": "COM128",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF129_正常位・胸愛撫.ERB",
+          "declarations": [
+            {
+              "function": "COM129",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF12_振動の杖.ERB",
+          "declarations": [
+            {
+              "function": "COM12",
+              "line": 9
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF130_正常位ＳＰ.ERB",
+          "declarations": [
+            {
+              "function": "COM130",
+              "line": 9
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF131_後背位・胸愛撫.ERB",
+          "declarations": [
+            {
+              "function": "COM131",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF132_後背位・スパンキング.ERB",
+          "declarations": [
+            {
+              "function": "COM132",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF133_立ちバック.ERB",
+          "declarations": [
+            {
+              "function": "COM133",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF134_後背位ＳＰ.ERB",
+          "declarations": [
+            {
+              "function": "COM134",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF135_セルフクンニ.ERB",
+          "declarations": [
+            {
+              "function": "COM135",
+              "line": 9
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF13_アナルワーム.ERB",
+          "declarations": [
+            {
+              "function": "COM13",
+              "line": 7
+            },
+            {
+              "function": "EQUIP_COM13",
+              "line": 204
+            },
+            {
+              "function": "COM13_AUTO",
+              "line": 384
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF14_クリキャップ.ERB",
+          "declarations": [
+            {
+              "function": "COM14",
+              "line": 7
+            },
+            {
+              "function": "EQUIP_COM14",
+              "line": 73
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF150_フリー調教.ERB",
+          "declarations": [
+            {
+              "function": "COM150",
+              "line": 6
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF15_二プルキャップ.ERB",
+          "declarations": [
+            {
+              "function": "COM15",
+              "line": 7
+            },
+            {
+              "function": "EQUIP_COM15",
+              "line": 92
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF16_搾乳器.ERB",
+          "declarations": [
+            {
+              "function": "COM16",
+              "line": 7
+            },
+            {
+              "function": "EQUIP_COM16",
+              "line": 104
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF17_オナホール.ERB",
+          "declarations": [
+            {
+              "function": "COM17",
+              "line": 7
+            },
+            {
+              "function": "EQUIP_COM17",
+              "line": 76
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF18_シャワー.ERB",
+          "declarations": [
+            {
+              "function": "COM18",
+              "line": 7
+            },
+            {
+              "function": "EQUIP_COM18",
+              "line": 111
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF19_アナルビーズ.ERB",
+          "declarations": [
+            {
+              "function": "COM19",
+              "line": 7
+            },
+            {
+              "function": "EQUIP_COM19",
+              "line": 161
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF1_クンニ.ERB",
+          "declarations": [
+            {
+              "function": "COM1",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF200_コロシアム.ERB",
+          "declarations": [
+            {
+              "function": "COM200",
+              "line": 8
+            },
+            {
+              "function": "EQUIP_COM200",
+              "line": 40
+            },
+            {
+              "function": "COM_AFTER_ARENA",
+              "line": 73
+            },
+            {
+              "function": "ARENA_SLAVE_POINT",
+              "line": 98
+            },
+            {
+              "function": "ARENA_ASSI_POINT",
+              "line": 126
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF201_助手.ERB",
+          "declarations": [
+            {
+              "function": "COM201",
+              "line": 8
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF202_最下層民.ERB",
+          "declarations": [
+            {
+              "function": "COM202",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF203_カビ犬.ERB",
+          "declarations": [
+            {
+              "function": "COM203",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF204_オーク.ERB",
+          "declarations": [
+            {
+              "function": "COM204",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF205_腐れ豚.ERB",
+          "declarations": [
+            {
+              "function": "COM205",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF206_トロル.ERB",
+          "declarations": [
+            {
+              "function": "COM206",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF207_媚薬スライム.ERB",
+          "declarations": [
+            {
+              "function": "COM207",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF208_触手.ERB",
+          "declarations": [
+            {
+              "function": "COM208",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF20_正常位.ERB",
+          "declarations": [
+            {
+              "function": "COM20",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF21_後背位.ERB",
+          "declarations": [
+            {
+              "function": "COM21",
+              "line": 8
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF22_対面座位.ERB",
+          "declarations": [
+            {
+              "function": "COM22",
+              "line": 8
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF23_背面座位.ERB",
+          "declarations": [
+            {
+              "function": "COM23",
+              "line": 8
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF24_逆レイプ.ERB",
+          "declarations": [
+            {
+              "function": "COM24",
+              "line": 6
+            },
+            {
+              "function": "COM24_CHECK",
+              "line": 34
+            },
+            {
+              "function": "COM24_EXE_DETER",
+              "line": 192
+            },
+            {
+              "function": "COM24_SRC",
+              "line": 215
+            },
+            {
+              "function": "COM24_POST",
+              "line": 355
+            },
+            {
+              "function": "EVENT_SEITSU_V",
+              "line": 449
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF25_逆アナルレイプ.ERB",
+          "declarations": [
+            {
+              "function": "COM25",
+              "line": 6
+            },
+            {
+              "function": "COM25_CHECK",
+              "line": 27
+            },
+            {
+              "function": "COM25_SRC",
+              "line": 172
+            },
+            {
+              "function": "COM25_POST",
+              "line": 312
+            },
+            {
+              "function": "EVENT_SEITSU_A",
+              "line": 366
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF26_正常位アナル.ERB",
+          "declarations": [
+            {
+              "function": "COM26",
+              "line": 9
+            },
+            {
+              "function": "COM26_SRC",
+              "line": 36
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF27_後背位アナル.ERB",
+          "declarations": [
+            {
+              "function": "COM27",
+              "line": 3
+            },
+            {
+              "function": "COM27_SRC",
+              "line": 34
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF28_対面座位アナル.ERB",
+          "declarations": [
+            {
+              "function": "COM28",
+              "line": 7
+            },
+            {
+              "function": "COM28_EXP",
+              "line": 23
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF29_背面座位アナル.ERB",
+          "declarations": [
+            {
+              "function": "COM29",
+              "line": 7
+            },
+            {
+              "function": "COM29_EXP",
+              "line": 24
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF2_アナル愛撫.ERB",
+          "declarations": [
+            {
+              "function": "COM2",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF30_手淫.ERB",
+          "declarations": [
+            {
+              "function": "COM30",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF31_フェラチオ.ERB",
+          "declarations": [
+            {
+              "function": "COM31",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF32_パイズリ.ERB",
+          "declarations": [
+            {
+              "function": "COM32",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF33_素股.ERB",
+          "declarations": [
+            {
+              "function": "COM33",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF34_騎乗位.ERB",
+          "declarations": [
+            {
+              "function": "COM34",
+              "line": 7
+            },
+            {
+              "function": "COM34_CHECK",
+              "line": 40
+            },
+            {
+              "function": "COM34_EXE_DETER",
+              "line": 287
+            },
+            {
+              "function": "COM34_SRC",
+              "line": 311
+            },
+            {
+              "function": "COM34_POST",
+              "line": 574
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF35_泡踊り.ERB",
+          "declarations": [
+            {
+              "function": "COM35",
+              "line": 8
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF36_騎乗位アナル.ERB",
+          "declarations": [
+            {
+              "function": "COM36",
+              "line": 7
+            },
+            {
+              "function": "COM36_CHECK",
+              "line": 19
+            },
+            {
+              "function": "COM36_SRC",
+              "line": 237
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF37_アナル奉仕.ERB",
+          "declarations": [
+            {
+              "function": "COM37",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF38_足コキ.ERB",
+          "declarations": [
+            {
+              "function": "COM38",
+              "line": 8
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF3_自慰.ERB",
+          "declarations": [
+            {
+              "function": "COM3",
+              "line": 9
+            },
+            {
+              "function": "COM3_AUTO",
+              "line": 872
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF40_スパンキング.ERB",
+          "declarations": [
+            {
+              "function": "COM40",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF41_鞭.ERB",
+          "declarations": [
+            {
+              "function": "COM41",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF42_針.ERB",
+          "declarations": [
+            {
+              "function": "COM42",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF43_アイマスク.ERB",
+          "declarations": [
+            {
+              "function": "COM43",
+              "line": 7
+            },
+            {
+              "function": "EQUIP_COM43",
+              "line": 95
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF44_縄.ERB",
+          "declarations": [
+            {
+              "function": "COM44",
+              "line": 7
+            },
+            {
+              "function": "EQUIP_COM44",
+              "line": 110
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF45_ボールギャグ.ERB",
+          "declarations": [
+            {
+              "function": "COM45",
+              "line": 7
+            },
+            {
+              "function": "EQUIP_COM45",
+              "line": 50
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF46_浣腸器＋プラグ.ERB",
+          "declarations": [
+            {
+              "function": "COM46",
+              "line": 7
+            },
+            {
+              "function": "EQUIP_COM46",
+              "line": 203
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF47_ボンデージ装着.ERB",
+          "declarations": [
+            {
+              "function": "COM47",
+              "line": 7
+            },
+            {
+              "function": "EQUIP_COM47",
+              "line": 38
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF48_足コキする.ERB",
+          "declarations": [
+            {
+              "function": "COM48",
+              "line": 7
+            },
+            {
+              "function": "EVENT_SEITSU_ASIKOKI",
+              "line": 108
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF49_アナル電極.ERB",
+          "declarations": [
+            {
+              "function": "COM49",
+              "line": 7
+            },
+            {
+              "function": "EQUIP_COM49",
+              "line": 148
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF4_フェラする.ERB",
+          "declarations": [
+            {
+              "function": "COM4",
+              "line": 7
+            },
+            {
+              "function": "EVENT_SEITSU",
+              "line": 107
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF50_ローション.ERB",
+          "declarations": [
+            {
+              "function": "COM50",
+              "line": 3
+            },
+            {
+              "function": "COM50_AUTO",
+              "line": 30
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF51_媚薬.ERB",
+          "declarations": [
+            {
+              "function": "COM51",
+              "line": 10
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF52_利尿剤.ERB",
+          "declarations": [
+            {
+              "function": "COM52",
+              "line": 6
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF53_水晶球.ERB",
+          "declarations": [
+            {
+              "function": "COM53",
+              "line": 3
+            },
+            {
+              "function": "EQUIP_COM53",
+              "line": 54
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF54_野外プレイ.ERB",
+          "declarations": [
+            {
+              "function": "COM54",
+              "line": 3
+            },
+            {
+              "function": "EQUIP_COM54",
+              "line": 111
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF55_何もしない.ERB",
+          "declarations": [
+            {
+              "function": "COM55",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF56_会話する.ERB",
+          "declarations": [
+            {
+              "function": "COM56",
+              "line": 6
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF57_羞恥プレイ.ERB",
+          "declarations": [
+            {
+              "function": "COM57",
+              "line": 3
+            },
+            {
+              "function": "EQUIP_COM57",
+              "line": 134
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF58_お風呂場プレイ.ERB",
+          "declarations": [
+            {
+              "function": "COM58",
+              "line": 3
+            },
+            {
+              "function": "EQUIP_COM58",
+              "line": 100
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF59_新妻プレイ.ERB",
+          "declarations": [
+            {
+              "function": "COM59",
+              "line": 3
+            },
+            {
+              "function": "EQUIP_COM59",
+              "line": 163
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF5_胸愛撫.ERB",
+          "declarations": [
+            {
+              "function": "COM5",
+              "line": 7
+            },
+            {
+              "function": "EVENT_JUNYU",
+              "line": 126
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF60_助手にキス.ERB",
+          "declarations": [
+            {
+              "function": "COM60",
+              "line": 3
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF61_クンニ強制.ERB",
+          "declarations": [
+            {
+              "function": "COM61",
+              "line": 3
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF62_助手を犯す.ERB",
+          "declarations": [
+            {
+              "function": "COM62",
+              "line": 8
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF63_貝あわせ.ERB",
+          "declarations": [
+            {
+              "function": "COM63",
+              "line": 3
+            },
+            {
+              "function": "COM63_AUTO",
+              "line": 157
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF64_３Ｐ.ERB",
+          "declarations": [
+            {
+              "function": "COM64",
+              "line": 15
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF65_助手を犯させる.ERB",
+          "declarations": [
+            {
+              "function": "COM65",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF66_ニ本フェラ.ERB",
+          "declarations": [
+            {
+              "function": "COM66",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF67_足コキする.ERB",
+          "declarations": [
+            {
+              "function": "COM67",
+              "line": 3
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF68_ダブルフェラ.ERB",
+          "declarations": [
+            {
+              "function": "COM68",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF69_シックスナイン.ERB",
+          "declarations": [
+            {
+              "function": "COM69",
+              "line": 15
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF6_キス.ERB",
+          "declarations": [
+            {
+              "function": "COM6",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF70_ダブル素股.ERB",
+          "declarations": [
+            {
+              "function": "COM70",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF71_ダブルパイズリ.ERB",
+          "declarations": [
+            {
+              "function": "COM71",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF72_陰毛を剃る.ERB",
+          "declarations": [
+            {
+              "function": "COM72",
+              "line": 3
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF73_髪型を弄る.ERB",
+          "declarations": [
+            {
+              "function": "COM73",
+              "line": 3
+            },
+            {
+              "function": "HAIRSET",
+              "line": 63
+            },
+            {
+              "function": "HAIRSET_TALK_1",
+              "line": 231
+            },
+            {
+              "function": "HAIRSET_TALK_2",
+              "line": 236
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF7_秘貝開帳.ERB",
+          "declarations": [
+            {
+              "function": "COM7",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF80_イラマチオ.ERB",
+          "declarations": [
+            {
+              "function": "COM80",
+              "line": 3
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF81_フィストファック.ERB",
+          "declarations": [
+            {
+              "function": "COM81",
+              "line": 3
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF82_アナルフィスト.ERB",
+          "declarations": [
+            {
+              "function": "COM82",
+              "line": 3
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF83_両穴フィスト.ERB",
+          "declarations": [
+            {
+              "function": "COM83",
+              "line": 3
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF84_Gスポット刺激.ERB",
+          "declarations": [
+            {
+              "function": "COM84",
+              "line": 3
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF85_放尿.ERB",
+          "declarations": [
+            {
+              "function": "COM85",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF87_ピアシング.ERB",
+          "declarations": [
+            {
+              "function": "COM87",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF89_獣姦プレイ.ERB",
+          "declarations": [
+            {
+              "function": "COM89",
+              "line": 6
+            },
+            {
+              "function": "EQUIP_COM89",
+              "line": 23
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF8_指挿入れ.ERB",
+          "declarations": [
+            {
+              "function": "COM8",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF90_ニプルファック.ERB",
+          "declarations": [
+            {
+              "function": "COM90",
+              "line": 8
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF9_アナル舐め.ERB",
+          "declarations": [
+            {
+              "function": "COM9",
+              "line": 7
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF_ANALSEX.ERB",
+          "declarations": [
+            {
+              "function": "COM_EJAC_PLAYER_ANALSEX",
+              "line": 6
+            },
+            {
+              "function": "COM_AFTER_ANAL_SEX",
+              "line": 337
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF_CONDOM.ERB",
+          "declarations": [
+            {
+              "function": "CONDOM_SETTINGS",
+              "line": 10
+            },
+            {
+              "function": "CONFIRM_CONDOM",
+              "line": 42
+            },
+            {
+              "function": "CONFIRM_CONDOM2",
+              "line": 165
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF_JUMP.ERB",
+          "declarations": [
+            {
+              "function": "GET_ADV_COM",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "file": "ERB/COMF_VAGINASEX.ERB",
+          "declarations": [
+            {
+              "function": "CONFIRM_LOST_VIRGIN",
+              "line": 6
+            },
+            {
+              "function": "CONFIRM_LOST_VIRGIN_YOU",
+              "line": 21
+            },
+            {
+              "function": "COM_EJAC_PLAYER_SEX",
+              "line": 40
+            },
+            {
+              "function": "COM_EJAC_PLAYER_MILK",
+              "line": 721
+            },
+            {
+              "function": "COM_AFTER_VAGINA_SEX",
+              "line": 845
+            },
+            {
+              "function": "COM_AFTER_EXTRA_SEX",
+              "line": 1020
+            }
+          ]
+        }
+      ],
+      "character_entries": []
+    },
+    {
+      "id": "LEGACY-02",
+      "name": "角色开始与结束反应",
+      "mode": "inventory_only",
+      "status": "retained_not_fully_audited",
+      "authoring_enabled": false,
+      "note": "混合普通开场和敏感分支；同名函数还承担口上开关管理。",
+      "shared_files": [],
+      "character_entries": [
+        {
+          "file": "ERB/EVENT_K0_慈愛.ERB",
+          "sections": [
+            {
+              "function": "EVENTTRAIN",
+              "line": 73,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 79,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTTRAIN",
+              "line": 87,
+              "static_prints": 132,
+              "status": "has_text"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 601,
+              "static_prints": 12,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K10_クラブ.ERB",
+          "sections": [
+            {
+              "function": "EVENTTRAIN",
+              "line": 62,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 68,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTTRAIN",
+              "line": 76,
+              "static_prints": 247,
+              "status": "has_text"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 816,
+              "static_prints": 18,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K11_リリィ.ERB",
+          "sections": [
+            {
+              "function": "EVENTTRAIN",
+              "line": 100,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 106,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTTRAIN",
+              "line": 114,
+              "static_prints": 178,
+              "status": "has_text"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 651,
+              "static_prints": 31,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K12_知的.ERB",
+          "sections": [
+            {
+              "function": "EVENTTRAIN",
+              "line": 67,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 73,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTTRAIN",
+              "line": 81,
+              "static_prints": 23,
+              "status": "has_text"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 312,
+              "static_prints": 16,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K13_庇護者.ERB",
+          "sections": [
+            {
+              "function": "EVENTTRAIN",
+              "line": 71,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 77,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTTRAIN",
+              "line": 85,
+              "static_prints": 53,
+              "status": "has_text"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 438,
+              "static_prints": 31,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K14_貴公子.ERB",
+          "sections": [
+            {
+              "function": "EVENTTRAIN",
+              "line": 39,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 45,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTTRAIN",
+              "line": 53,
+              "static_prints": 87,
+              "status": "has_text"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 500,
+              "static_prints": 18,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K15_伶俐.ERB",
+          "sections": [
+            {
+              "function": "EVENTTRAIN",
+              "line": 29,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 35,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTTRAIN",
+              "line": 43,
+              "static_prints": 50,
+              "status": "has_text"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 316,
+              "static_prints": 19,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K19_菲娅.ERB",
+          "sections": [
+            {
+              "function": "EVENTTRAIN",
+              "line": 51,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 57,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTTRAIN",
+              "line": 65,
+              "static_prints": 99,
+              "status": "has_text"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 654,
+              "static_prints": 31,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K1_自信家.ERB",
+          "sections": [
+            {
+              "function": "EVENTTRAIN",
+              "line": 84,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 90,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTTRAIN",
+              "line": 98,
+              "static_prints": 191,
+              "status": "has_text"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 869,
+              "static_prints": 14,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K2_気弱.ERB",
+          "sections": [
+            {
+              "function": "EVENTTRAIN",
+              "line": 80,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 86,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTTRAIN",
+              "line": 94,
+              "static_prints": 155,
+              "status": "has_text"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 740,
+              "static_prints": 24,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K3_高貴.ERB",
+          "sections": [
+            {
+              "function": "EVENTTRAIN",
+              "line": 81,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 87,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTTRAIN",
+              "line": 95,
+              "static_prints": 178,
+              "status": "has_text"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 790,
+              "static_prints": 16,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K4_冷徹.ERB",
+          "sections": [
+            {
+              "function": "EVENTTRAIN",
+              "line": 61,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 67,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTTRAIN",
+              "line": 75,
+              "static_prints": 24,
+              "status": "has_text"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 456,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K5_マオ.ERB",
+          "sections": [
+            {
+              "function": "EVENTTRAIN",
+              "line": 80,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 86,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTTRAIN",
+              "line": 94,
+              "static_prints": 108,
+              "status": "has_text"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 664,
+              "static_prints": 26,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K6_悪女.ERB",
+          "sections": [
+            {
+              "function": "EVENTTRAIN",
+              "line": 73,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 79,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTTRAIN",
+              "line": 87,
+              "static_prints": 148,
+              "status": "has_text"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 586,
+              "static_prints": 23,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K7_ハート.ERB",
+          "sections": [
+            {
+              "function": "EVENTTRAIN",
+              "line": 62,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 68,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTTRAIN",
+              "line": 75,
+              "static_prints": 244,
+              "status": "has_text"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 825,
+              "static_prints": 23,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K8_スペード.ERB",
+          "sections": [
+            {
+              "function": "EVENTTRAIN",
+              "line": 61,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 67,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTTRAIN",
+              "line": 75,
+              "static_prints": 255,
+              "status": "has_text"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 813,
+              "static_prints": 18,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K903_嘉德.ERB",
+          "sections": [
+            {
+              "function": "EVENTTRAIN",
+              "line": 59,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 65,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTTRAIN",
+              "line": 73,
+              "static_prints": 32,
+              "status": "has_text"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 464,
+              "static_prints": 11,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K904_菲娅.ERB",
+          "sections": [
+            {
+              "function": "EVENTTRAIN",
+              "line": 51,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 57,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTTRAIN",
+              "line": 65,
+              "static_prints": 99,
+              "status": "has_text"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 654,
+              "static_prints": 31,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K9_ダイヤ.ERB",
+          "sections": [
+            {
+              "function": "EVENTTRAIN",
+              "line": 54,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 60,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            },
+            {
+              "function": "EVENTTRAIN",
+              "line": 67,
+              "static_prints": 243,
+              "status": "has_text"
+            },
+            {
+              "function": "EVENTEND",
+              "line": 797,
+              "static_prints": 19,
+              "status": "has_text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LEGACY-03",
+      "name": "角色指令反馈",
+      "mode": "inventory_only",
+      "status": "retained_not_fully_audited",
+      "authoring_enabled": false,
+      "note": "已有大量正文；各指令和条件分支是否完整尚未逐项核验。",
+      "shared_files": [],
+      "character_entries": [
+        {
+          "file": "ERB/EVENT_K0_慈愛.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_COM_0",
+              "line": 674,
+              "static_prints": 1526,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K10_クラブ.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_COM_10",
+              "line": 900,
+              "static_prints": 1374,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K11_リリィ.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_COM_11",
+              "line": 749,
+              "static_prints": 4625,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K12_知的.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_COM_12",
+              "line": 401,
+              "static_prints": 583,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K13_庇護者.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_COM_13",
+              "line": 536,
+              "static_prints": 584,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K14_貴公子.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_COM_14",
+              "line": 603,
+              "static_prints": 525,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K15_伶俐.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_COM_15",
+              "line": 406,
+              "static_prints": 755,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K19_菲娅.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_COM_19",
+              "line": 750,
+              "static_prints": 1583,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K1_自信家.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_COM_1",
+              "line": 980,
+              "static_prints": 1566,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K2_気弱.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_COM_2",
+              "line": 852,
+              "static_prints": 1239,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K3_高貴.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_COM_3",
+              "line": 887,
+              "static_prints": 1664,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K4_冷徹.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_COM_4",
+              "line": 521,
+              "static_prints": 507,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K5_マオ.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_COM_5",
+              "line": 770,
+              "static_prints": 1823,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K6_悪女.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_COM_6",
+              "line": 679,
+              "static_prints": 1818,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K7_ハート.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_COM_7",
+              "line": 908,
+              "static_prints": 2161,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K8_スペード.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_COM_8",
+              "line": 891,
+              "static_prints": 1832,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K903_嘉德.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_COM_903",
+              "line": 532,
+              "static_prints": 675,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K904_菲娅.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_COM_904",
+              "line": 750,
+              "static_prints": 1583,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K9_ダイヤ.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_COM_9",
+              "line": 877,
+              "static_prints": 1553,
+              "status": "has_text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LEGACY-04",
+      "name": "角色属性与刻印变化",
+      "mode": "inventory_only",
+      "status": "retained_not_fully_audited",
+      "authoring_enabled": false,
+      "note": "同一函数混合普通状态变化与敏感反应，不能一律标记为露骨。",
+      "shared_files": [],
+      "character_entries": [
+        {
+          "file": "ERB/EVENT_K0_慈愛.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_PALAMCNG_0",
+              "line": 6507,
+              "static_prints": 64,
+              "status": "has_text"
+            },
+            {
+              "function": "KOJO_MESSAGE_MARKCNG_0",
+              "line": 6756,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K10_クラブ.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_PALAMCNG_10",
+              "line": 5654,
+              "static_prints": 96,
+              "status": "has_text"
+            },
+            {
+              "function": "KOJO_MESSAGE_MARKCNG_10",
+              "line": 5949,
+              "static_prints": 16,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K11_リリィ.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_PALAMCNG_11",
+              "line": 11463,
+              "static_prints": 128,
+              "status": "has_text"
+            },
+            {
+              "function": "KOJO_MESSAGE_MARKCNG_11",
+              "line": 11794,
+              "static_prints": 22,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K12_知的.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_PALAMCNG_12",
+              "line": 4349,
+              "static_prints": 30,
+              "status": "has_text"
+            },
+            {
+              "function": "KOJO_MESSAGE_MARKCNG_12",
+              "line": 4551,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K13_庇護者.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_PALAMCNG_13",
+              "line": 4442,
+              "static_prints": 28,
+              "status": "has_text"
+            },
+            {
+              "function": "KOJO_MESSAGE_MARKCNG_13",
+              "line": 4688,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K14_貴公子.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_PALAMCNG_14",
+              "line": 4368,
+              "static_prints": 28,
+              "status": "has_text"
+            },
+            {
+              "function": "KOJO_MESSAGE_MARKCNG_14",
+              "line": 4566,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K15_伶俐.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_PALAMCNG_15",
+              "line": 4894,
+              "static_prints": 41,
+              "status": "has_text"
+            },
+            {
+              "function": "KOJO_MESSAGE_MARKCNG_15",
+              "line": 5105,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K19_菲娅.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_PALAMCNG_19",
+              "line": 4858,
+              "static_prints": 118,
+              "status": "has_text"
+            },
+            {
+              "function": "KOJO_MESSAGE_MARKCNG_19",
+              "line": 5197,
+              "static_prints": 19,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K1_自信家.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_PALAMCNG_1",
+              "line": 6471,
+              "static_prints": 62,
+              "status": "has_text"
+            },
+            {
+              "function": "KOJO_MESSAGE_MARKCNG_1",
+              "line": 6716,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K2_気弱.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_PALAMCNG_2",
+              "line": 5527,
+              "static_prints": 66,
+              "status": "has_text"
+            },
+            {
+              "function": "KOJO_MESSAGE_MARKCNG_2",
+              "line": 5775,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K3_高貴.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_PALAMCNG_3",
+              "line": 7075,
+              "static_prints": 103,
+              "status": "has_text"
+            },
+            {
+              "function": "KOJO_MESSAGE_MARKCNG_3",
+              "line": 7414,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K4_冷徹.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_PALAMCNG_4",
+              "line": 3915,
+              "static_prints": 30,
+              "status": "has_text"
+            },
+            {
+              "function": "KOJO_MESSAGE_MARKCNG_4",
+              "line": 4119,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K5_マオ.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_PALAMCNG_5",
+              "line": 5654,
+              "static_prints": 108,
+              "status": "has_text"
+            },
+            {
+              "function": "KOJO_MESSAGE_MARKCNG_5",
+              "line": 5970,
+              "static_prints": 19,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K6_悪女.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_PALAMCNG_6",
+              "line": 6560,
+              "static_prints": 92,
+              "status": "has_text"
+            },
+            {
+              "function": "KOJO_MESSAGE_MARKCNG_6",
+              "line": 6858,
+              "static_prints": 16,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K7_ハート.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_PALAMCNG_7",
+              "line": 7086,
+              "static_prints": 155,
+              "status": "has_text"
+            },
+            {
+              "function": "KOJO_MESSAGE_MARKCNG_7",
+              "line": 7463,
+              "static_prints": 14,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K8_スペード.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_PALAMCNG_8",
+              "line": 6250,
+              "static_prints": 110,
+              "status": "has_text"
+            },
+            {
+              "function": "KOJO_MESSAGE_MARKCNG_8",
+              "line": 6568,
+              "static_prints": 15,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K903_嘉德.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_PALAMCNG_903",
+              "line": 4341,
+              "static_prints": 33,
+              "status": "has_text"
+            },
+            {
+              "function": "KOJO_MESSAGE_MARKCNG_903",
+              "line": 4548,
+              "static_prints": 9,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K904_菲娅.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_PALAMCNG_904",
+              "line": 4858,
+              "static_prints": 118,
+              "status": "has_text"
+            },
+            {
+              "function": "KOJO_MESSAGE_MARKCNG_904",
+              "line": 5197,
+              "static_prints": 19,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K9_ダイヤ.ERB",
+          "sections": [
+            {
+              "function": "KOJO_MESSAGE_PALAMCNG_9",
+              "line": 6015,
+              "static_prints": 94,
+              "status": "has_text"
+            },
+            {
+              "function": "KOJO_MESSAGE_MARKCNG_9",
+              "line": 6308,
+              "static_prints": 17,
+              "status": "has_text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LEGACY-05",
+      "name": "角色独立反应及辅助函数",
+      "mode": "inventory_only",
+      "status": "retained_not_fully_audited",
+      "authoring_enabled": false,
+      "note": "包含条件反应、语尾和返回字符串辅助逻辑；没有PRINT不能作为空壳证据。",
+      "shared_files": [],
+      "character_entries": [
+        {
+          "file": "ERB/EVENT_K0_慈愛.ERB",
+          "sections": [
+            {
+              "function": "DOG_KOJO_0",
+              "line": 5481,
+              "static_prints": 364,
+              "status": "has_text"
+            },
+            {
+              "function": "SELF_KOJO_K0",
+              "line": 6832,
+              "static_prints": 105,
+              "status": "has_text"
+            },
+            {
+              "function": "GOBI_KOUJO_K0",
+              "line": 8346,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K10_クラブ.ERB",
+          "sections": [
+            {
+              "function": "DOG_KOJO_10",
+              "line": 4850,
+              "static_prints": 157,
+              "status": "has_text"
+            },
+            {
+              "function": "SELF_KOJO_K10",
+              "line": 6031,
+              "static_prints": 159,
+              "status": "has_text"
+            },
+            {
+              "function": "GOBI_KOUJO_K10",
+              "line": 7275,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K11_リリィ.ERB",
+          "sections": [
+            {
+              "function": "DOG_KOJO_11",
+              "line": 10658,
+              "static_prints": 157,
+              "status": "has_text"
+            },
+            {
+              "function": "SELF_KOJO_K11",
+              "line": 11881,
+              "static_prints": 118,
+              "status": "has_text"
+            },
+            {
+              "function": "AEGI_K11",
+              "line": 13090,
+              "static_prints": 0,
+              "status": "declaration_or_delegation_only"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K12_知的.ERB",
+          "sections": [
+            {
+              "function": "DOG_KOJO_12",
+              "line": 3538,
+              "static_prints": 165,
+              "status": "has_text"
+            },
+            {
+              "function": "SELF_KOJO_K12",
+              "line": 4614,
+              "static_prints": 36,
+              "status": "has_text"
+            },
+            {
+              "function": "GOBI_KOUJO_K12",
+              "line": 5927,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K13_庇護者.ERB",
+          "sections": [
+            {
+              "function": "DOG_KOJO_13",
+              "line": 3637,
+              "static_prints": 157,
+              "status": "has_text"
+            },
+            {
+              "function": "KOJO_MESSAGE_SYASEI_13",
+              "line": 4640,
+              "static_prints": 12,
+              "status": "has_text"
+            },
+            {
+              "function": "SELF_KOJO_K13",
+              "line": 4751,
+              "static_prints": 35,
+              "status": "has_text"
+            },
+            {
+              "function": "GOBI_KOUJO_K13",
+              "line": 5970,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K14_貴公子.ERB",
+          "sections": [
+            {
+              "function": "DOG_KOJO_14",
+              "line": 3563,
+              "static_prints": 157,
+              "status": "has_text"
+            },
+            {
+              "function": "SELF_KOJO_K14",
+              "line": 4629,
+              "static_prints": 36,
+              "status": "has_text"
+            },
+            {
+              "function": "GOBI_KOUJO_K14",
+              "line": 5911,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K15_伶俐.ERB",
+          "sections": [
+            {
+              "function": "DOG_KOJO_15",
+              "line": 4027,
+              "static_prints": 196,
+              "status": "has_text"
+            },
+            {
+              "function": "SELF_KOJO_K15",
+              "line": 5168,
+              "static_prints": 55,
+              "status": "has_text"
+            },
+            {
+              "function": "GOBI_KOUJO_K15",
+              "line": 6336,
+              "static_prints": 6,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K19_菲娅.ERB",
+          "sections": [
+            {
+              "function": "SELF_KOJO_K19",
+              "line": 5287,
+              "static_prints": 186,
+              "status": "has_text"
+            },
+            {
+              "function": "GOBI_KOUJO_K19",
+              "line": 6693,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K1_自信家.ERB",
+          "sections": [
+            {
+              "function": "DOG_KOJO_1",
+              "line": 5583,
+              "static_prints": 204,
+              "status": "has_text"
+            },
+            {
+              "function": "SELF_KOJO_K1",
+              "line": 6792,
+              "static_prints": 152,
+              "status": "has_text"
+            },
+            {
+              "function": "GOBI_KOUJO_K1",
+              "line": 8246,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K2_気弱.ERB",
+          "sections": [
+            {
+              "function": "DOG_KOJO_2",
+              "line": 4722,
+              "static_prints": 157,
+              "status": "has_text"
+            },
+            {
+              "function": "SELF_KOJO_K2",
+              "line": 5854,
+              "static_prints": 91,
+              "status": "has_text"
+            },
+            {
+              "function": "GOBI_KOUJO_K2",
+              "line": 7157,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K3_高貴.ERB",
+          "sections": [
+            {
+              "function": "DOG_KOJO_3",
+              "line": 5800,
+              "static_prints": 296,
+              "status": "has_text"
+            },
+            {
+              "function": "SELF_KOJO_K3",
+              "line": 7492,
+              "static_prints": 118,
+              "status": "has_text"
+            },
+            {
+              "function": "GOBI_KOUJO_K3",
+              "line": 8974,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K4_冷徹.ERB",
+          "sections": [
+            {
+              "function": "DOG_KOJO_4",
+              "line": 3094,
+              "static_prints": 188,
+              "status": "has_text"
+            },
+            {
+              "function": "SELF_KOJO_K4",
+              "line": 4182,
+              "static_prints": 47,
+              "status": "has_text"
+            },
+            {
+              "function": "GOBI_KOUJO_K4",
+              "line": 5428,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K5_マオ.ERB",
+          "sections": [
+            {
+              "function": "SELF_KOJO_K5",
+              "line": 6060,
+              "static_prints": 405,
+              "status": "has_text"
+            },
+            {
+              "function": "GOBI_KOUJO_K5",
+              "line": 7745,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K6_悪女.ERB",
+          "sections": [
+            {
+              "function": "DOG_KOJO_6",
+              "line": 5590,
+              "static_prints": 283,
+              "status": "has_text"
+            },
+            {
+              "function": "SELF_KOJO_K6",
+              "line": 6930,
+              "static_prints": 154,
+              "status": "has_text"
+            },
+            {
+              "function": "GOBI_KOUJO_K6",
+              "line": 8460,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K7_ハート.ERB",
+          "sections": [
+            {
+              "function": "DOG_KOJO_7",
+              "line": 6281,
+              "static_prints": 157,
+              "status": "has_text"
+            },
+            {
+              "function": "SELF_KOJO_K7",
+              "line": 7544,
+              "static_prints": 156,
+              "status": "has_text"
+            },
+            {
+              "function": "GOBI_KOUJO_K7",
+              "line": 8858,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K8_スペード.ERB",
+          "sections": [
+            {
+              "function": "DOG_KOJO_8",
+              "line": 5446,
+              "static_prints": 157,
+              "status": "has_text"
+            },
+            {
+              "function": "SELF_KOJO_K8",
+              "line": 6649,
+              "static_prints": 147,
+              "status": "has_text"
+            },
+            {
+              "function": "GOBI_KOUJO_K8",
+              "line": 7918,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K903_嘉德.ERB",
+          "sections": [
+            {
+              "function": "DOG_KOJO_903",
+              "line": 3224,
+              "static_prints": 463,
+              "status": "has_text"
+            },
+            {
+              "function": "SELF_KOJO_K903",
+              "line": 4612,
+              "static_prints": 71,
+              "status": "has_text"
+            },
+            {
+              "function": "GOBI_KOUJO_K903",
+              "line": 6002,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K904_菲娅.ERB",
+          "sections": [
+            {
+              "function": "SELF_KOJO_K904",
+              "line": 5287,
+              "static_prints": 186,
+              "status": "has_text"
+            },
+            {
+              "function": "GOBI_KOUJO_K904",
+              "line": 6693,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K9_ダイヤ.ERB",
+          "sections": [
+            {
+              "function": "DOG_KOJO_9",
+              "line": 5211,
+              "static_prints": 157,
+              "status": "has_text"
+            },
+            {
+              "function": "SELF_KOJO_K9",
+              "line": 6396,
+              "static_prints": 137,
+              "status": "has_text"
+            },
+            {
+              "function": "GOBI_KOUJO_K9",
+              "line": 7585,
+              "static_prints": 8,
+              "status": "has_text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LEGACY-06",
+      "name": "共用开始与过程描述",
+      "mode": "inventory_only",
+      "status": "retained_not_fully_audited",
+      "authoring_enabled": false,
+      "note": "共用描述与角色专属反馈分属不同入口。",
+      "shared_files": [
+        {
+          "file": "ERB/EVENT_BEFORETRAIN.ERB",
+          "declarations": [
+            {
+              "function": "PRITRAIN_MESSAGE",
+              "line": 6
+            },
+            {
+              "function": "PRITRAIN_MESSAGE_NOCLOTHES",
+              "line": 211
+            },
+            {
+              "function": "PRITRAIN_MESSAGE_CLOTHED",
+              "line": 262
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_TRAIN_MESSAGE_A.ERB",
+          "declarations": [
+            {
+              "function": "TRAIN_MESSAGE_A",
+              "line": 15
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_TRAIN_MESSAGE_B.ERB",
+          "declarations": [
+            {
+              "function": "TRAIN_MESSAGE_B",
+              "line": 12
+            }
+          ]
+        }
+      ],
+      "character_entries": []
+    },
+    {
+      "id": "LEGACY-07",
+      "name": "结束后及自动事件",
+      "mode": "inventory_only",
+      "status": "retained_not_fully_audited",
+      "authoring_enabled": false,
+      "note": "包含敏感事件与普通清理、恢复、格式化逻辑；身份限制不能靠正文替代。",
+      "shared_files": [
+        {
+          "file": "ERB/EVENT_ADDICT.ERB",
+          "declarations": [
+            {
+              "function": "APHRODISIAC_ADDICT",
+              "line": 10
+            },
+            {
+              "function": "PRECIPITATE_WITHDRAWAL",
+              "line": 73
+            },
+            {
+              "function": "SUFFER_FROM_WITHDRAWAL",
+              "line": 220
+            },
+            {
+              "function": "PRECIPITATE_WITHDRAWAL_FALL_INTO_DISFAVOR",
+              "line": 295
+            },
+            {
+              "function": "PRECIPITATE_WITHDRAWAL_BE_A_ATHYMIA",
+              "line": 301
+            },
+            {
+              "function": "PRECIPITATE_WITHDRAWAL_BE_A_DEPRESSION",
+              "line": 307
+            },
+            {
+              "function": "PRECIPITATE_WITHDRAWAL_BE_A_RESISTER",
+              "line": 313
+            },
+            {
+              "function": "PRECIPITATE_WITHDRAWAL_BE_A_MISANTHROPIST",
+              "line": 319
+            },
+            {
+              "function": "PRECIPITATE_WITHDRAWAL_BE_A_CRAZY",
+              "line": 332
+            },
+            {
+              "function": "PRECIPITATE_WITHDRAWAL_BE_A_WRECK",
+              "line": 338
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_AFTERTRAIN.ERB",
+          "declarations": [
+            {
+              "function": "CHARADEAD_CHECK",
+              "line": 6
+            },
+            {
+              "function": "SELF_CHECK",
+              "line": 100
+            },
+            {
+              "function": "AFTERTRAIN_SEX_CHECK",
+              "line": 140
+            },
+            {
+              "function": "AFTERTRAIN_ANALSEX_CHECK",
+              "line": 255
+            },
+            {
+              "function": "AFTERTRAIN_LESBIANSEX_CHECK",
+              "line": 354
+            },
+            {
+              "function": "AFTERTRAIN_MASTURBATION_CHECK",
+              "line": 551
+            },
+            {
+              "function": "AFTERTRAIN_BEASTSEX_CHECK",
+              "line": 704
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_AUTOTRAIN.ERB",
+          "declarations": [
+            {
+              "function": "AUTOTRAIN",
+              "line": 11
+            },
+            {
+              "function": "FORMAT_AUTOTRAIN",
+              "line": 53
+            },
+            {
+              "function": "BEFORE_AUTOTRAIN",
+              "line": 95
+            },
+            {
+              "function": "AFTER_AUTOTRAIN",
+              "line": 114
+            }
+          ]
+        }
+      ],
+      "character_entries": []
+    },
+    {
+      "id": "LEGACY-08",
+      "name": "战后敏感分支",
+      "mode": "inventory_only",
+      "status": "retained_not_fully_audited",
+      "authoring_enabled": false,
+      "note": "入口与角色反应分别登记；攻击和胜利的非露骨新口上不属于此项。",
+      "shared_files": [
+        {
+          "file": "ERB/DUNGEON_AFTER.ERB",
+          "declarations": [
+            {
+              "function": "DUNGEON_AFTER",
+              "line": 2
+            },
+            {
+              "function": "GOHOUBI",
+              "line": 19
+            },
+            {
+              "function": "OSIOKI",
+              "line": 327
+            }
+          ]
+        }
+      ],
+      "character_entries": [
+        {
+          "file": "ERB/EVENT_K0_慈愛.ERB",
+          "sections": [
+            {
+              "function": "DUNGEON_RYOUZYOKU_K0",
+              "line": 7236,
+              "static_prints": 16,
+              "status": "has_text"
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU_AFTER_K0",
+              "line": 7302,
+              "static_prints": 14,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_REQUEST_KOUJO_K0",
+              "line": 8169,
+              "static_prints": 12,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_AFTER_KOUJO_K0",
+              "line": 8208,
+              "static_prints": 19,
+              "status": "has_text"
+            },
+            {
+              "function": "OSIOKI_KOUJO_K0",
+              "line": 8285,
+              "static_prints": 15,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K10_クラブ.ERB",
+          "sections": [
+            {
+              "function": "DUNGEON_RYOUZYOKU_K10",
+              "line": 6479,
+              "static_prints": 6,
+              "status": "has_text"
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU_AFTER_K10",
+              "line": 6497,
+              "static_prints": 19,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_REQUEST_KOUJO_K10",
+              "line": 7093,
+              "static_prints": 19,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_AFTER_KOUJO_K10",
+              "line": 7137,
+              "static_prints": 18,
+              "status": "has_text"
+            },
+            {
+              "function": "OSIOKI_KOUJO_K10",
+              "line": 7213,
+              "static_prints": 15,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K11_リリィ.ERB",
+          "sections": [
+            {
+              "function": "DUNGEON_RYOUZYOKU_K11",
+              "line": 12262,
+              "static_prints": 4,
+              "status": "has_text"
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU_AFTER_K11",
+              "line": 12280,
+              "static_prints": 18,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_REQUEST_KOUJO_K11",
+              "line": 12907,
+              "static_prints": 12,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_AFTER_KOUJO_K11",
+              "line": 12945,
+              "static_prints": 18,
+              "status": "has_text"
+            },
+            {
+              "function": "OSIOKI_KOUJO_K11",
+              "line": 13025,
+              "static_prints": 15,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K12_知的.ERB",
+          "sections": [
+            {
+              "function": "DUNGEON_RYOUZYOKU_K12",
+              "line": 4870,
+              "static_prints": 16,
+              "status": "has_text"
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU_AFTER_K12",
+              "line": 4960,
+              "static_prints": 13,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_REQUEST_KOUJO_K12",
+              "line": 5738,
+              "static_prints": 20,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_AFTER_KOUJO_K12",
+              "line": 5784,
+              "static_prints": 18,
+              "status": "has_text"
+            },
+            {
+              "function": "OSIOKI_KOUJO_K12",
+              "line": 5864,
+              "static_prints": 15,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K13_庇護者.ERB",
+          "sections": [
+            {
+              "function": "DUNGEON_RYOUZYOKU_K13",
+              "line": 5000,
+              "static_prints": 16,
+              "status": "has_text"
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU_AFTER_K13",
+              "line": 5090,
+              "static_prints": 14,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_REQUEST_KOUJO_K13",
+              "line": 5781,
+              "static_prints": 20,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_AFTER_KOUJO_K13",
+              "line": 5827,
+              "static_prints": 18,
+              "status": "has_text"
+            },
+            {
+              "function": "OSIOKI_KOUJO_K13",
+              "line": 5907,
+              "static_prints": 15,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K14_貴公子.ERB",
+          "sections": [
+            {
+              "function": "DUNGEON_RYOUZYOKU_K14",
+              "line": 4884,
+              "static_prints": 16,
+              "status": "has_text"
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU_AFTER_K14",
+              "line": 4974,
+              "static_prints": 11,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_REQUEST_KOUJO_K14",
+              "line": 5730,
+              "static_prints": 12,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_AFTER_KOUJO_K14",
+              "line": 5768,
+              "static_prints": 18,
+              "status": "has_text"
+            },
+            {
+              "function": "OSIOKI_KOUJO_K14",
+              "line": 5848,
+              "static_prints": 15,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K15_伶俐.ERB",
+          "sections": [
+            {
+              "function": "DUNGEON_RYOUZYOKU_K15",
+              "line": 5443,
+              "static_prints": 16,
+              "status": "has_text"
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU_AFTER_K15",
+              "line": 5507,
+              "static_prints": 15,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_REQUEST_KOUJO_K15",
+              "line": 6133,
+              "static_prints": 12,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_AFTER_KOUJO_K15",
+              "line": 6171,
+              "static_prints": 36,
+              "status": "has_text"
+            },
+            {
+              "function": "OSIOKI_KOUJO_K15",
+              "line": 6269,
+              "static_prints": 18,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K19_菲娅.ERB",
+          "sections": [
+            {
+              "function": "DUNGEON_RYOUZYOKU_K19",
+              "line": 5831,
+              "static_prints": 5,
+              "status": "has_text"
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU_AFTER_K19",
+              "line": 5850,
+              "static_prints": 17,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_REQUEST_KOUJO_K19",
+              "line": 6517,
+              "static_prints": 12,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_AFTER_KOUJO_K19",
+              "line": 6555,
+              "static_prints": 17,
+              "status": "has_text"
+            },
+            {
+              "function": "OSIOKI_KOUJO_K19",
+              "line": 6629,
+              "static_prints": 15,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K1_自信家.ERB",
+          "sections": [
+            {
+              "function": "DUNGEON_RYOUZYOKU_K1",
+              "line": 7320,
+              "static_prints": 16,
+              "status": "has_text"
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU_AFTER_K1",
+              "line": 7386,
+              "static_prints": 11,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_REQUEST_KOUJO_K1",
+              "line": 8067,
+              "static_prints": 12,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_AFTER_KOUJO_K1",
+              "line": 8105,
+              "static_prints": 18,
+              "status": "has_text"
+            },
+            {
+              "function": "OSIOKI_KOUJO_K1",
+              "line": 8183,
+              "static_prints": 15,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K2_気弱.ERB",
+          "sections": [
+            {
+              "function": "DUNGEON_RYOUZYOKU_K2",
+              "line": 6229,
+              "static_prints": 16,
+              "status": "has_text"
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU_AFTER_K2",
+              "line": 6295,
+              "static_prints": 11,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_REQUEST_KOUJO_K2",
+              "line": 6976,
+              "static_prints": 12,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_AFTER_KOUJO_K2",
+              "line": 7014,
+              "static_prints": 18,
+              "status": "has_text"
+            },
+            {
+              "function": "OSIOKI_KOUJO_K2",
+              "line": 7094,
+              "static_prints": 15,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K3_高貴.ERB",
+          "sections": [
+            {
+              "function": "DUNGEON_RYOUZYOKU_K3",
+              "line": 7908,
+              "static_prints": 16,
+              "status": "has_text"
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU_AFTER_K3",
+              "line": 7998,
+              "static_prints": 14,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_REQUEST_KOUJO_K3",
+              "line": 8795,
+              "static_prints": 12,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_AFTER_KOUJO_K3",
+              "line": 8833,
+              "static_prints": 18,
+              "status": "has_text"
+            },
+            {
+              "function": "OSIOKI_KOUJO_K3",
+              "line": 8911,
+              "static_prints": 15,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K4_冷徹.ERB",
+          "sections": [
+            {
+              "function": "DUNGEON_RYOUZYOKU_K4",
+              "line": 4463,
+              "static_prints": 16,
+              "status": "has_text"
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU_AFTER_K4",
+              "line": 4553,
+              "static_prints": 14,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_REQUEST_KOUJO_K4",
+              "line": 5250,
+              "static_prints": 12,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_AFTER_KOUJO_K4",
+              "line": 5287,
+              "static_prints": 18,
+              "status": "has_text"
+            },
+            {
+              "function": "OSIOKI_KOUJO_K4",
+              "line": 5365,
+              "static_prints": 15,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K5_マオ.ERB",
+          "sections": [
+            {
+              "function": "DUNGEON_RYOUZYOKU_K5",
+              "line": 6958,
+              "static_prints": 7,
+              "status": "has_text"
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU_AFTER_K5",
+              "line": 6981,
+              "static_prints": 18,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_REQUEST_KOUJO_K5",
+              "line": 7567,
+              "static_prints": 12,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_AFTER_KOUJO_K5",
+              "line": 7603,
+              "static_prints": 18,
+              "status": "has_text"
+            },
+            {
+              "function": "OSIOKI_KOUJO_K5",
+              "line": 7681,
+              "static_prints": 15,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K6_悪女.ERB",
+          "sections": [
+            {
+              "function": "DUNGEON_RYOUZYOKU_K6",
+              "line": 7428,
+              "static_prints": 16,
+              "status": "has_text"
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU_AFTER_K6",
+              "line": 7518,
+              "static_prints": 14,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_REQUEST_KOUJO_K6",
+              "line": 8284,
+              "static_prints": 12,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_AFTER_KOUJO_K6",
+              "line": 8322,
+              "static_prints": 18,
+              "status": "has_text"
+            },
+            {
+              "function": "OSIOKI_KOUJO_K6",
+              "line": 8398,
+              "static_prints": 15,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K7_ハート.ERB",
+          "sections": [
+            {
+              "function": "DUNGEON_RYOUZYOKU_K7",
+              "line": 7975,
+              "static_prints": 4,
+              "status": "has_text"
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU_AFTER_K7",
+              "line": 7993,
+              "static_prints": 18,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_REQUEST_KOUJO_K7",
+              "line": 8672,
+              "static_prints": 17,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_AFTER_KOUJO_K7",
+              "line": 8715,
+              "static_prints": 18,
+              "status": "has_text"
+            },
+            {
+              "function": "OSIOKI_KOUJO_K7",
+              "line": 8793,
+              "static_prints": 16,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K8_スペード.ERB",
+          "sections": [
+            {
+              "function": "DUNGEON_RYOUZYOKU_K8",
+              "line": 7073,
+              "static_prints": 6,
+              "status": "has_text"
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU_AFTER_K8",
+              "line": 7093,
+              "static_prints": 18,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_REQUEST_KOUJO_K8",
+              "line": 7735,
+              "static_prints": 19,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_AFTER_KOUJO_K8",
+              "line": 7780,
+              "static_prints": 19,
+              "status": "has_text"
+            },
+            {
+              "function": "OSIOKI_KOUJO_K8",
+              "line": 7857,
+              "static_prints": 15,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K903_嘉德.ERB",
+          "sections": [
+            {
+              "function": "DUNGEON_RYOUZYOKU_K903",
+              "line": 4940,
+              "static_prints": 16,
+              "status": "has_text"
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU_AFTER_K903",
+              "line": 5030,
+              "static_prints": 14,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_REQUEST_KOUJO_K903",
+              "line": 5691,
+              "static_prints": 12,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_AFTER_KOUJO_K903",
+              "line": 5728,
+              "static_prints": 151,
+              "status": "has_text"
+            },
+            {
+              "function": "OSIOKI_KOUJO_K903",
+              "line": 5939,
+              "static_prints": 15,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K904_菲娅.ERB",
+          "sections": [
+            {
+              "function": "DUNGEON_RYOUZYOKU_K904",
+              "line": 5831,
+              "static_prints": 5,
+              "status": "has_text"
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU_AFTER_K904",
+              "line": 5850,
+              "static_prints": 17,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_REQUEST_KOUJO_K904",
+              "line": 6517,
+              "static_prints": 12,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_AFTER_KOUJO_K904",
+              "line": 6555,
+              "static_prints": 17,
+              "status": "has_text"
+            },
+            {
+              "function": "OSIOKI_KOUJO_K904",
+              "line": 6629,
+              "static_prints": 15,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K9_ダイヤ.ERB",
+          "sections": [
+            {
+              "function": "DUNGEON_RYOUZYOKU_K9",
+              "line": 6800,
+              "static_prints": 6,
+              "status": "has_text"
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU_AFTER_K9",
+              "line": 6818,
+              "static_prints": 18,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_REQUEST_KOUJO_K9",
+              "line": 7406,
+              "static_prints": 17,
+              "status": "has_text"
+            },
+            {
+              "function": "GOHOUBI_AFTER_KOUJO_K9",
+              "line": 7448,
+              "static_prints": 18,
+              "status": "has_text"
+            },
+            {
+              "function": "OSIOKI_KOUJO_K9",
+              "line": 7524,
+              "static_prints": 15,
+              "status": "has_text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LEGACY-09",
+      "name": "旧特殊状态模块",
+      "mode": "inventory_only",
+      "status": "retained_not_fully_audited",
+      "authoring_enabled": false,
+      "note": "保留原作实现和状态登记；未逐场核验。",
+      "shared_files": [
+        {
+          "file": "ERB/BENKI.ERB",
+          "declarations": [
+            {
+              "function": "BENKI",
+              "line": 2
+            },
+            {
+              "function": "SELECT_BENKI_MENU",
+              "line": 1334
+            },
+            {
+              "function": "NAME_BENKI_MENU",
+              "line": 1405
+            },
+            {
+              "function": "GET_EXP_BENKI_MENU",
+              "line": 1472
+            },
+            {
+              "function": "BENKI_PLAYER_NAME",
+              "line": 1631
+            }
+          ]
+        },
+        {
+          "file": "ERB/NAEDOKO.ERB",
+          "declarations": [
+            {
+              "function": "NAEDOKO",
+              "line": 2
+            },
+            {
+              "function": "NAEDOKO_MAN",
+              "line": 70
+            },
+            {
+              "function": "NAEDOKO_NOT_V",
+              "line": 104
+            }
+          ]
+        }
+      ],
+      "character_entries": [
+        {
+          "file": "ERB/EVENT_K0_慈愛.ERB",
+          "sections": [
+            {
+              "function": "BENKI_KOUJO_K0",
+              "line": 7415,
+              "static_prints": 64,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K10_クラブ.ERB",
+          "sections": [
+            {
+              "function": "BENKI_KOUJO_K10",
+              "line": 6611,
+              "static_prints": 24,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K11_リリィ.ERB",
+          "sections": [
+            {
+              "function": "BENKI_KOUJO_K11",
+              "line": 12339,
+              "static_prints": 24,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K12_知的.ERB",
+          "sections": [
+            {
+              "function": "BENKI_KOUJO_K12",
+              "line": 5024,
+              "static_prints": 85,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K13_庇護者.ERB",
+          "sections": [
+            {
+              "function": "BENKI_KOUJO_K13",
+              "line": 5155,
+              "static_prints": 24,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K14_貴公子.ERB",
+          "sections": [
+            {
+              "function": "BENKI_KOUJO_K14",
+              "line": 5039,
+              "static_prints": 64,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K15_伶俐.ERB",
+          "sections": [
+            {
+              "function": "BENKI_KOUJO_K15",
+              "line": 5554,
+              "static_prints": 24,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K19_菲娅.ERB",
+          "sections": [
+            {
+              "function": "BENKI_KOUJO_K19",
+              "line": 5903,
+              "static_prints": 24,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K1_自信家.ERB",
+          "sections": [
+            {
+              "function": "BENKI_KOUJO_K1",
+              "line": 7440,
+              "static_prints": 31,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K2_気弱.ERB",
+          "sections": [
+            {
+              "function": "BENKI_KOUJO_K2",
+              "line": 6349,
+              "static_prints": 28,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K3_高貴.ERB",
+          "sections": [
+            {
+              "function": "BENKI_KOUJO_K3",
+              "line": 8062,
+              "static_prints": 74,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K4_冷徹.ERB",
+          "sections": [
+            {
+              "function": "BENKI_KOUJO_K4",
+              "line": 4619,
+              "static_prints": 37,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K5_マオ.ERB",
+          "sections": [
+            {
+              "function": "BENKI_KOUJO_K5",
+              "line": 7036,
+              "static_prints": 24,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K6_悪女.ERB",
+          "sections": [
+            {
+              "function": "BENKI_KOUJO_K6",
+              "line": 7583,
+              "static_prints": 52,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K7_ハート.ERB",
+          "sections": [
+            {
+              "function": "BENKI_KOUJO_K7",
+              "line": 8049,
+              "static_prints": 25,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K8_スペード.ERB",
+          "sections": [
+            {
+              "function": "BENKI_KOUJO_K8",
+              "line": 7199,
+              "static_prints": 26,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K903_嘉德.ERB",
+          "sections": [
+            {
+              "function": "BENKI_KOUJO_K903",
+              "line": 5096,
+              "static_prints": 24,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K904_菲娅.ERB",
+          "sections": [
+            {
+              "function": "BENKI_KOUJO_K904",
+              "line": 5903,
+              "static_prints": 24,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K9_ダイヤ.ERB",
+          "sections": [
+            {
+              "function": "BENKI_KOUJO_K9",
+              "line": 6933,
+              "static_prints": 25,
+              "status": "has_text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LEGACY-10",
+      "name": "第三方关系事件",
+      "mode": "inventory_only",
+      "status": "retained_not_fully_audited",
+      "authoring_enabled": false,
+      "note": "包含正文与状态处理；不能从文件存在推断全部路线可达。",
+      "shared_files": [
+        {
+          "file": "ERB/NTR.ERB",
+          "declarations": [
+            {
+              "function": "NTR_VIDEO",
+              "line": 6
+            },
+            {
+              "function": "NTR_PLAY",
+              "line": 80
+            },
+            {
+              "function": "NTR_CHILD_BIRTH",
+              "line": 328
+            }
+          ]
+        }
+      ],
+      "character_entries": [
+        {
+          "file": "ERB/EVENT_K0_慈愛.ERB",
+          "sections": [
+            {
+              "function": "NTR_KOUJO_K0",
+              "line": 7866,
+              "static_prints": 18,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K10_クラブ.ERB",
+          "sections": [
+            {
+              "function": "NTR_KOUJO_K10",
+              "line": 6853,
+              "static_prints": 39,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K11_リリィ.ERB",
+          "sections": [
+            {
+              "function": "NTR_KOUJO_K11",
+              "line": 12597,
+              "static_prints": 87,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K12_知的.ERB",
+          "sections": [
+            {
+              "function": "NTR_KOUJO_K12",
+              "line": 5526,
+              "static_prints": 16,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K13_庇護者.ERB",
+          "sections": [
+            {
+              "function": "NTR_KOUJO_K13",
+              "line": 5501,
+              "static_prints": 53,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K14_貴公子.ERB",
+          "sections": [
+            {
+              "function": "NTR_KOUJO_K14",
+              "line": 5521,
+              "static_prints": 16,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K15_伶俐.ERB",
+          "sections": [
+            {
+              "function": "NTR_KOUJO_K15",
+              "line": 5921,
+              "static_prints": 16,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K19_菲娅.ERB",
+          "sections": [
+            {
+              "function": "NTR_KOUJO_K19",
+              "line": 6247,
+              "static_prints": 28,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K1_自信家.ERB",
+          "sections": [
+            {
+              "function": "NTR_KOUJO_K1",
+              "line": 7849,
+              "static_prints": 22,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K2_気弱.ERB",
+          "sections": [
+            {
+              "function": "NTR_KOUJO_K2",
+              "line": 6760,
+              "static_prints": 20,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K3_高貴.ERB",
+          "sections": [
+            {
+              "function": "NTR_KOUJO_K3",
+              "line": 8579,
+              "static_prints": 21,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K4_冷徹.ERB",
+          "sections": [
+            {
+              "function": "NTR_KOUJO_K4",
+              "line": 5037,
+              "static_prints": 18,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K5_マオ.ERB",
+          "sections": [
+            {
+              "function": "NTR_KOUJO_K5",
+              "line": 7361,
+              "static_prints": 20,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K6_悪女.ERB",
+          "sections": [
+            {
+              "function": "NTR_KOUJO_K6",
+              "line": 8065,
+              "static_prints": 20,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K7_ハート.ERB",
+          "sections": [
+            {
+              "function": "NTR_KOUJO_K7",
+              "line": 8350,
+              "static_prints": 92,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K8_スペード.ERB",
+          "sections": [
+            {
+              "function": "NTR_KOUJO_K8",
+              "line": 7447,
+              "static_prints": 73,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K903_嘉德.ERB",
+          "sections": [
+            {
+              "function": "NTR_KOUJO_K903",
+              "line": 5476,
+              "static_prints": 18,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K904_菲娅.ERB",
+          "sections": [
+            {
+              "function": "NTR_KOUJO_K904",
+              "line": 6247,
+              "static_prints": 28,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K9_ダイヤ.ERB",
+          "sections": [
+            {
+              "function": "NTR_KOUJO_K9",
+              "line": 7177,
+              "static_prints": 36,
+              "status": "has_text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LEGACY-11",
+      "name": "婚后与伴侣日常的敏感分支",
+      "mode": "inventory_only",
+      "status": "retained_not_fully_audited",
+      "authoring_enabled": false,
+      "note": "混合普通生活与敏感分支，不把所有婚姻或家庭内容当作露骨。",
+      "shared_files": [
+        {
+          "file": "ERB/MARRIAGE_DAY.ERB",
+          "declarations": [
+            {
+              "function": "MARRIAGE_DAY",
+              "line": 4
+            },
+            {
+              "function": "MARRIAGE_DAY_DOG",
+              "line": 155
+            },
+            {
+              "function": "MARRIAGE_DAY_YOU",
+              "line": 341
+            },
+            {
+              "function": "MARRIAGE_DAY_LOVERS",
+              "line": 493
+            },
+            {
+              "function": "MARRIAGE_DAY_SLAVE",
+              "line": 506
+            },
+            {
+              "function": "ORC_MARRIAGE_DAY",
+              "line": 534
+            },
+            {
+              "function": "SLIME_MARRIAGE_DAY",
+              "line": 780
+            },
+            {
+              "function": "INSECT_MARRIAGE_DAY",
+              "line": 811
+            },
+            {
+              "function": "IVY_MARRIAGE_DAY",
+              "line": 1117
+            },
+            {
+              "function": "SYOKUSYU_MARRIAGE_DAY",
+              "line": 1202
+            },
+            {
+              "function": "FAILY_MARRIAGE_DAY",
+              "line": 1246
+            },
+            {
+              "function": "GIANT_MARRIAGE_DAY",
+              "line": 1391
+            },
+            {
+              "function": "MAN_MARRIAGE_DAY",
+              "line": 1621
+            },
+            {
+              "function": "GIRL_MARRIAGE_DAY",
+              "line": 1914
+            },
+            {
+              "function": "BEAST_MARRIAGE_DAY",
+              "line": 2139
+            },
+            {
+              "function": "BRAIN_MARRIAGE_DAY",
+              "line": 2245
+            },
+            {
+              "function": "HORSE_MARRIAGE_DAY",
+              "line": 2264
+            }
+          ]
+        }
+      ],
+      "character_entries": []
+    },
+    {
+      "id": "LEGACY-12",
+      "name": "旧定期特殊活动",
+      "mode": "inventory_only",
+      "status": "retained_not_fully_audited",
+      "authoring_enabled": false,
+      "note": "沿用旧事件；未逐场核验。",
+      "shared_files": [
+        {
+          "file": "ERB/EVENT_SABBATH.ERB",
+          "declarations": [
+            {
+              "function": "SABBATH",
+              "line": 2
+            },
+            {
+              "function": "SABBATH_DAY",
+              "line": 234
+            }
+          ]
+        }
+      ],
+      "character_entries": []
+    },
+    {
+      "id": "LEGACY-13",
+      "name": "旧录像与经营相关正文",
+      "mode": "inventory_only",
+      "status": "retained_not_fully_audited",
+      "authoring_enabled": false,
+      "note": "包含正文、结算和菜单；敏感正文与普通财务逻辑分开看待。",
+      "shared_files": [
+        {
+          "file": "ERB/SELL_VIDEO.ERB",
+          "declarations": [
+            {
+              "function": "SELL_VIDEO",
+              "line": 7
+            },
+            {
+              "function": "EVENT_VIDEO_DAY",
+              "line": 1315
+            },
+            {
+              "function": "VIDEO_MATURO2",
+              "line": 1372
+            },
+            {
+              "function": "VIDEO_MATURO",
+              "line": 1389
+            },
+            {
+              "function": "VIDEO_BACKUP",
+              "line": 1406
+            },
+            {
+              "function": "VIDEO_CHECK",
+              "line": 1420
+            },
+            {
+              "function": "VIDEO_SHELF",
+              "line": 1440
+            }
+          ]
+        }
+      ],
+      "character_entries": []
+    },
+    {
+      "id": "LEGACY-14",
+      "name": "处置与特殊结局分支",
+      "mode": "inventory_only",
+      "status": "retained_not_fully_audited",
+      "authoring_enabled": false,
+      "note": "混有暴力、恐怖及普通处置，不能将这些函数全部断言为性描写。",
+      "shared_files": [
+        {
+          "file": "ERB/BANISHMENT.ERB",
+          "declarations": [
+            {
+              "function": "BANISHMENT",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "file": "ERB/EXECUTION.ERB",
+          "declarations": [
+            {
+              "function": "EXECUTION",
+              "line": 2
+            },
+            {
+              "function": "EXECUTION_MINI",
+              "line": 531
+            }
+          ]
+        },
+        {
+          "file": "ERB/GROTESQUE.ERB",
+          "declarations": [
+            {
+              "function": "GROTESQUE",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "file": "ERB/MUSEUM.ERB",
+          "declarations": [
+            {
+              "function": "MUSEUM",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "file": "ERB/PUBLIC_EXECUTION.ERB",
+          "declarations": [
+            {
+              "function": "PUBLIC_EXECUTION",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "file": "ERB/SELL_MATURO.ERB",
+          "declarations": [
+            {
+              "function": "SELL_MATURO_K0",
+              "line": 29
+            }
+          ]
+        },
+        {
+          "file": "ERB/SELL_MATURO_K1.ERB",
+          "declarations": [
+            {
+              "function": "SELL_MATURO_K1",
+              "line": 25
+            }
+          ]
+        },
+        {
+          "file": "ERB/SELL_MATURO_K2_牝犬.ERB",
+          "declarations": [
+            {
+              "function": "SELL_MATURO_K2",
+              "line": 9
+            },
+            {
+              "function": "SELL_MATURO_K2_101",
+              "line": 225
+            },
+            {
+              "function": "SELL_MATURO_K2_102",
+              "line": 230
+            },
+            {
+              "function": "SELL_MATURO_K2_103",
+              "line": 235
+            },
+            {
+              "function": "SELL_MATURO_K2_104",
+              "line": 240
+            },
+            {
+              "function": "SELL_MATURO_K2_51",
+              "line": 245
+            },
+            {
+              "function": "SELL_MATURO_K2_52",
+              "line": 250
+            },
+            {
+              "function": "SELL_MATURO_K2_53",
+              "line": 255
+            },
+            {
+              "function": "SELL_MATURO_K2_54",
+              "line": 260
+            },
+            {
+              "function": "SELL_MATURO_K2_11",
+              "line": 264
+            },
+            {
+              "function": "SELL_MATURO_K2_12",
+              "line": 269
+            },
+            {
+              "function": "SELL_MATURO_K2_13",
+              "line": 274
+            },
+            {
+              "function": "SELL_MATURO_K2_1",
+              "line": 279
+            },
+            {
+              "function": "SELL_MATURO_K2_2",
+              "line": 284
+            },
+            {
+              "function": "SELL_MATURO_K2_3",
+              "line": 289
+            },
+            {
+              "function": "SELL_MATURO_K2_4",
+              "line": 294
+            }
+          ]
+        }
+      ],
+      "character_entries": [
+        {
+          "file": "ERB/EVENT_K0_慈愛.ERB",
+          "sections": [
+            {
+              "function": "EXUCUTION_KOUJO_K0",
+              "line": 7946,
+              "static_prints": 4,
+              "status": "has_text"
+            },
+            {
+              "function": "MUSEUM_KOUJO_K0",
+              "line": 7963,
+              "static_prints": 10,
+              "status": "has_text"
+            },
+            {
+              "function": "BANISHMENT_KOUJO_K0",
+              "line": 7998,
+              "static_prints": 5,
+              "status": "has_text"
+            },
+            {
+              "function": "PUBLIC_EXUCUTION_KOUJO_K0",
+              "line": 8019,
+              "static_prints": 3,
+              "status": "has_text"
+            },
+            {
+              "function": "GROTESQUE_KOUJO_K0",
+              "line": 8034,
+              "static_prints": 7,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K10_クラブ.ERB",
+          "sections": [
+            {
+              "function": "EXUCUTION_KOUJO_K10",
+              "line": 6964,
+              "static_prints": 4,
+              "status": "has_text"
+            },
+            {
+              "function": "MUSEUM_KOUJO_K10",
+              "line": 6981,
+              "static_prints": 10,
+              "status": "has_text"
+            },
+            {
+              "function": "BANISHMENT_KOUJO_K10",
+              "line": 7016,
+              "static_prints": 5,
+              "status": "has_text"
+            },
+            {
+              "function": "PUBLIC_EXUCUTION_KOUJO_K10",
+              "line": 7037,
+              "static_prints": 3,
+              "status": "has_text"
+            },
+            {
+              "function": "GROTESQUE_KOUJO_K10",
+              "line": 7052,
+              "static_prints": 7,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K11_リリィ.ERB",
+          "sections": [
+            {
+              "function": "EXUCUTION_KOUJO_K11",
+              "line": 12779,
+              "static_prints": 4,
+              "status": "has_text"
+            },
+            {
+              "function": "MUSEUM_KOUJO_K11",
+              "line": 12797,
+              "static_prints": 9,
+              "status": "has_text"
+            },
+            {
+              "function": "BANISHMENT_KOUJO_K11",
+              "line": 12830,
+              "static_prints": 5,
+              "status": "has_text"
+            },
+            {
+              "function": "PUBLIC_EXUCUTION_KOUJO_K11",
+              "line": 12851,
+              "static_prints": 3,
+              "status": "has_text"
+            },
+            {
+              "function": "GROTESQUE_KOUJO_K11",
+              "line": 12866,
+              "static_prints": 7,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K12_知的.ERB",
+          "sections": [
+            {
+              "function": "EXUCUTION_KOUJO_K12",
+              "line": 5603,
+              "static_prints": 4,
+              "status": "has_text"
+            },
+            {
+              "function": "MUSEUM_KOUJO_K12",
+              "line": 5621,
+              "static_prints": 10,
+              "status": "has_text"
+            },
+            {
+              "function": "BANISHMENT_KOUJO_K12",
+              "line": 5657,
+              "static_prints": 5,
+              "status": "has_text"
+            },
+            {
+              "function": "PUBLIC_EXUCUTION_KOUJO_K12",
+              "line": 5678,
+              "static_prints": 3,
+              "status": "has_text"
+            },
+            {
+              "function": "GROTESQUE_KOUJO_K12",
+              "line": 5693,
+              "static_prints": 7,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K13_庇護者.ERB",
+          "sections": [
+            {
+              "function": "EXUCUTION_KOUJO_K13",
+              "line": 5646,
+              "static_prints": 4,
+              "status": "has_text"
+            },
+            {
+              "function": "MUSEUM_KOUJO_K13",
+              "line": 5664,
+              "static_prints": 10,
+              "status": "has_text"
+            },
+            {
+              "function": "BANISHMENT_KOUJO_K13",
+              "line": 5700,
+              "static_prints": 5,
+              "status": "has_text"
+            },
+            {
+              "function": "PUBLIC_EXUCUTION_KOUJO_K13",
+              "line": 5721,
+              "static_prints": 3,
+              "status": "has_text"
+            },
+            {
+              "function": "GROTESQUE_KOUJO_K13",
+              "line": 5736,
+              "static_prints": 7,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K14_貴公子.ERB",
+          "sections": [
+            {
+              "function": "EXUCUTION_KOUJO_K14",
+              "line": 5598,
+              "static_prints": 4,
+              "status": "has_text"
+            },
+            {
+              "function": "MUSEUM_KOUJO_K14",
+              "line": 5616,
+              "static_prints": 10,
+              "status": "has_text"
+            },
+            {
+              "function": "BANISHMENT_KOUJO_K14",
+              "line": 5652,
+              "static_prints": 4,
+              "status": "has_text"
+            },
+            {
+              "function": "PUBLIC_EXUCUTION_KOUJO_K14",
+              "line": 5670,
+              "static_prints": 3,
+              "status": "has_text"
+            },
+            {
+              "function": "GROTESQUE_KOUJO_K14",
+              "line": 5685,
+              "static_prints": 7,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K15_伶俐.ERB",
+          "sections": [
+            {
+              "function": "EXUCUTION_KOUJO_K15",
+              "line": 5998,
+              "static_prints": 4,
+              "status": "has_text"
+            },
+            {
+              "function": "MUSEUM_KOUJO_K15",
+              "line": 6016,
+              "static_prints": 10,
+              "status": "has_text"
+            },
+            {
+              "function": "BANISHMENT_KOUJO_K15",
+              "line": 6052,
+              "static_prints": 5,
+              "status": "has_text"
+            },
+            {
+              "function": "PUBLIC_EXUCUTION_KOUJO_K15",
+              "line": 6073,
+              "static_prints": 3,
+              "status": "has_text"
+            },
+            {
+              "function": "GROTESQUE_KOUJO_K15",
+              "line": 6088,
+              "static_prints": 7,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K19_菲娅.ERB",
+          "sections": [
+            {
+              "function": "EXUCUTION_KOUJO_K19",
+              "line": 6337,
+              "static_prints": 6,
+              "status": "has_text"
+            },
+            {
+              "function": "MUSEUM_KOUJO_K19",
+              "line": 6363,
+              "static_prints": 22,
+              "status": "has_text"
+            },
+            {
+              "function": "BANISHMENT_KOUJO_K19",
+              "line": 6425,
+              "static_prints": 11,
+              "status": "has_text"
+            },
+            {
+              "function": "PUBLIC_EXUCUTION_KOUJO_K19",
+              "line": 6455,
+              "static_prints": 5,
+              "status": "has_text"
+            },
+            {
+              "function": "GROTESQUE_KOUJO_K19",
+              "line": 6476,
+              "static_prints": 7,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K1_自信家.ERB",
+          "sections": [
+            {
+              "function": "EXUCUTION_KOUJO_K1",
+              "line": 7933,
+              "static_prints": 4,
+              "status": "has_text"
+            },
+            {
+              "function": "MUSEUM_KOUJO_K1",
+              "line": 7950,
+              "static_prints": 11,
+              "status": "has_text"
+            },
+            {
+              "function": "BANISHMENT_KOUJO_K1",
+              "line": 7986,
+              "static_prints": 5,
+              "status": "has_text"
+            },
+            {
+              "function": "PUBLIC_EXUCUTION_KOUJO_K1",
+              "line": 8007,
+              "static_prints": 3,
+              "status": "has_text"
+            },
+            {
+              "function": "GROTESQUE_KOUJO_K1",
+              "line": 8022,
+              "static_prints": 7,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K2_気弱.ERB",
+          "sections": [
+            {
+              "function": "EXUCUTION_KOUJO_K2",
+              "line": 6843,
+              "static_prints": 4,
+              "status": "has_text"
+            },
+            {
+              "function": "MUSEUM_KOUJO_K2",
+              "line": 6860,
+              "static_prints": 10,
+              "status": "has_text"
+            },
+            {
+              "function": "BANISHMENT_KOUJO_K2",
+              "line": 6895,
+              "static_prints": 5,
+              "status": "has_text"
+            },
+            {
+              "function": "PUBLIC_EXUCUTION_KOUJO_K2",
+              "line": 6916,
+              "static_prints": 3,
+              "status": "has_text"
+            },
+            {
+              "function": "GROTESQUE_KOUJO_K2",
+              "line": 6931,
+              "static_prints": 7,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K3_高貴.ERB",
+          "sections": [
+            {
+              "function": "EXUCUTION_KOUJO_K3",
+              "line": 8662,
+              "static_prints": 4,
+              "status": "has_text"
+            },
+            {
+              "function": "MUSEUM_KOUJO_K3",
+              "line": 8679,
+              "static_prints": 10,
+              "status": "has_text"
+            },
+            {
+              "function": "BANISHMENT_KOUJO_K3",
+              "line": 8714,
+              "static_prints": 5,
+              "status": "has_text"
+            },
+            {
+              "function": "PUBLIC_EXUCUTION_KOUJO_K3",
+              "line": 8735,
+              "static_prints": 3,
+              "status": "has_text"
+            },
+            {
+              "function": "GROTESQUE_KOUJO_K3",
+              "line": 8750,
+              "static_prints": 7,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K4_冷徹.ERB",
+          "sections": [
+            {
+              "function": "EXUCUTION_KOUJO_K4",
+              "line": 5118,
+              "static_prints": 4,
+              "status": "has_text"
+            },
+            {
+              "function": "MUSEUM_KOUJO_K4",
+              "line": 5135,
+              "static_prints": 10,
+              "status": "has_text"
+            },
+            {
+              "function": "BANISHMENT_KOUJO_K4",
+              "line": 5170,
+              "static_prints": 5,
+              "status": "has_text"
+            },
+            {
+              "function": "PUBLIC_EXUCUTION_KOUJO_K4",
+              "line": 5191,
+              "static_prints": 3,
+              "status": "has_text"
+            },
+            {
+              "function": "GROTESQUE_KOUJO_K4",
+              "line": 5206,
+              "static_prints": 7,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K5_マオ.ERB",
+          "sections": [
+            {
+              "function": "EXUCUTION_KOUJO_K5",
+              "line": 7441,
+              "static_prints": 4,
+              "status": "has_text"
+            },
+            {
+              "function": "MUSEUM_KOUJO_K5",
+              "line": 7458,
+              "static_prints": 10,
+              "status": "has_text"
+            },
+            {
+              "function": "BANISHMENT_KOUJO_K5",
+              "line": 7493,
+              "static_prints": 5,
+              "status": "has_text"
+            },
+            {
+              "function": "PUBLIC_EXUCUTION_KOUJO_K5",
+              "line": 7514,
+              "static_prints": 3,
+              "status": "has_text"
+            },
+            {
+              "function": "GROTESQUE_KOUJO_K5",
+              "line": 7529,
+              "static_prints": 7,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K6_悪女.ERB",
+          "sections": [
+            {
+              "function": "EXUCUTION_KOUJO_K6",
+              "line": 8148,
+              "static_prints": 4,
+              "status": "has_text"
+            },
+            {
+              "function": "MUSEUM_KOUJO_K6",
+              "line": 8165,
+              "static_prints": 12,
+              "status": "has_text"
+            },
+            {
+              "function": "BANISHMENT_KOUJO_K6",
+              "line": 8202,
+              "static_prints": 5,
+              "status": "has_text"
+            },
+            {
+              "function": "PUBLIC_EXUCUTION_KOUJO_K6",
+              "line": 8223,
+              "static_prints": 3,
+              "status": "has_text"
+            },
+            {
+              "function": "GROTESQUE_KOUJO_K6",
+              "line": 8238,
+              "static_prints": 7,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K7_ハート.ERB",
+          "sections": [
+            {
+              "function": "EXUCUTION_KOUJO_K7",
+              "line": 8539,
+              "static_prints": 4,
+              "status": "has_text"
+            },
+            {
+              "function": "MUSEUM_KOUJO_K7",
+              "line": 8556,
+              "static_prints": 10,
+              "status": "has_text"
+            },
+            {
+              "function": "BANISHMENT_KOUJO_K7",
+              "line": 8591,
+              "static_prints": 9,
+              "status": "has_text"
+            },
+            {
+              "function": "PUBLIC_EXUCUTION_KOUJO_K7",
+              "line": 8616,
+              "static_prints": 3,
+              "status": "has_text"
+            },
+            {
+              "function": "GROTESQUE_KOUJO_K7",
+              "line": 8631,
+              "static_prints": 7,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K8_スペード.ERB",
+          "sections": [
+            {
+              "function": "EXUCUTION_KOUJO_K8",
+              "line": 7606,
+              "static_prints": 4,
+              "status": "has_text"
+            },
+            {
+              "function": "MUSEUM_KOUJO_K8",
+              "line": 7623,
+              "static_prints": 10,
+              "status": "has_text"
+            },
+            {
+              "function": "BANISHMENT_KOUJO_K8",
+              "line": 7658,
+              "static_prints": 5,
+              "status": "has_text"
+            },
+            {
+              "function": "PUBLIC_EXUCUTION_KOUJO_K8",
+              "line": 7679,
+              "static_prints": 3,
+              "status": "has_text"
+            },
+            {
+              "function": "GROTESQUE_KOUJO_K8",
+              "line": 7694,
+              "static_prints": 7,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K903_嘉德.ERB",
+          "sections": [
+            {
+              "function": "EXUCUTION_KOUJO_K903",
+              "line": 5557,
+              "static_prints": 6,
+              "status": "has_text"
+            },
+            {
+              "function": "MUSEUM_KOUJO_K903",
+              "line": 5577,
+              "static_prints": 10,
+              "status": "has_text"
+            },
+            {
+              "function": "BANISHMENT_KOUJO_K903",
+              "line": 5613,
+              "static_prints": 4,
+              "status": "has_text"
+            },
+            {
+              "function": "PUBLIC_EXUCUTION_KOUJO_K903",
+              "line": 5631,
+              "static_prints": 3,
+              "status": "has_text"
+            },
+            {
+              "function": "GROTESQUE_KOUJO_K903",
+              "line": 5646,
+              "static_prints": 7,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K904_菲娅.ERB",
+          "sections": [
+            {
+              "function": "EXUCUTION_KOUJO_K904",
+              "line": 6337,
+              "static_prints": 6,
+              "status": "has_text"
+            },
+            {
+              "function": "MUSEUM_KOUJO_K904",
+              "line": 6363,
+              "static_prints": 22,
+              "status": "has_text"
+            },
+            {
+              "function": "BANISHMENT_KOUJO_K904",
+              "line": 6425,
+              "static_prints": 11,
+              "status": "has_text"
+            },
+            {
+              "function": "PUBLIC_EXUCUTION_KOUJO_K904",
+              "line": 6455,
+              "static_prints": 5,
+              "status": "has_text"
+            },
+            {
+              "function": "GROTESQUE_KOUJO_K904",
+              "line": 6476,
+              "static_prints": 7,
+              "status": "has_text"
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_K9_ダイヤ.ERB",
+          "sections": [
+            {
+              "function": "EXUCUTION_KOUJO_K9",
+              "line": 7277,
+              "static_prints": 4,
+              "status": "has_text"
+            },
+            {
+              "function": "MUSEUM_KOUJO_K9",
+              "line": 7294,
+              "static_prints": 10,
+              "status": "has_text"
+            },
+            {
+              "function": "BANISHMENT_KOUJO_K9",
+              "line": 7329,
+              "static_prints": 5,
+              "status": "has_text"
+            },
+            {
+              "function": "PUBLIC_EXUCUTION_KOUJO_K9",
+              "line": 7350,
+              "static_prints": 3,
+              "status": "has_text"
+            },
+            {
+              "function": "GROTESQUE_KOUJO_K9",
+              "line": 7365,
+              "static_prints": 7,
+              "status": "has_text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LEGACY-15",
+      "name": "个人结局及追加结局",
+      "mode": "inventory_only",
+      "status": "retained_not_fully_audited",
+      "authoring_enabled": false,
+      "note": "包含普通剧情和敏感段落；需要按具体结局核验，不是每个结局都缺失或露骨。",
+      "shared_files": [
+        {
+          "file": "ERB/ENDINGDATA.ERB",
+          "declarations": [
+            {
+              "function": "ENDRESET",
+              "line": 1
+            },
+            {
+              "function": "ENDCHECKMAIN",
+              "line": 38
+            },
+            {
+              "function": "ENDCHECKCHARA",
+              "line": 64
+            },
+            {
+              "function": "ENDCHECKSQUARE",
+              "line": 143
+            },
+            {
+              "function": "ENDCHECKSPADE",
+              "line": 208
+            },
+            {
+              "function": "ENDCHECKPRINCESS",
+              "line": 353
+            },
+            {
+              "function": "END7_1",
+              "line": 483
+            },
+            {
+              "function": "END7_2",
+              "line": 492
+            },
+            {
+              "function": "END7_3",
+              "line": 501
+            },
+            {
+              "function": "END7_4",
+              "line": 503
+            },
+            {
+              "function": "END7_5",
+              "line": 516
+            },
+            {
+              "function": "END7_6",
+              "line": 529
+            },
+            {
+              "function": "END7_7",
+              "line": 547
+            },
+            {
+              "function": "END7_8",
+              "line": 562
+            },
+            {
+              "function": "END7_9",
+              "line": 574
+            },
+            {
+              "function": "END7_10",
+              "line": 587
+            },
+            {
+              "function": "END7_11",
+              "line": 599
+            },
+            {
+              "function": "END7_12",
+              "line": 612
+            },
+            {
+              "function": "END713",
+              "line": 659
+            },
+            {
+              "function": "END7_14",
+              "line": 661
+            },
+            {
+              "function": "END7_15",
+              "line": 673
+            },
+            {
+              "function": "END7_16",
+              "line": 684
+            },
+            {
+              "function": "END7_17",
+              "line": 696
+            },
+            {
+              "function": "END7_18",
+              "line": 715
+            },
+            {
+              "function": "END7_19",
+              "line": 726
+            },
+            {
+              "function": "END7_20",
+              "line": 740
+            },
+            {
+              "function": "END7_21",
+              "line": 752
+            },
+            {
+              "function": "END7_22",
+              "line": 765
+            },
+            {
+              "function": "END11_1",
+              "line": 819
+            },
+            {
+              "function": "END11_2",
+              "line": 840
+            },
+            {
+              "function": "END11_3",
+              "line": 884
+            },
+            {
+              "function": "END11_4",
+              "line": 913
+            },
+            {
+              "function": "END11_5",
+              "line": 974
+            },
+            {
+              "function": "END11_6",
+              "line": 1002
+            },
+            {
+              "function": "END11_7",
+              "line": 1016
+            },
+            {
+              "function": "END11_8",
+              "line": 1030
+            },
+            {
+              "function": "END11_9",
+              "line": 1047
+            },
+            {
+              "function": "END11_31",
+              "line": 1102
+            },
+            {
+              "function": "END14_1",
+              "line": 1119
+            },
+            {
+              "function": "END14_2",
+              "line": 1135
+            },
+            {
+              "function": "END14_3",
+              "line": 1155
+            },
+            {
+              "function": "END14_4",
+              "line": 1171
+            },
+            {
+              "function": "END14_5",
+              "line": 1223
+            },
+            {
+              "function": "END14_6",
+              "line": 1248
+            },
+            {
+              "function": "END14_7",
+              "line": 1261
+            },
+            {
+              "function": "END14_8",
+              "line": 1274
+            },
+            {
+              "function": "END14_9",
+              "line": 1290
+            },
+            {
+              "function": "END14_11",
+              "line": 1331
+            },
+            {
+              "function": "END14_12",
+              "line": 1356
+            },
+            {
+              "function": "END14_13",
+              "line": 1369
+            },
+            {
+              "function": "END14_14",
+              "line": 1391
+            },
+            {
+              "function": "END14_15",
+              "line": 1401
+            },
+            {
+              "function": "END14_16",
+              "line": 1420
+            },
+            {
+              "function": "END14_17",
+              "line": 1438
+            },
+            {
+              "function": "END14_18",
+              "line": 1450
+            },
+            {
+              "function": "END14_19",
+              "line": 1465
+            },
+            {
+              "function": "END14_20",
+              "line": 1477
+            },
+            {
+              "function": "END14_31",
+              "line": 1511
+            }
+          ]
+        },
+        {
+          "file": "ERB/ENDINGDATA_ADDON1.ERB",
+          "declarations": [
+            {
+              "function": "ENDCHECKGODNESS",
+              "line": 1
+            },
+            {
+              "function": "ENDCHECKGODNESS_SKY_TEMPLE",
+              "line": 146
+            },
+            {
+              "function": "END10_11",
+              "line": 155
+            },
+            {
+              "function": "END10_12",
+              "line": 182
+            },
+            {
+              "function": "END10_12_1",
+              "line": 293
+            },
+            {
+              "function": "END10_12_2",
+              "line": 303
+            },
+            {
+              "function": "END10_13",
+              "line": 311
+            },
+            {
+              "function": "END10_14",
+              "line": 351
+            },
+            {
+              "function": "END10_15",
+              "line": 391
+            },
+            {
+              "function": "END10_54",
+              "line": 437
+            },
+            {
+              "function": "END10_55",
+              "line": 475
+            },
+            {
+              "function": "END10_16",
+              "line": 487
+            },
+            {
+              "function": "END10_17",
+              "line": 543
+            },
+            {
+              "function": "END10_18",
+              "line": 562
+            },
+            {
+              "function": "END10_19",
+              "line": 623
+            }
+          ]
+        }
+      ],
+      "character_entries": []
+    },
+    {
+      "id": "LEGACY-16",
+      "name": "日期与生育相关混合处理",
+      "mode": "inventory_only",
+      "status": "retained_not_fully_audited",
+      "authoring_enabled": false,
+      "note": "包含普通出生、照护及日期处理，只登记需区分的混合区域，不将生育本身标记为露骨。",
+      "shared_files": [
+        {
+          "file": "ERB/EVENT_NEXTDAY.ERB",
+          "declarations": [
+            {
+              "function": "EVENT_NEXTDAY",
+              "line": 6
+            },
+            {
+              "function": "EVENT_NEWDAY",
+              "line": 165
+            },
+            {
+              "function": "RUNNING_COST",
+              "line": 219
+            },
+            {
+              "function": "EVENT_FUTA_F",
+              "line": 339
+            },
+            {
+              "function": "EVENT_MORASI",
+              "line": 364
+            },
+            {
+              "function": "EVENT_YOUJI",
+              "line": 375
+            },
+            {
+              "function": "EVENT_MAZOKU",
+              "line": 448
+            },
+            {
+              "function": "SOMETIMES_SHE_COMES_BACK",
+              "line": 480
+            },
+            {
+              "function": "MORNING_FELLATIO",
+              "line": 511
+            },
+            {
+              "function": "ONESHO",
+              "line": 685
+            },
+            {
+              "function": "OFFERVIRGIN_CHECK",
+              "line": 797
+            },
+            {
+              "function": "NIGHT_STALKING_CHECK",
+              "line": 1078
+            },
+            {
+              "function": "DOG_WALK",
+              "line": 1312
+            },
+            {
+              "function": "PILLORY",
+              "line": 1453
+            },
+            {
+              "function": "MAOU_KOUHO",
+              "line": 2382
+            },
+            {
+              "function": "MAOU_TENSHIN",
+              "line": 2407
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_NEXTMONTH.ERB",
+          "declarations": [
+            {
+              "function": "EVENT_NEXTMONTH",
+              "line": 12
+            }
+          ]
+        },
+        {
+          "file": "ERB/EVENT_PREGNANCY.ERB",
+          "declarations": [
+            {
+              "function": "IN_VAGINA_ALL",
+              "line": 42
+            },
+            {
+              "function": "CONCEPTION_CHECK_ALL",
+              "line": 61
+            },
+            {
+              "function": "IN_VAGINA_M_TO_T",
+              "line": 85
+            },
+            {
+              "function": "IN_VAGINA_M_TO_A",
+              "line": 95
+            },
+            {
+              "function": "IN_VAGINA_T_TO_M",
+              "line": 105
+            },
+            {
+              "function": "IN_VAGINA_A_TO_T",
+              "line": 114
+            },
+            {
+              "function": "IN_VAGINA_T_TO_A",
+              "line": 124
+            },
+            {
+              "function": "IN_VAGINA_D_TO_T",
+              "line": 134
+            },
+            {
+              "function": "IN_VAGINA_SYOKU_TO_T",
+              "line": 143
+            },
+            {
+              "function": "IN_VAGINA_SYOKU_TO_M",
+              "line": 152
+            },
+            {
+              "function": "IN_VAGINA_KYOUOU_TO_M",
+              "line": 161
+            },
+            {
+              "function": "IN_VAGINA_KYOUOU_TO_T",
+              "line": 170
+            },
+            {
+              "function": "IN_VAGINA_NTRD_TO_T",
+              "line": 179
+            },
+            {
+              "function": "IN_VAGINA_EXTRA",
+              "line": 188
+            },
+            {
+              "function": "NAKADASHI_CHECK",
+              "line": 196
+            },
+            {
+              "function": "GET_CHILD",
+              "line": 280
+            },
+            {
+              "function": "CONCEPTION_CHECK_M_TO_T",
+              "line": 305
+            },
+            {
+              "function": "CONCEPTION_CHECK_M_TO_A",
+              "line": 317
+            },
+            {
+              "function": "CONCEPTION_CHECK_T_TO_M",
+              "line": 329
+            },
+            {
+              "function": "CONCEPTION_CHECK_A_TO_T",
+              "line": 341
+            },
+            {
+              "function": "CONCEPTION_CHECK_T_TO_A",
+              "line": 354
+            },
+            {
+              "function": "CONCEPTION_CHECK_D_TO_T",
+              "line": 366
+            },
+            {
+              "function": "CONCEPTION_CHECK_EXTRA",
+              "line": 379
+            },
+            {
+              "function": "CONCEPTION_CHECK_SYOKU_TO_T",
+              "line": 389
+            },
+            {
+              "function": "CONCEPTION_CHECK_SYOKU_TO_M",
+              "line": 402
+            },
+            {
+              "function": "CONCEPTION_CHECK_KYOUOU_TO_M",
+              "line": 413
+            },
+            {
+              "function": "CONCEPTION_CHECK_KYOUOU_TO_T",
+              "line": 424
+            },
+            {
+              "function": "CONCEPTION_CHECK_NTRD_TO_T",
+              "line": 435
+            },
+            {
+              "function": "SHOW_BUTTON_CHILD_CARE",
+              "line": 452
+            },
+            {
+              "function": "CHECK_ABLE_TO_CHILD_CARE",
+              "line": 473
+            },
+            {
+              "function": "CHILD_CARE_CHARA",
+              "line": 492
+            }
+          ]
+        },
+        {
+          "file": "ERB/NINSIN.ERB",
+          "declarations": [
+            {
+              "function": "NINSIN_MAIN",
+              "line": 16
+            },
+            {
+              "function": "NINSIN_AWARE",
+              "line": 68
+            },
+            {
+              "function": "PREG_TALENT_GET",
+              "line": 184
+            },
+            {
+              "function": "NINSIN_REACH_TERM",
+              "line": 216
+            },
+            {
+              "function": "NINSIN_REACH_DAY",
+              "line": 278
+            },
+            {
+              "function": "NINSIN_GIVE_BIRTH",
+              "line": 400
+            },
+            {
+              "function": "GB_ADD_GUARD",
+              "line": 450
+            },
+            {
+              "function": "GB_ADD_SLAVE",
+              "line": 544
+            },
+            {
+              "function": "GB_DEFINE_NAME",
+              "line": 610
+            },
+            {
+              "function": "N_CHANGE_STATUS",
+              "line": 629
+            },
+            {
+              "function": "N_RESET_STATUS",
+              "line": 811
+            },
+            {
+              "function": "CHILD_BIRTH_PLACE",
+              "line": 838
+            },
+            {
+              "function": "N_FLAG_CLEAR",
+              "line": 852
+            },
+            {
+              "function": "N_BREAST_GROW",
+              "line": 867
+            },
+            {
+              "function": "N_BREAST_REVERSE",
+              "line": 902
+            },
+            {
+              "function": "CHILD_CARE_BEGIN",
+              "line": 929
+            },
+            {
+              "function": "CHILD_CARE_CHANGE_NURSE",
+              "line": 961
+            },
+            {
+              "function": "CHILD_CARE_DEPART",
+              "line": 1054
+            }
+          ]
+        }
+      ],
+      "character_entries": []
+    },
+    {
+      "id": "LEGACY-17",
+      "name": "旧中央分发与未接通入口",
+      "mode": "inventory_only",
+      "status": "retained_not_fully_audited",
+      "authoring_enabled": false,
+      "note": "中央分发主要是路由而非场景正文；主角、助手及切换的部分调用被注释，不能通过补文自动接通。",
+      "shared_files": [
+        {
+          "file": "ERB/EVENT_K.ERB",
+          "declarations": [
+            {
+              "function": "EVENTSHOP",
+              "line": 12
+            },
+            {
+              "function": "KOJO_MESSAGE_COM_MASTER",
+              "line": 24
+            },
+            {
+              "function": "KOJO_MESSAGE_COM_ASSI",
+              "line": 44
+            },
+            {
+              "function": "KOJO_MESSAGE_PLAYERCHANGE",
+              "line": 68
+            },
+            {
+              "function": "GET_KOJO_NUM",
+              "line": 86
+            },
+            {
+              "function": "KOJO_MESSAGE_COM",
+              "line": 150
+            },
+            {
+              "function": "KOJO_MESSAGE_PALAMCNG",
+              "line": 169
+            },
+            {
+              "function": "KOJO_MESSAGE_MARKCNG",
+              "line": 188
+            },
+            {
+              "function": "KOJO_EVENT_COM",
+              "line": 209
+            },
+            {
+              "function": "SELF_KOJO",
+              "line": 225
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU",
+              "line": 249
+            },
+            {
+              "function": "DUNGEON_RYOUZYOKU_AFTER",
+              "line": 263
+            },
+            {
+              "function": "BENKI_KOUJO",
+              "line": 277
+            },
+            {
+              "function": "VICTORY_KOUJO",
+              "line": 294
+            },
+            {
+              "function": "ATTACK_KOUJO",
+              "line": 303
+            },
+            {
+              "function": "ATTACK_KOUJO_B",
+              "line": 309
+            },
+            {
+              "function": "NTR_KOUJO",
+              "line": 318
+            },
+            {
+              "function": "EXUCUTION_KOUJO",
+              "line": 333
+            },
+            {
+              "function": "MUSEUM_KOUJO",
+              "line": 348
+            },
+            {
+              "function": "BANISHMENT_KOUJO",
+              "line": 363
+            },
+            {
+              "function": "PUBLIC_EXUCUTION_KOUJO",
+              "line": 378
+            },
+            {
+              "function": "GROTESQUE_KOUJO",
+              "line": 393
+            },
+            {
+              "function": "ENTERENEMY_KOUJO",
+              "line": 408
+            },
+            {
+              "function": "GOHOUBI_REQUEST_KOUJO",
+              "line": 415
+            },
+            {
+              "function": "GOHOUBI_AFTER_KOUJO",
+              "line": 433
+            },
+            {
+              "function": "OSIOKI_KOUJO",
+              "line": 451
+            },
+            {
+              "function": "GOBI_KOUJO",
+              "line": 469
+            }
+          ]
+        }
+      ],
+      "character_entries": []
+    }
+  ],
+  "character_files": [
+    {
+      "file": "ERB/EVENT_K0_慈愛.ERB",
+      "section_count": 27
+    },
+    {
+      "file": "ERB/EVENT_K10_クラブ.ERB",
+      "section_count": 27
+    },
+    {
+      "file": "ERB/EVENT_K11_リリィ.ERB",
+      "section_count": 27
+    },
+    {
+      "file": "ERB/EVENT_K12_知的.ERB",
+      "section_count": 27
+    },
+    {
+      "file": "ERB/EVENT_K13_庇護者.ERB",
+      "section_count": 28
+    },
+    {
+      "file": "ERB/EVENT_K14_貴公子.ERB",
+      "section_count": 27
+    },
+    {
+      "file": "ERB/EVENT_K15_伶俐.ERB",
+      "section_count": 27
+    },
+    {
+      "file": "ERB/EVENT_K19_菲娅.ERB",
+      "section_count": 27
+    },
+    {
+      "file": "ERB/EVENT_K1_自信家.ERB",
+      "section_count": 27
+    },
+    {
+      "file": "ERB/EVENT_K2_気弱.ERB",
+      "section_count": 27
+    },
+    {
+      "file": "ERB/EVENT_K3_高貴.ERB",
+      "section_count": 27
+    },
+    {
+      "file": "ERB/EVENT_K4_冷徹.ERB",
+      "section_count": 27
+    },
+    {
+      "file": "ERB/EVENT_K5_マオ.ERB",
+      "section_count": 27
+    },
+    {
+      "file": "ERB/EVENT_K6_悪女.ERB",
+      "section_count": 27
+    },
+    {
+      "file": "ERB/EVENT_K7_ハート.ERB",
+      "section_count": 27
+    },
+    {
+      "file": "ERB/EVENT_K8_スペード.ERB",
+      "section_count": 27
+    },
+    {
+      "file": "ERB/EVENT_K903_嘉德.ERB",
+      "section_count": 27
+    },
+    {
+      "file": "ERB/EVENT_K904_菲娅.ERB",
+      "section_count": 27
+    },
+    {
+      "file": "ERB/EVENT_K9_ダイヤ.ERB",
+      "section_count": 27
+    }
+  ],
+  "details_reference": "docs/character_coverage.json",
+  "separate_non_graphic_tasks": "content/character_voice_tasks.json"
+}

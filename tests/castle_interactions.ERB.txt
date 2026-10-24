@@ -76,11 +76,11 @@ MONEY = 10000
 CT_QUEUE = CL_DUNGEON
 CT_POS = 0
 CALL CASTLE_BUILD
-CALL CT_ASSERT(CASTLE_LEVEL:CL_DUNGEON == 2 && MONEY == 9000 && CASTLE_STATE:5 == 1, "construction consumes exact cost and action")
+CALL CT_ASSERT(CASTLE_LEVEL:CL_DUNGEON == 1 && EC_STATE:EC_BUILD_ID == CL_DUNGEON && MONEY == 8400 && CASTLE_STATE:5 == 1, "construction queues real project and consumes exact cost and action")
 CT_QUEUE = 999
 CT_POS = 0
 CALL CASTLE_BUILD
-CALL CT_ASSERT(MONEY == 9000 && CASTLE_STATE:5 == 1, "cancelled construction changes nothing")
+CALL CT_ASSERT(MONEY == 8400 && CASTLE_STATE:5 == 1, "occupied construction view changes nothing")
 ITEM:170 = 12
 CASTLE_GUARD:170 = 0
 CT_QUEUE = 170, 4, 999

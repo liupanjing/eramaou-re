@@ -6,6 +6,11 @@
 ;その都度計算する
 
 @TAX_GET
+CALL EC_SETTLE
+RETURN 0
+
+; Archived original collector; not called by the active calendar.
+@TAX_LEGACY
 #DIM TAX,4
 
 ;TAX変数に計算した税を入れていく

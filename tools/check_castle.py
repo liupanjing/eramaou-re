@@ -12,12 +12,28 @@ from build_character_voices import compile_voices
 from build_character_events import compile_events
 from audit_character_coverage import inventory
 from check_legacy_policy import check_policy
+from build_economy import compile_rules
+from build_interactions import compile_interactions
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def check_sources():
     check_policy()
+    interaction_code, _ = compile_interactions()
+    assert (ROOT / 'ERB/INTERACTION_TEXT.ERB').read_bytes() == interaction_code
+    interaction_functions = []
+    for filename in ['INTERACTION.ERB', 'INTERACTION_TEXT.ERB']:
+        interaction_functions += re.findall(r'^@(IX_\w+)', (ROOT / 'ERB' / filename).read_text(encoding='utf-8-sig'), re.M)
+    assert len(interaction_functions) == len(set(interaction_functions)), 'duplicate interaction function'
+    assert (ROOT / 'ERB/ECONOMY_RULES.ERB').read_bytes() == compile_rules()
+    economy_functions = []
+    for filename in ['ECONOMY.ERB', 'ECONOMY_RULES.ERB']:
+        economy_functions += re.findall(r'^@(EC_\w+)', (ROOT / 'ERB' / filename).read_text(encoding='utf-8-sig'), re.M)
+    assert len(economy_functions) == len(set(economy_functions)), 'duplicate economy function'
+    tax = (ROOT / 'ERB/TAX.ERB').read_text(encoding='utf-8-sig')
+    tax_entry = re.search(r'^@TAX_GET\s*\n(.*?)(?=^@)', tax, re.M | re.S).group(1)
+    assert 'CALL EC_SETTLE' in tax_entry and 'MONEY +=' not in tax_entry, 'Active tax entry must settle only once'
     body = (ROOT / 'ERB/CASTLE.ERB').read_text(encoding='utf-8-sig')
     names = re.findall(r'^@(CASTLE_\w+)', body, re.M)
     assert len(names) == len(set(names)), 'duplicate castle function'
@@ -29,7 +45,7 @@ def check_sources():
         assert data.startswith(b'\xef\xbb\xbf'), filename + ': missing UTF-8 BOM'
         assert 'CASTLE_' in data.decode('utf-8-sig'), filename + ': missing integration'
     # Validate block pairing independently of indentation and labels.
-    dialogue_files = ['DIALOGUE_CORE.ERB', 'DIALOGUE_DAILY.ERB', 'DIALOGUE_STORIES.ERB', 'DIALOGUE_UI.ERB', 'DIALOGUE_ATTITUDE.ERB', 'DIALOGUE_VOICES.ERB', 'CHARACTER_EVENTS.ERB', 'CHARACTER_EVENTS_TEXT.ERB', 'CASTLE_POLICY.ERB']
+    dialogue_files = ['DIALOGUE_CORE.ERB', 'DIALOGUE_DAILY.ERB', 'DIALOGUE_STORIES.ERB', 'DIALOGUE_UI.ERB', 'DIALOGUE_ATTITUDE.ERB', 'DIALOGUE_VOICES.ERB', 'CHARACTER_EVENTS.ERB', 'CHARACTER_EVENTS_TEXT.ERB', 'CASTLE_POLICY.ERB', 'ECONOMY.ERB', 'ECONOMY_RULES.ERB', 'INTERACTION.ERB', 'INTERACTION_TEXT.ERB', 'CASTLE_MOVEMENT.ERB']
     voice_code, voice_data = compile_voices()
     assert (ROOT/'ERB/DIALOGUE_VOICES.ERB').read_bytes() == voice_code
     event_code, _ = compile_events()
@@ -126,7 +142,7 @@ def prepare(destination, load_save=None, scripted=False, interactive=False, expe
                     harness += f"CASE {pack['id'] * 1000 + event_no * 10 + rnd}\n\tRETURNF DT_GOOD ? {good} # {bad}\n"
         harness += 'ENDSELECT\nRETURNF 0\n'
         (destination/'ERB/CASTLE_TEST.ERH').write_text('#DIM CT_QUEUE, 32\n#DIM CT_POS\n#DIM CT_SIZE\n',encoding='utf-8-sig')
-        for name in ['CASTLE.ERB', 'DIALOGUE_CORE.ERB', 'DIALOGUE_DAILY.ERB', 'DIALOGUE_UI.ERB']:
+        for name in ['CASTLE.ERB', 'ECONOMY.ERB', 'DIALOGUE_CORE.ERB', 'DIALOGUE_DAILY.ERB', 'DIALOGUE_UI.ERB', 'INTERACTION.ERB']:
             module = destination/'ERB'/name
             code = module.read_text(encoding='utf-8-sig')
             code = re.sub(r'(?m)^([ \t]*)INPUT[ \t]*$',r'\1CALL CT_INPUT',code)
@@ -205,6 +221,10 @@ QUIT
             extra += 'CALL CT_ASSERT(DIALOGUE_PERSON:2:DP_VERSION == 2 && DIALOGUE_PERSON:2:DP_MET == 1, "save preserves or migrates first encounter state")\n'
             extra += 'CALL CT_ASSERT(DIALOGUE_ADDRESS(2) == "你", "loaded White Clover keeps original address")\n'
             harness = harness.replace('PRINTL CASTLE LOAD ASSERTIONS PASSED', extra + 'PRINTL CASTLE LOAD ASSERTIONS PASSED')
+        elif saved_scenario == 'economy_legacy':
+            extra = 'CALL CT_ASSERT(EC_STATE:EC_VERSION == 1 && EC_STOCK:1 == 120 && EC_STOCK:2 == 60 && EC_STOCK:3 == 30, "original save receives initial economy supplies exactly once")\n'
+            extra += 'EC_STOCK:3 = 19\nCALL CASTLE_SYNC\nCALL CT_ASSERT(EC_STOCK:3 == 19 && MONEY == CT_MONEY, "old save refresh does not duplicate supplies or change cash")\n'
+            harness = harness.replace('PRINTL CASTLE LOAD ASSERTIONS PASSED', extra + 'PRINTL CASTLE LOAD ASSERTIONS PASSED')
         harness = harness.replace('CASTLE_GUARD:170 == 2' , 'CASTLE_GUARD:170 == ' + str(expected_guard))
         system = destination/'ERB/SYSTEM.ERB'
         source = system.read_text(encoding='utf-8-sig')
@@ -225,7 +245,7 @@ if __name__ == '__main__':
     parser.add_argument('--interactive', action='store_true', help='Open copied save through original EVENTLOAD and SHOP')
     parser.add_argument('--dialogue', action='store_true', help='Run dialogue stories, branching, migration and resource regression suite')
     parser.add_argument('--identity', action='store_true', help='Run shared identity, legacy entry and lifecycle regression suite')
-    parser.add_argument('--saved-scenario', choices=['default', 'dialogue', 'guest', 'story', 'story_pending'], default='default')
+    parser.add_argument('--saved-scenario', choices=['default', 'dialogue', 'guest', 'story', 'story_pending', 'economy_legacy'], default='default')
     parser.add_argument('--expected-guard', type=int, default=2, help='Expected troop allocation for a known synthetic save; scripted fixture uses 4')
     args = parser.parse_args()
     check_sources()

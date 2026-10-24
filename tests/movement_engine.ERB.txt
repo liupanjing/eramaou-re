@@ -1,0 +1,145 @@
+; Native movement, meetings, existing duties and stable saved identity.
+@SYSTEM_TITLE
+#DIM DYNAMIC MT_I
+#DIM DYNAMIC MT_PLACE
+#DIM DYNAMIC MT_UID
+#DIM DYNAMIC MT_ACTIONS
+#DIM DYNAMIC MT_CASH
+#DIMS DYNAMIC MT_MEMORY
+RESETDATA
+CALL CHARA_NAME_INIT
+FOR MT_I, 0, 6
+	ADDCHARA MT_I
+NEXT
+MASTER = 0
+DAY = 10
+TIME = 0
+MONEY = 10000
+FOR MT_I, 0, CHARANUM
+	CFLAG:MT_I:6 = 51000 + MT_I
+	CFLAG:MT_I:451 = 25
+	CFLAG:MT_I:1 = 0
+	BASE:MT_I:0 = 800
+	MAXBASE:MT_I:0 = 1000
+NEXT
+CFLAG:3:451 = 8
+EX_TALENT:3:2 = 1
+EX_TALENT:4:2 = 1
+CALL CASTLE_SYNC
+CASTLE_PERSON:1:CP_ROLE = CR_FOLLOWER
+CASTLE_PERSON:1:CP_ORIGIN = 3
+CASTLE_PERSON:1:CP_HOME = CL_QUARTERS
+CASTLE_PERSON:1:CP_WORK = CL_WORKSHOP
+DIALOGUE_PERSON:1:DP_TEMPER = 0
+DIALOGUE_PERSON:1:DP_ORIGIN = 2
+CASTLE_PERSON:4:CP_WORK = CL_STORE
+CASTLE_PERSON:5:CP_ROLE = CR_FOLLOWER
+CASTLE_PERSON:5:CP_ORIGIN = 3
+CASTLE_PERSON:5:CP_HOME = CL_QUARTERS
+DIALOGUE_PERSON:5:DP_TEMPER = 0
+DIALOGUE_PERSON:5:DP_ORIGIN = 2
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_WHERE(1) == CL_WORKSHOP && CM_PERSON:1:CM_MODE == 1, "assigned follower attends morning workplace")
+CALL CT_ASSERT(CASTLE_WHERE(5) == CL_QUARTERS, "newly registered idle follower starts at residence without instant wandering")
+CALL CT_ASSERT(CASTLE_WHERE(3) == CL_FAMILY && CASTLE_WHERE(4) == CL_STORE, "child remains in family housing while adult relative can attend duty")
+CALL CT_ASSERT(CASTLE_WHERE(2) == CL_DUNGEON, "captive remains in dungeon")
+TIME = 1
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_WHERE(1) == CL_QUARTERS && CM_PERSON:1:CM_MODE == 2, "alternating free periods include rest at home")
+DAY = 11
+TIME = 0
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_WHERE(1) == CL_WORKSHOP && CASTLE_WHERE(4) == CL_STORE, "next morning resumes actual duties")
+CALL EC_CAPTURE_SHIFT
+CALL CT_ASSERT(EC_COUNT:CL_WORKSHOP == 1 && EC_COUNT:CL_STORE == 1, "schedule preserves economic attendance")
+TIME = 1
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_WHERE(1) == CL_BARRACKS && CM_PERSON:1:CM_MODE == 3, "free afternoon moves follower to a public activity")
+CALL CT_ASSERT(CASTLE_PERSON:1:CP_HOME == CL_QUARTERS && CASTLE_PERSON:1:CP_WORK == CL_WORKSHOP, "outing does not alter residence or appointment")
+CALL CT_ASSERT(CASTLE_WHERE(5) == CL_WORKSHOP, "another idle follower has its own stable schedule")
+CALL CT_ASSERT(CASTLE_WHERE(3) == CL_FAMILY && CASTLE_WHERE(4) == CL_FAMILY && CASTLE_WHERE(2) == CL_DUNGEON, "family care and captive boundaries override autonomous movement")
+MT_PLACE = CASTLE_WHERE(1)
+MT_ACTIONS = CASTLE_STATE:5
+MT_CASH = MONEY
+CALL CASTLE_SYNC
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_WHERE(1) == MT_PLACE && CASTLE_STATE:5 == MT_ACTIONS && MONEY == MT_CASH, "repeated sync preserves location and resources")
+CALL CASTLE_COMMAND(21001)
+CALL CASTLE_COMMAND(21007)
+CALL CT_ASSERT(CASTLE_WHERE(1) == MT_PLACE && CASTLE_STATE:5 == MT_ACTIONS, "player movement does not shuffle character schedules")
+CASTLE_STATE:2 = CL_QUARTERS
+CALL CT_ASSERT(IX_REASON(1, 1) == 3, "residence no longer grants remote access to a character on an outing")
+CASTLE_STATE:2 = CL_BARRACKS
+CT_QUEUE = 7, 1, 1, 1, 0, 999
+CT_POS = 0
+CT_SIZE = 6
+CALL CASTLE_PERSON_MENU(1)
+CALL CT_ASSERT(INTERACTION_COUNT:1:1 == 1 && CASTLE_STATE:5 == MT_ACTIONS - 1, "meeting a moving character reaches the real interaction menu")
+CALL CT_ASSERT(STRLENS(CM_ACTIVITY(1)) > 0, "current activity is available for location and roster UI")
+MT_UID = CASTLE_PERSON:1:CP_UID
+SWAPCHARA 1, 5
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_PERSON:5:CP_UID == MT_UID && CASTLE_WHERE(5) == MT_PLACE, "sorting preserves exact outing by permanent identity")
+SWAPCHARA 1, 5
+MT_MEMORY = 0_0_0_0_0_0_0_0_0_0_0_0_0_0
+MT_MEMORY '= MT_MEMORY + CASTLE_EXPORT_MEMORY(1)
+CM_PERSON:1 = 0
+CALL CASTLE_IMPORT_MEMORY(1, MT_MEMORY)
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_WHERE(1) == MT_PLACE && CM_PERSON:1:CM_MODE == 3, "leave-and-return serialization restores current outing")
+MT_MEMORY '= MT_MEMORY + ",bad"
+CALL CM_IMPORT(1, MT_MEMORY)
+CALL CT_ASSERT(RESULT == 0 && CASTLE_WHERE(1) == MT_PLACE, "malformed optional movement memory is rejected atomically")
+LOCALS = movement regression outing snapshot
+SAVEDATA 91, LOCALS
+EC_ACTIVE:CL_BARRACKS = 0
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_WHERE(1) == CL_QUARTERS && CM_PERSON:1:CM_MODE == 2, "closing visited facility returns visitor home")
+EC_ACTIVE:CL_BARRACKS = 1
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_WHERE(1) == CL_QUARTERS, "reopening facility does not reroll the same period")
+DAY = 12
+TIME = 0
+EC_ACTIVE:CL_WORKSHOP = 0
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_WHERE(1) == CL_QUARTERS, "paused workplace sends staff home rather than counting work")
+CALL EC_CAPTURE_SHIFT
+CALL CT_ASSERT(EC_COUNT:CL_WORKSHOP == 0, "paused workplace produces no attendance")
+CFLAG:1:1 = 3
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_WHERE(1) == 0, "external mission cannot leave a ghost in castle roster")
+CFLAG:1:1 = 0
+EC_ACTIVE:CL_WORKSHOP = 1
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_WHERE(1) == CL_WORKSHOP, "returning from mission resumes present duty")
+DAY = 13
+TIME = 1
+CALL CASTLE_SYNC
+CASTLE_STATE:2 = CASTLE_WHERE(1)
+CALL CASTLE_BRING(1)
+CALL CT_ASSERT(RESULT == 1 && CASTLE_WHERE(1) == CL_CHAMBER, "explicit visit takes priority over autonomous outing")
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_WHERE(1) == CL_CHAMBER && CASTLE_PERSON:1:CP_HOME == CL_QUARTERS, "refresh retains explicit visit without replacing home")
+CALL CASTLE_END_VISIT
+CALL CT_ASSERT(CASTLE_WHERE(1) == CL_MARKET, "ending visit resumes the same period outing")
+CASTLE_STATE:2 = CL_MARKET
+CALL CT_ASSERT(IX_REASON(1, 1) == 0, "ordinary conversation is also reachable at public market")
+EC_ACTIVE:CL_BARRACKS = 0
+EC_ACTIVE:CL_WORKSHOP = 0
+EC_ACTIVE:CL_MARKET = 0
+DAY = 15
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_WHERE(1) == CL_QUARTERS, "when every public activity is closed follower rests at home")
+CALL CT_ASSERT(CASTLE_PERSON:1:CP_WORK == CL_WORKSHOP && CASTLE_ROLE(1) == CR_FOLLOWER, "movement never removes job or allegiance")
+EC_ACTIVE:CL_BARRACKS = 1
+EC_ACTIVE:CL_WORKSHOP = 1
+EC_ACTIVE:CL_MARKET = 1
+DAY = 17
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CM_PERSON:5:CM_MODE == 3, "eligible adult can resume public outings in a new period")
+CFLAG:5:451 = 17
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_WHERE(5) == CL_QUARTERS && CM_PERSON:5:CM_MODE == 2, "age correction immediately invalidates an adult outing")
+PRINTL MOVEMENT ENGINE ASSERTIONS PASSED
+OUTPUTLOG
+QUIT

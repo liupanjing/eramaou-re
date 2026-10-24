@@ -1,0 +1,158 @@
+; Isolated native-engine regression; all content exercised here is ordinary conversation.
+@SYSTEM_TITLE
+#DIM DYNAMIC IX_T
+#DIM DYNAMIC IX_MONEY
+#DIM DYNAMIC IX_TRUST
+#DIM DYNAMIC IX_AFFECTION
+#DIM DYNAMIC IX_UID
+#DIMS DYNAMIC IX_SNAPSHOT
+#DIMS DYNAMIC IX_OLD
+RESETDATA
+CALL CHARA_NAME_INIT
+FOR IX_T, 0, 4
+	ADDCHARA IX_T
+NEXT
+MASTER = 0
+DAY = 5
+TIME = 1
+MONEY = 10000
+FOR IX_T, 0, CHARANUM
+	CFLAG:IX_T:6 = 42000 + IX_T
+	CFLAG:IX_T:451 = 25
+	CFLAG:IX_T:1 = 0
+NEXT
+CALL CASTLE_SYNC
+CASTLE_PERSON:1:CP_ROLE = CR_FOLLOWER
+CASTLE_PERSON:1:CP_ORIGIN = 3
+CASTLE_PERSON:1:CP_HOME = CL_QUARTERS
+CASTLE_STATE:2 = CL_QUARTERS
+DIALOGUE_PERSON:1:DP_TRUST = 0
+CFLAG:1:2 = 0
+CALL CASTLE_SYNC
+CALL CT_ASSERT(IX_REASON(1, 1) == 0, "ordinary follower interaction is available in the same facility")
+CALL CT_ASSERT(IX_REASON(1, 2) == 4, "follow-up is hidden until its prerequisite is complete")
+CALL CT_ASSERT(IX_REASON(-1, 1) == 2 && IX_REASON(CHARANUM, 1) == 2 && IX_REASON(MASTER, 1) == 2, "invalid people are rejected before character array access")
+CALL CT_ASSERT(IX_REASON(1, -1) == 1 && IX_REASON(1, 16) == 1 && IX_REASON(1, 15) == 1, "unknown event ids are rejected safely")
+CASTLE_STATE:2 = CL_THRONE
+CALL CT_ASSERT(IX_REASON(1, 1) == 3, "remote interaction is rejected")
+CASTLE_STATE:2 = CL_QUARTERS
+CASTLE_PERSON:1:CP_ROLE = CR_CAPTIVE
+CALL CT_ASSERT(IX_REASON(1, 1) == 2, "ordinary follower event cannot substitute for captive negotiation")
+CASTLE_PERSON:1:CP_ROLE = CR_FOLLOWER
+CFLAG:1:451 = 17
+CALL CT_ASSERT(IX_REASON(1, 1) == 2, "minor is excluded from this adult relationship event")
+CFLAG:1:451 = 25
+CALL FAMILY_SETBOTH(2, 0, 5)
+CALL CASTLE_SYNC
+CALL CT_ASSERT(IX_REASON(2, 1) == 2, "adult relatives remain separate from relationship events")
+CFLAG:1:1 = 3
+CALL CT_ASSERT(IX_REASON(1, 1) == 2, "absent follower cannot interact")
+CFLAG:1:1 = 0
+IX_MONEY = MONEY
+CT_QUEUE = 0
+CT_POS = 0
+CT_SIZE = 1
+CALL IX_PLAY(1, 1)
+CALL CT_ASSERT(RESULT == 0 && CASTLE_STATE:5 == 3 && MONEY == IX_MONEY, "cancel at first choice consumes nothing")
+CALL CT_ASSERT(INTERACTION_COUNT:1:1 == 0 && DIALOGUE_PERSON:1:DP_LAST == 0 && DIALOGUE_PERSON:1:DP_MET == 0, "cancel leaves history cooldown and first meeting unchanged")
+CT_QUEUE = 1, 0
+CT_POS = 0
+CT_SIZE = 2
+CALL IX_PLAY(1, 1)
+CALL CT_ASSERT(RESULT == 0 && CASTLE_STATE:5 == 3 && DIALOGUE_PERSON:1:DP_TRUST == 0 && CFLAG:1:2 == 0, "cancel in second round does not partially apply first-round effects")
+CALL IX_COMMIT(1, 1, 1, 9)
+CALL CT_ASSERT(RESULT == 0 && INTERACTION_COUNT:1:1 == 0 && CASTLE_STATE:5 == 3, "invalid final choice cannot commit")
+CASTLE_STATE:5 = 0
+CALL IX_PLAY(1, 1)
+CALL CT_ASSERT(RESULT == 0 && INTERACTION_COUNT:1:1 == 0, "insufficient actions cannot start event")
+CASTLE_STATE:5 = 3
+; Enter from the real character UI, complete both rounds, and return through both menus.
+CT_QUEUE = 7, 1, 1, 1, 0, 999
+CT_POS = 0
+CT_SIZE = 6
+CALL CASTLE_PERSON_MENU(1)
+CALL CT_ASSERT(CT_POS == 6 && INTERACTION_COUNT:1:1 == 1 && INTERACTION_CHOICE:1:1 == 11, "actual character menu reaches two-round event and records choices")
+CALL CT_ASSERT(CASTLE_STATE:5 == 2 && MONEY == IX_MONEY && EX_FLAG:4444 == 0, "successful free event charges exactly one action and no cash")
+CALL CT_ASSERT(DIALOGUE_PERSON:1:DP_TRUST == 3 && CFLAG:1:2 == 0, "trust-focused choices do not automatically create affection")
+CALL CT_ASSERT(CASTLE_ROLE(1) == CR_FOLLOWER && DIALOGUE_PERSON:1:DP_CHAPTER == 0 && DIALOGUE_PERSON:1:DP_AGREE == 0 && TALENT:1:85 == 0, "interaction does not rewrite allegiance chapters agreement or legacy love status")
+CALL CT_ASSERT(DIALOGUE_PERSON:1:DP_MET == 1 && IX_REASON(1, 1) == 6, "completion records encounter and shares the dialogue cooldown")
+CALL DIALOGUE_SESSION(1, 10)
+CALL CT_ASSERT(CASTLE_STATE:5 == 2, "old daily dialogue cannot bypass the shared period limit")
+CALL CT_ASSERT(IX_REASON(1, 2) == 10, "unfinished follow-up is explicitly visible after prerequisite")
+CALL IX_PLAY(1, 2)
+CALL CT_ASSERT(RESULT == 0 && CASTLE_STATE:5 == 2 && INTERACTION_COUNT:1:2 == 0 && MONEY == IX_MONEY, "missing prose consumes nothing and never marks a phantom event")
+IX_TRUST = DIALOGUE_PERSON:1:DP_TRUST
+CALL IX_HISTORY(1)
+CALL CT_ASSERT(CASTLE_STATE:5 == 2 && DIALOGUE_PERSON:1:DP_TRUST == IX_TRUST && INTERACTION_COUNT:1:1 == 1, "history display has no state effects")
+; Future periods permit re-reading but not relationship farming.
+DAY += 1
+CALL CASTLE_SYNC
+CASTLE_STATE:2 = CASTLE_WHERE(1)
+CALL CT_ASSERT(IX_REASON(1, 3) == 0, "specific previous choice and trust unlock paid fixture event")
+MONEY = 24
+CALL IX_PLAY(1, 3)
+CALL CT_ASSERT(RESULT == 0 && MONEY == 24 && CASTLE_STATE:5 == 3 && INTERACTION_COUNT:1:3 == 0, "insufficient funds preserve action and event history")
+MONEY = IX_MONEY
+CT_QUEUE = 1, 0
+CT_POS = 0
+CT_SIZE = 2
+CALL IX_PLAY(1, 3)
+CALL CT_ASSERT(RESULT == 0 && MONEY == IX_MONEY && CASTLE_STATE:5 == 3, "cancel at second round of paid event preserves both currencies")
+CT_QUEUE = 1, 1
+CT_POS = 0
+CT_SIZE = 2
+CALL IX_PLAY(1, 3)
+CALL CT_ASSERT(RESULT == 1 && MONEY == IX_MONEY - 25 && EX_FLAG:4444 == -25 && CASTLE_STATE:5 == 2, "paid event commits one atomic action and cash transaction")
+CALL CT_ASSERT(IX_REASON(1, 3) == 5 && INTERACTION_COUNT:1:3 == 1, "non-repeatable event remains completed")
+IX_TRUST = DIALOGUE_PERSON:1:DP_TRUST
+DAY += 1
+CALL CASTLE_SYNC
+CASTLE_STATE:2 = CASTLE_WHERE(1)
+CFLAG:1:2 = 2500
+CT_QUEUE = 2, 2
+CT_POS = 0
+CT_SIZE = 2
+CALL IX_PLAY(1, 1)
+CALL CT_ASSERT(RESULT == 1 && INTERACTION_COUNT:1:1 == 2 && INTERACTION_CHOICE:1:1 == 22, "repeat records its new final choice")
+CALL CT_ASSERT(DIALOGUE_PERSON:1:DP_TRUST == IX_TRUST && CFLAG:1:2 == 2500 && CASTLE_STATE:5 == 2, "repeat charges action without farming or truncating legacy affection above 100 percent")
+; A different person can select the affection path without gaining trust.
+CASTLE_PERSON:3:CP_ROLE = CR_FOLLOWER
+CASTLE_PERSON:3:CP_ORIGIN = 3
+CASTLE_PERSON:3:CP_HOME = CL_QUARTERS
+CALL CASTLE_SYNC
+DIALOGUE_PERSON:3:DP_TRUST = 0
+CFLAG:3:2 = 0
+CASTLE_STATE:2 = CASTLE_WHERE(3)
+CT_QUEUE = 2, 2
+CT_POS = 0
+CT_SIZE = 2
+CALL IX_PLAY(3, 1)
+CALL CT_ASSERT(RESULT == 1 && DIALOGUE_PERSON:3:DP_TRUST == 0 && CFLAG:3:2 == 15, "affection path changes existing affection independently of trust")
+; CHARADATA follows sorting; optional string export preserves leave-and-return memory.
+IX_UID = CASTLE_PERSON:1:CP_UID
+SWAPCHARA 1, 3
+CALL CT_ASSERT(CASTLE_PERSON:3:CP_UID == IX_UID && INTERACTION_COUNT:3:1 == 2 && INTERACTION_CHOICE:3:1 == 22, "sorting moves memory with the character")
+SWAPCHARA 1, 3
+CASTLE_STATE:2 = CASTLE_WHERE(1)
+IX_SNAPSHOT '= CASTLE_EXPORT_MEMORY(1)
+IX_OLD = 0_0_0_0_0_0_0_0_0_0_0_0_0_0
+IX_SNAPSHOT '= IX_OLD + IX_SNAPSHOT
+INTERACTION_COUNT:1 = 0
+INTERACTION_CHOICE:1 = 0
+INTERACTION_LAST:1 = 0
+CALL CASTLE_IMPORT_MEMORY(1, IX_SNAPSHOT)
+CALL CT_ASSERT(RESULT == 1 && INTERACTION_COUNT:1:1 == 2 && INTERACTION_CHOICE:1:1 == 22 && IX_REASON(1, 1) == 6, "real leave-and-return serializer restores event memory")
+CALL IX_IMPORT(1, IX_OLD)
+CALL CT_ASSERT(RESULT == 0 && INTERACTION_COUNT:1:1 == 2, "old strings without optional event memory are compatible")
+IX_OLD '= REPLACE(IX_SNAPSHOT, "_CM1_", ",broken_CM1_")
+CALL IX_IMPORT(1, IX_OLD)
+CALL CT_ASSERT(RESULT == 0 && INTERACTION_COUNT:1:1 == 2 && INTERACTION_LAST:1:1 == DAY * 2 + TIME + 1, "malformed optional memory is rejected atomically")
+; Verify profile-specific prose selection without changing the original voice files.
+TALENT:3:170 = 1
+NO:3 = 23
+CALL CT_ASSERT(DIALOGUE_PROFILE(3) == 170 && IX_TEXT(3, 1, 112, 0) != IX_TEXT(1, 1, 112, 0), "named profile selects its own reply over generic narration")
+LOCALS = castle interaction regression
+SAVEDATA 93, LOCALS
+PRINTL INTERACTION ENGINE ASSERTIONS PASSED
+OUTPUTLOG
+QUIT

@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "resources": [
+    {"id": 1, "name": "粮食", "price": 10, "initial": 120},
+    {"id": 2, "name": "建材", "price": 30, "initial": 60},
+    {"id": 3, "name": "魔晶", "price": 60, "initial": 30},
+    {"id": 4, "name": "制品", "price": 90, "initial": 0}
+  ],
+  "facilities": [
+    {"id": 1, "name": "王座厅", "upkeep": 3, "purpose": "城务人员提高税务效率；等级提高城堡基础收入。"},
+    {"id": 2, "name": "地牢", "upkeep": 3, "purpose": "看守和驻防改善城内秩序；俘虏不作为工作人员。"},
+    {"id": 3, "name": "部下居所", "upkeep": 2, "purpose": "提供居住容量；内务人员改善休息恢复。"},
+    {"id": 4, "name": "魔王寝宫", "upkeep": 2, "purpose": "保留既有会面功能，扩建增加安置容量。"},
+    {"id": 5, "name": "兵营", "upkeep": 4, "purpose": "教官积累整备度，降低军队维护费，不凭空增加兵力。"},
+    {"id": 6, "name": "家族居所", "upkeep": 2, "purpose": "提供家族容量；成年照护人员改善家属休息。"},
+    {"id": 7, "name": "工坊与研究室", "upkeep": 5, "purpose": "分配工艺生产与研究工时；消耗实际原料并解锁永久技术。"},
+    {"id": 8, "name": "农场", "upkeep": 3, "purpose": "每日生产粮食；工作人员与农业技术提高产量。"},
+    {"id": 9, "name": "采石场", "upkeep": 4, "purpose": "每日生产建材，供设施建设和工艺生产使用。"},
+    {"id": 10, "name": "魔晶井", "upkeep": 5, "purpose": "每日收集魔晶，供研究和工艺生产使用。"},
+    {"id": 11, "name": "市集", "upkeep": 3, "purpose": "批量买卖物资；等级改善价差和每日交易额度。"},
+    {"id": 12, "name": "仓库", "upkeep": 2, "purpose": "限制各类库存容量；物流人员降低粮食消耗。"}
+  ],
+  "projects": [
+    {"id": 1, "name": "农业与采掘改良", "gold": 1200, "materials": 15, "mana": 8, "work": 30, "effect": "农场、采石场和魔晶井产量提高25%。"},
+    {"id": 2, "name": "仓储与运输", "gold": 1600, "materials": 25, "mana": 10, "work": 40, "effect": "各类库存容量增加150，粮食消耗减少10%。"},
+    {"id": 3, "name": "精密工艺", "gold": 2200, "materials": 30, "mana": 18, "work": 50, "effect": "工艺工时提高25%，市集交易额度增加50。"}
+  ],
+  "recipes": [
+    {"id": 1, "name": "制作补给制品", "input": [0, 0, 2, 1, 0], "output": [0, 0, 0, 0, 2]},
+    {"id": 2, "name": "魔力整备建材", "input": [0, 0, 0, 1, 0], "output": [0, 0, 4, 0, 0]},
+    {"id": 3, "name": "建材炼制魔晶", "input": [0, 0, 2, 0, 0], "output": [0, 0, 0, 2, 0]}
+  ]
+}

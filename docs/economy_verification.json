@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-18",
+  "engine": "Emuera1824cn.exe",
+  "suites": [
+    {
+      "fixture": "../经济体系最终原引擎回归-20261018",
+      "marker": "ECONOMY ENGINE ASSERTIONS PASSED",
+      "passed_assertions": 71,
+      "log_sha256": "64b121ba7048c5f028048a67982ccacbd70428a3e68fa74c64d53e247ac215b7"
+    },
+    {
+      "fixture": "../经济体系最终日期回归-20261018",
+      "marker": "IDENTITY TIME CYCLE ASSERTIONS PASSED",
+      "passed_assertions": 44,
+      "log_sha256": "abc050d3a3f4128088d116e6e30cf99afcf06c12f46f691244529f97a54bb943"
+    },
+    {
+      "fixture": "../经济体系城堡交互回归-20261018-01",
+      "marker": "CASTLE INTERACTION ASSERTIONS PASSED",
+      "passed_assertions": 81,
+      "log_sha256": "1927f325ffc2d1719ac761233624764face50da2a5cac03b1b49cbb24cd76f2a"
+    },
+    {
+      "fixture": "../经济体系最终存档回归-20261018",
+      "marker": "ECONOMY LOAD ASSERTIONS PASSED",
+      "passed_assertions": 7,
+      "log_sha256": "e13638fa250dc8f03def785e0905e411fb2037dc722862e61dea65983be1dd0f"
+    },
+    {
+      "fixture": "../经济体系最终旧档回归-20261018",
+      "marker": "CASTLE LOAD ASSERTIONS PASSED",
+      "passed_assertions": 7,
+      "log_sha256": "41b849e908f5ca9a5f96bdad390cfa3bd7c9e533bdc91f6be0e121bb43398547"
+    }
+  ],
+  "total_assertions": 210,
+  "scope": "Native synthetic economy cases, real calendar, original castle interactions, native save roundtrip and copied original save; not a full campaign playthrough.",
+  "fixture_changes": "Tests replace INPUT/waits with queues in copied modules; calendar fixture also disables new external arrivals. Economic transactions and real game dates are not mocked.",
+  "original_save_copy_sha256": "f5d36dd495ce5bb2e5d14dc520b7c3f70af4cbf5af815b888d1ade2b823c8da2"
+}

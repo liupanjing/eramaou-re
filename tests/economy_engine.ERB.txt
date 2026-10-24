@@ -1,0 +1,240 @@
+﻿; Native tests use actual economic functions with synthetic non-graphic state.
+@SYSTEM_TITLE
+#DIM DYNAMIC EF_I
+#DIM DYNAMIC EF_MONEY
+#DIM DYNAMIC EF_STOCK
+#DIM DYNAMIC EF_WORK
+#DIM DYNAMIC EF_UID
+RESETDATA
+CALL CHARA_NAME_INIT
+FOR EF_I, 0, 6
+	ADDCHARA EF_I
+NEXT
+MASTER = 0
+DAY = 5
+TIME = 0
+MONEY = 10000
+FOR EF_I, 0, CHARANUM
+	CFLAG:EF_I:6 = 30000 + EF_I
+	CFLAG:EF_I:451 = 25
+	CFLAG:EF_I:1 = 0
+	MAXBASE:EF_I:0 = 1000
+	BASE:EF_I:0 = 800
+NEXT
+CFLAG:4:451 = 8
+EX_TALENT:4:2 = 1
+CALL CASTLE_SYNC
+FOR EF_I, 2, 4
+	CASTLE_PERSON:EF_I:CP_ROLE = CR_FOLLOWER
+	CASTLE_PERSON:EF_I:CP_ORIGIN = 3
+	CASTLE_PERSON:EF_I:CP_HOME = CL_QUARTERS
+NEXT
+CASTLE_PERSON:5:CP_ROLE = CR_FOLLOWER
+CASTLE_PERSON:5:CP_ORIGIN = 3
+CASTLE_PERSON:5:CP_HOME = CL_QUARTERS
+CASTLE_PERSON:2:CP_WORK = CL_FARM
+CASTLE_PERSON:3:CP_WORK = CL_WORKSHOP
+CASTLE_PERSON:5:CP_WORK = CL_FARM
+CFLAG:5:1 = 3
+ABL:3:100 = 10
+CALL CASTLE_SYNC
+CALL CT_ASSERT(EC_STATE:EC_VERSION == 1 && EC_STOCK:1 == 120 && MONEY == 10000, "economy migration grants supplies once and preserves treasury")
+EC_STOCK:1 = 75
+CALL CASTLE_SYNC
+CALL CT_ASSERT(EC_STOCK:1 == 75, "refresh cannot refill migration supplies")
+CALL CT_ASSERT(CASTLE_SHORT_COMMAND(208) == 21008 && CASTLE_SHORT_COMMAND(212) == 21012, "new facilities expose native keyboard navigation")
+CALL CASTLE_COMMAND(21008)
+CALL CT_ASSERT(CASTLE_STATE:2 == CL_FARM && CASTLE_WHERE(2) == CL_FARM, "farm is a real location and job destination")
+CALL CT_ASSERT(CASTLE_PERSON:2:CP_WORK == CL_FARM && CASTLE_PERSON:4:CP_WORK == 0, "normalization preserves new adult jobs and excludes child staff")
+CALL EC_CAPTURE_SHIFT
+CALL CT_ASSERT(EC_COUNT:CL_FARM == 1 && EC_COUNT:CL_WORKSHOP == 1 && EC_STATE:EC_STAFF == 2, "only present eligible staff are counted")
+EF_WORK = EC_WORK:CL_FARM
+CASTLE_PERSON:2:CP_WORK = CL_MARKET
+CALL EC_CAPTURE_SHIFT
+CALL CT_ASSERT(EC_WORK:CL_FARM == EF_WORK && EC_WORK:CL_MARKET == 0, "same-day reassignment cannot duplicate attendance")
+TIME = 1
+EF_MONEY = MONEY
+CALL TAX_GET
+CALL CT_ASSERT(EC_STATE:EC_LAST_DAY == DAY && EC_STATE:EC_BOOK_COUNT == 1 && MONEY > EF_MONEY, "old tax entry performs new daily settlement on non-tax day")
+EF_MONEY = MONEY
+EF_STOCK = EC_STOCK:1
+CALL TAX_GET
+CALL EC_SETTLE
+CALL CT_ASSERT(MONEY == EF_MONEY && EC_STOCK:1 == EF_STOCK && EC_STATE:EC_BOOK_COUNT == 1, "repeated old tax calls cannot mint cash or consume food twice")
+CALL CT_ASSERT(EC_LEDGER:0:7 == EC_LEDGER:0:10 + EC_LEDGER:0:1 - EC_LEDGER:0:2 + EC_LEDGER:0:3 + EC_LEDGER:0:4 + EC_LEDGER:0:5 + EC_LEDGER:0:6 - EC_LEDGER:0:11, "daily cash ledger reconciles")
+TIME = 0
+DAY += 1
+CALL CASTLE_SYNC
+CASTLE_STATE:5 = 3
+EF_MONEY = MONEY
+EF_STOCK = EC_STOCK:2
+CALL EC_TRADE(2, 5)
+CALL CT_ASSERT(RESULT == 1 && EC_STOCK:2 == EF_STOCK+5 && MONEY == EF_MONEY-5*EC_QUOTE(2,1) && CASTLE_STATE:5 == 2, "bulk purchase charges once and consumes one action")
+CALL EC_TRADE(2, -5)
+CALL CT_ASSERT(RESULT == 1 && EC_STOCK:2 == EF_STOCK && MONEY < EF_MONEY, "immediate buy-sell cannot create profit")
+EF_MONEY = MONEY
+CALL EC_TRADE(2, 0)
+CALL EC_TRADE(999, 1)
+CALL EC_TRADE(2, 99999)
+CALL CT_ASSERT(MONEY == EF_MONEY && EC_STOCK:2 == EF_STOCK, "cancel invalid resource and oversized trade do not mutate state")
+EC_STOCK:1 = EC_CAPACITY()+20
+CALL EC_TRADE(1, 1)
+CALL CT_ASSERT(RESULT == 0 && EC_STOCK:1 == EC_CAPACITY()+20, "over-capacity legacy stock is preserved but cannot buy more")
+CALL EC_STOCK_ADD(1, 5)
+CALL CT_ASSERT(EC_STOCK:1 == EC_CAPACITY()+20, "production never truncates existing over-capacity stock")
+CASTLE_STATE:5 = 0
+EF_MONEY = MONEY
+CALL EC_BUILD_START(CL_FARM)
+CALL CT_ASSERT(RESULT == 0 && MONEY == EF_MONEY && EC_STATE:EC_BUILD_ID == 0, "no actions cannot pay for a construction")
+CASTLE_STATE:5 = 3
+EC_STOCK:2 = 100
+CALL EC_BUILD_START(CL_FARM)
+CALL CT_ASSERT(RESULT == 1 && EC_STATE:EC_BUILD_ID == CL_FARM && EC_FACILITY_LEVEL(CL_FARM) == 1, "construction is queued and does not immediately upgrade")
+EF_MONEY = MONEY
+CALL EC_BUILD_START(CL_STORE)
+CALL CT_ASSERT(RESULT == 0 && MONEY == EF_MONEY, "second construction cannot charge while queue occupied")
+CALL EC_PROJECT_START(999)
+CALL CT_ASSERT(RESULT == 0, "invalid research and menu cancellation are safe")
+CALL EC_PROJECT_START(1)
+CALL CT_ASSERT(RESULT == 1 && EC_STATE:EC_PROJECT == 1, "research has real upfront money and materials costs")
+EF_MONEY = MONEY
+CALL EC_PROJECT_START(2)
+CALL CT_ASSERT(RESULT == 0 && MONEY == EF_MONEY, "research cannot be replaced or charged twice")
+EC_STATE:EC_MODE = 1
+EC_STATE:EC_GRACE_END = -1
+CASTLE_PERSON:2:CP_WORK = CL_FARM
+FOR EF_I, 0, 5
+	DAY += 1
+	TIME = 0
+	CALL CASTLE_SYNC
+	CALL EC_CAPTURE_SHIFT
+	TIME = 1
+	CALL EC_SETTLE
+NEXT
+CALL CT_ASSERT(EC_TECH:1 == 1 && EC_STATE:EC_PROJECT == 0, "staff research completes and unlocks real technology")
+CALL CT_ASSERT(EC_FACILITY_LEVEL(CL_FARM) == 2 && EC_STATE:EC_BUILD_ID == 0, "construction completes through daily work")
+EC_STOCK:2 = 10
+EC_STOCK:3 = 10
+EC_STOCK:4 = 0
+EC_STATE:EC_CRAFT_WORK = 0
+CALL EC_PRODUCE(1, 16)
+CALL CT_ASSERT(RESULT == 2 && EC_STOCK:2 == 6 && EC_STOCK:3 == 8 && EC_STOCK:4 == 4, "crafting consumes inputs per real completed batch")
+EC_STOCK:4 = EC_CAPACITY()
+EF_STOCK = EC_STOCK:2
+CALL EC_PRODUCE(1, 8)
+CALL CT_ASSERT(RESULT == 0 && EC_STOCK:2 == EF_STOCK, "full output storage cannot destroy recipe inputs")
+EC_STOCK:2 = 0
+EC_STOCK:4 = 0
+CALL EC_PRODUCE(1, 8)
+CALL CT_ASSERT(RESULT == 0 && EC_STOCK:2 == 0, "missing raw materials cannot become negative")
+EC_STOCK:1 = 0
+EC_ACTIVE:CL_FARM = 0
+MONEY = 0
+ITEM:170 = 100000
+DAY += 1
+TIME = 0
+CALL CASTLE_SYNC
+CALL EC_CAPTURE_SHIFT
+TIME = 1
+CALL EC_SETTLE
+CALL CT_ASSERT(MONEY >= 0 && EC_STATE:EC_DEBT > 0 && EC_STATE:EC_SHORTAGE > 0, "shortfalls create explicit debt and shortage without negative treasury")
+ITEM:170 = 0
+MONEY = 10000
+EC_STOCK:1 = 100
+DAY += 1
+TIME = 0
+CALL CASTLE_SYNC
+CALL EC_CAPTURE_SHIFT
+TIME = 1
+CALL EC_SETTLE
+CALL CT_ASSERT(EC_STATE:EC_DEBT == 0 && EC_STATE:EC_SHORTAGE == 0, "resupply and treasury repay arrears through actual cash flow")
+EC_STATE:EC_TRADE_VOLUME = 50
+EC_STATE:EC_TRADE_DAY = DAY + 1
+CALL EC_INIT
+CALL CT_ASSERT(EC_STATE:EC_TRADE_VOLUME == 50, "menu refresh cannot reset trading quota")
+DAY += 1
+CALL EC_INIT
+CALL CT_ASSERT(EC_STATE:EC_TRADE_VOLUME == 0, "new calendar day resets trading quota")
+EF_UID = CASTLE_PERSON:2:CP_UID
+SWAPCHARA 1, 2
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_PERSON:1:CP_UID == EF_UID && CASTLE_PERSON:1:CP_WORK == CL_FARM, "new production job follows permanent character through sorting")
+MONEY = 10000
+EC_STOCK:2 = 100
+EC_STOCK:3 = 100
+CASTLE_STATE:5 = 3
+EF_STOCK = EC_CAPACITY()
+CALL EC_PROJECT_START(2)
+CALL EC_RESEARCH_ADVANCE(100)
+CALL CT_ASSERT(EC_TECH:2 == 1 && EC_CAPACITY() == EF_STOCK+150, "logistics research actually expands warehouse capacity")
+EF_STOCK = EC_TRADE_LIMIT()
+CALL EC_PROJECT_START(3)
+CALL EC_RESEARCH_ADVANCE(100)
+CALL CT_ASSERT(EC_TECH:3 == 1 && EC_TRADE_LIMIT() == EF_STOCK+50, "craft research actually expands market throughput")
+FOR EF_I, 1, 5
+	CALL CT_ASSERT(EC_QUOTE(EF_I,1) > EC_QUOTE(EF_I,0), "each resource has a strict purchase-sale spread")
+NEXT
+FOR EF_I, 0, 30
+	DAY += 1
+	TIME = 0
+	CALL CASTLE_SYNC
+	CALL EC_CAPTURE_SHIFT
+	TIME = 1
+	CALL EC_SETTLE
+NEXT
+CALL CT_ASSERT(EC_STATE:EC_BOOK_COUNT == 28 && EC_STATE:EC_BOOK_CURSOR >= 0 && EC_STATE:EC_BOOK_CURSOR < 28, "28-day ledger wraps safely in a month-long simulation")
+FOR EF_I, 0, 28
+	CALL CT_ASSERT(EC_LEDGER:EF_I:7 == EC_LEDGER:EF_I:10 + EC_LEDGER:EF_I:1 - EC_LEDGER:EF_I:2 + EC_LEDGER:EF_I:3 + EC_LEDGER:EF_I:4 + EC_LEDGER:EF_I:5 + EC_LEDGER:EF_I:6 - EC_LEDGER:EF_I:11, "every retained ledger entry reconciles after month-long simulation")
+NEXT
+EF_MONEY = MONEY
+CASTLE_STATE:5 = 3
+CT_QUEUE = 999
+CT_SIZE = 1
+CT_POS = 0
+CALL EC_DASHBOARD
+CT_POS = 0
+CALL EC_BOOK_MENU
+CT_POS = 0
+CALL EC_POLICY_MENU
+CT_POS = 0
+CALL EC_MARKET_MENU
+CT_POS = 0
+CALL EC_RESEARCH_MENU
+CT_POS = 0
+CALL EC_PRODUCTION_MENU
+CT_POS = 0
+CALL EC_BUILD_MENU
+FOR EF_I, 1, 13
+	CT_POS = 0
+	CALL EC_FACILITY_MENU(EF_I)
+NEXT
+CALL CT_ASSERT(MONEY == EF_MONEY && CASTLE_STATE:5 == 3, "all economy menus can be inspected and cancelled without cash or action changes")
+CASTLE_STATE:2 = CL_MARKET
+EF_STOCK = EC_STOCK:1
+CT_QUEUE = 1, 2
+CT_SIZE = 2
+CT_POS = 0
+CALL CASTLE_COMMAND(EC_SHORT(221, CL_MARKET))
+CALL CT_ASSERT(EC_STOCK:1 == EF_STOCK+2 && MONEY == EF_MONEY-2*EC_QUOTE(1,1) && CASTLE_STATE:5 == 2, "native market command accepts actual resource and quantity input")
+EC_ACTIVE:CL_MARKET = 0
+EF_MONEY = MONEY
+CALL EC_TRADE(1, 1)
+CALL CT_ASSERT(RESULT == 0 && MONEY == EF_MONEY, "closed market cannot execute hidden transactions")
+EC_ACTIVE:CL_MARKET = 1
+CASTLE_STATE:2 = CL_THRONE
+CT_POS = 0
+CALL CASTLE_COMMAND(21161)
+CALL CT_ASSERT(CT_POS == 0 && MONEY == EF_MONEY, "wrong-location market command cannot consume input or cash")
+CT_QUEUE = CL_MINE
+CT_SIZE = 1
+CT_POS = 0
+CALL CASTLE_ASSIGN(1, 4)
+CALL CASTLE_SYNC
+CALL CT_ASSERT(CASTLE_PERSON:1:CP_WORK == CL_MINE && CASTLE_STATE:5 == 1, "real appointment menu supports new mining job and preserves it on sync")
+CASTLE_PERSON:1:CP_WORK = CL_FARM
+EC_STOCK:3 = 47
+LOCALS = economy regression
+SAVEDATA 94, LOCALS
+PRINTL ECONOMY ENGINE ASSERTIONS PASSED
+OUTPUTLOG
+QUIT

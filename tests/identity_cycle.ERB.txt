@@ -6,6 +6,8 @@ TIME = 0
 CFLAG:4:1 = 0
 CASTLE_PERSON:2:CP_HOME = CL_QUARTERS
 CASTLE_PERSON:2:CP_WORK = CL_BARRACKS
+DIALOGUE_PERSON:2:DP_TEMPER = 0
+DIALOGUE_PERSON:2:DP_ORIGIN = 2
 CALL CASTLE_SYNC
 IC_UID = CASTLE_PERSON:3:CP_UID
 IC_STAGE = 0
@@ -25,13 +27,21 @@ BEGIN TURNEND
 @EVENTSHOP
 #PRI
 #SINGLE
+#DIM DYNAMIC IC_EXPECT
 CALL CASTLE_SYNC
 CALL CT_ASSERT(DAY == 20 + (IC_STAGE + 1) / 2 && TIME == (IC_STAGE + 1) % 2, "original engine advances exactly one half day per rest")
 CALL CT_ASSERT(CHARANUM == 5 && CASTLE_PERSON:3:CP_UID == IC_UID && CASTLE_ROLE(3) == CR_FAMILY, "daily callbacks preserve child identity and existing people")
 CALL CT_ASSERT(CASTLE_ROLE(1) == CR_CAPTIVE && CASTLE_PERSON:1:CP_HOME == CL_DUNGEON && CASTLE_STATE:6 == 0 && CASTLE_WHERE(1) == CL_DUNGEON, "actual turn clears guest without changing captive allegiance")
-CALL CT_ASSERT(CASTLE_ROLE(2) == CR_FOLLOWER && CASTLE_PERSON:2:CP_ORIGIN == 3 && CASTLE_PERSON:2:CP_WORK == CL_BARRACKS && CASTLE_WHERE(2) == (TIME == 0 ? CL_BARRACKS # CL_QUARTERS), "daily schedule preserves follower job and switches work and home")
+IC_EXPECT = CL_BARRACKS
+SIF IC_STAGE == 0
+	IC_EXPECT = CL_WORKSHOP
+SIF IC_STAGE == 2
+	IC_EXPECT = CL_QUARTERS
+CALL CT_ASSERT(CASTLE_ROLE(2) == CR_FOLLOWER && CASTLE_PERSON:2:CP_ORIGIN == 3 && CASTLE_PERSON:2:CP_WORK == CL_BARRACKS && CASTLE_WHERE(2) == IC_EXPECT, "actual time progression switches duty outing rest duty without changing identity")
 CALL CT_ASSERT(CASTLE_WHERE(3) == CL_FAMILY && CASTLE_PERSON:3:CP_WORK == 0 && CASTLE_ACCESS_REASON(3, CA_DISPOSE) != 0 && CASTLE_PROTECTED_REASON(3) != 0, "daily events do not turn a child into staff or an adult-event target")
 CALL CT_ASSERT(CASTLE_STATE:5 == 3, "new half day restores exactly three actions")
+CALL CT_ASSERT(EC_STATE:EC_BOOK_COUNT == (IC_STAGE + 1) / 2, "native calendar settles economy once per completed day, never on afternoon entry")
+CALL CT_ASSERT(EC_STATE:EC_SHIFT_DAY == 20 + IC_STAGE / 2, "native calendar records morning attendance before the time changes")
 IC_STAGE += 1
 SIF IC_STAGE < 4
 	JUMP IC_ADVANCE

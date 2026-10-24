@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "events": [
+    {
+      "id": 1,
+      "key": "a_moment_after_duty",
+      "title": "当值后的片刻",
+      "status": "ready",
+      "locations": [3, 5, 7, 11],
+      "profiles": [],
+      "temperaments": [],
+      "origins": [],
+      "min_trust": 0,
+      "requires_event": 0,
+      "requires_choice": 0,
+      "repeatable": true,
+      "cost": {"actions": 1, "money": 0},
+      "text": {
+        "opening": ["你在这里遇见了{name}。眼下没有急着处理的差事，你停下来，问对方是否愿意说几句话。", "{name}没有立刻接过话头。你留出了些距离，等对方自己决定从哪里谈起。"],
+        "repeat": ["你又在这里遇见了{name}。上回说过的话还在，这一次，你没有急着问新的事情。"],
+        "ending": ["交谈结束时，你们各自记住了对方的回答。接下来如何相处，还要看以后的行动。"],
+        "rounds": [
+          {
+            "prompt": ["你打算先聊什么？"],
+            "choices": [
+              {"label": "问问最近的差事是否合适", "reply": ["{name}谈起了眼下的安排，也提到了一处不便。你听完，记下了这件事。"], "trust": 2, "affection": 0},
+              {"label": "问问休息时想做些什么", "reply": ["话题暂时离开了差事。{name}说得不多，你也没有追着要求更详细的回答。"], "trust": 0, "affection": 10}
+            ]
+          },
+          {
+            "prompt": ["话题停下来后，你决定怎样结束这次交谈？"],
+            "choices": [
+              {"label": "谢谢对方愿意说这些，下次再聊", "reply": ["你没有再追加问题，给这次交谈留了一个自然的收尾。"], "trust": 1, "affection": 0},
+              {"label": "问问以后是否方便再来聊聊", "reply": ["{name}表示要看当时是否有空。你接受了这个回答，没有把它当作必须履行的约定。"], "trust": 0, "affection": 5}
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "profile": 170,
+          "overrides": {
+            "opening": ["白梅花把手里的东西收好，抬头看了看你。", "「有事？先说好，要是又有什么麻烦差事，我可不一定答应。」"],
+            "repeat": ["「又是你啊。」白梅花没有起身，只把身旁散放的东西往回收了收，「今天又想聊什么？」"],
+            "r1c1_reply": ["「合不合适，总得做过才知道吧。」她想了想，还是把一处不顺手的地方说给你听，「这个你倒是可以管管。」"],
+            "r1c2_reply": ["「休息的时候？当然是做我自己想做的事。」白梅花看着你，「怎么，连这个也要问清楚？」你笑了笑，没有再往下追问。"],
+            "r2c1_reply": ["「这就走了？」她似乎有些意外，随后摆了摆手，「行啊，那下次再说。」"],
+            "r2c2_reply": ["「有空再说嘛。」她答得很快，停了一下，又补充道，「你来了也先问一声，别自己就坐下了。」"]
+          }
+        }
+      ],
+      "author_notes": "非露骨流程样本。普通回退主要使用叙述，其他命名角色的专属口吻尚未扩写；白梅花变体供复核。重复体验保留文本，不重复增加关系数值。"
+    },
+    {
+      "id": 2,
+      "key": "continue_the_conversation",
+      "title": "再续前话",
+      "status": "draft",
+      "locations": [3, 5, 7, 11],
+      "profiles": [],
+      "temperaments": [],
+      "origins": [],
+      "min_trust": 0,
+      "requires_event": 1,
+      "requires_choice": 0,
+      "repeatable": false,
+      "cost": {"actions": 1, "money": 0},
+      "text": null,
+      "variants": [],
+      "author_notes": "后续普通事件占位。完成事件1后显示待补正文；不会消费、记录或自动跳过。按事件1的text结构填写后，将status改为ready并运行生成器。"
+    }
+  ]
+}
